@@ -1,1 +1,56 @@
-/* You can add global styles to this file, and also import other style files */
+@import "primeng/resources/themes/lara-dark-blue/theme.css";
+@import "primeng/resources/primeng.css";
+@import "primeicons/primeicons.css";
+@import 'primeflex/primeflex.scss';
+
+body{
+  margin: 0;
+}
+
+label{
+  font-size: 20px;
+  font-weight: bold;
+}
+
+@media(min-width: 1200px){
+  .container{
+    width: 1280px;
+    margin: 0 auto;
+  }
+}
+
+.button-column {
+  width: 180px;
+  flex-direction: row;
+  text-align: center !important;
+  padding: 0 !important;
+}
+
+.button-spacing {
+  margin: 0 5px !important;
+  padding: 0 !important;
+}
+
+.profissional-column {
+  width: 250px !important;
+  text-align: left !important;
+  padding: 50 !important;
+}
+
+@media (max-width: 960px) {
+  .profissional-column {
+    width: auto;
+    text-align: left !important;
+    padding: 50 !important;
+  }
+
+  .button-column {
+    width: auto;
+    padding: 0 !important;
+  }
+
+  .button-spacing {
+    margin: 2px !important; /* Ajusta o espaçamento entre botões em telas menores */
+  }
+}
+
