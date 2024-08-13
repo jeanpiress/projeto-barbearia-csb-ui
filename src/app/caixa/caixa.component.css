@@ -1,0 +1,8 @@
+.name-column {
+  width: 400px;
+}
+
+.item {
+  display: flex;
+  vertical-align: top; /* Opcional, para alinhar ao topo */
+}

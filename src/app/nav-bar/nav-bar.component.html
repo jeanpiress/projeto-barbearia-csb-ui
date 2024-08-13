@@ -1,0 +1,33 @@
+<nav class="navbar">
+
+  <div class="container">
+    <div class="p-grid">
+      <div class="p-col-12">
+        <a href="javascript:;" class="navbar-toggle" (click)="exibindoMenu = !exibindoMenu">CSB</a>
+      </div>
+    </div>
+  </div>
+
+  <ul class="navbar-menu" [hidden]="!exibindoMenu">
+    <li class="navbar-usuario">
+      Jean Pires
+      <img src="https://fastly.picsum.photos/id/40/4106/2806.jpg?hmac=MY3ra98ut044LaWPEKwZowgydHZ_rZZUuOHrc3mL5mI" alt="Perfil" class="profile-picture">
+    </li>
+    <li class="navbar-item">
+      <a href="#"><i class="pi pi-credit-card"></i> Caixa</a>
+    </li>
+    <li class="navbar-item">
+      <a href="#"><i class="pi pi-users"></i> Fila de atendimento</a>
+    </li>
+    <li class="navbar-item">
+      <a href="#"><i class="pi pi-user"></i> Clientes</a>
+    </li>
+    <li class="navbar-item">
+      <a href="#"><i class="pi pi-briefcase"></i> Profissionais</a>
+    </li>
+    <li class="navbar-item">
+      <a href="#"><i class="pi pi-sign-out"></i> Logout</a>
+    </li>
+  </ul>
+
+</nav>

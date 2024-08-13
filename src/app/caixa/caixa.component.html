@@ -1,0 +1,76 @@
+<div class="container">
+  <div class="p-grid">
+
+    <div class="p-col-12 mb-3">
+      <h1>Caixa</h1>
+    </div>
+
+    <div class="p-grid">
+      <div class="p-col-12 mb-3">
+        <p-table [value]="atendidos" styleClass="p-datatable-striped" [tableStyle]="{ 'min-width': '50rem' }" responsiveLayout="stack"
+        [breakpoint]="'960px'">
+          <ng-template pTemplate="header">
+            <tr>
+              <th style="width: 450px;">Nome</th>
+              <th style="width: 150px; text-align: center;" >Atendimento</th>
+              <th style="text-align: center;">Profissional</th>
+              <th style="width: 200px; text-align: center;">Forma de Pagamento</th>
+              <th style="text-align: center; width: 100px;">Valor</th>
+              <th style="width: 50px;"></th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-atendidos>
+            <tr>
+              <td>{{ atendidos.nome }}</td>
+              <td>{{ atendidos.inicioAtendimento | date: 'dd/MM/yy HH:mm' }}</td>
+              <td style="text-align: center;">{{ atendidos.profissional }}</td>
+              <td style="text-align: center;">{{ atendidos.formaPagamento }}</td>
+              <td style="text-align: center;">{{ formatCurrency(atendidos.valor)}}</td>
+              <td class="button-column">
+                <p-button icon="pi pi-trash" class="button-spacing" pTooltip="Deletar" tooltipPosition="top"></p-button>
+              </td>
+
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
+
+    <div class="item mb-3">
+      <div class="p-col-6">
+        <div class="p-fiel mb-3">
+          <h2>Cliente Atendidos: {{resultados.clienteAtendidos }}</h2>
+        </div>
+        <div class="p-fiel mb-3">
+          <h2>Total Dinheiro: {{ formatCurrency(resultados.totalDinheiro) }}</h2>
+        </div>
+        <div class="p-fiel mb-3">
+          <h2>Total Pix: {{formatCurrency(resultados.totalPix) }}</h2>
+        </div>
+        <div class="p-fiel mb-3">
+          <h2>Total Crédito: {{formatCurrency(resultados.totalCredito)}}</h2>
+        </div>
+        <div class="p-fiel mb-3">
+          <h2>Total Débito: {{formatCurrency(resultados.totalDebito)}}</h2>
+        </div>
+        <div class="p-fiel mb-3">
+          <h2>Fundo de caixa: {{formatCurrency(resultados.fundoCaixa)}}</h2>
+        </div>
+        <div class="p-fiel mb-3">
+          <h2>Total: {{formatCurrency(resultados.total)}}</h2>
+        </div>
+      </div>
+      <div class="p-col-6">
+        <div style="width: 400px; margin: 0 250px;">
+          <p-chart type="doughnut" [data]="pieChartData" [options]="options"></p-chart>
+        </div>
+      </div>
+    </div>
+
+    <div class="p-col-12 mb-3">
+      <p-button label="Fechar Caixa"/>
+    </div>
+
+  </div>
+</div>
+

@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="p-grid">
+
+    <div class="p-col-12 mb-3">
+      <h1>Clientes</h1>
+    </div>
+
+    <div class="p-col-12 p-fluid mb-3">
+      <label class="p-mb-2">Buscar cliente</label>
+      <input type="text" pInputText class="p-mt-2"/>
+    </div>
+
+    <div class="p-col-12 mb-3">
+      <p-button label="Buscar"/>
+    </div>
+
+    <div class="p-grid">
+      <div class="p-col-12 mb-3">
+        <p-table [value]="clientes" styleClass="p-datatable-striped" [tableStyle]="{ 'min-width': '50rem' }" responsiveLayout="stack"
+        [breakpoint]="'960px'">
+          <ng-template pTemplate="header">
+            <tr>
+              <th>Nome</th>
+              <th>Telefone</th>
+              <th>Última Visita</th>
+              <th class="profissional-column">Último Profissional</th>
+              <th class="button-column"></th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-clientes>
+            <tr>
+              <td>{{ clientes.nome }}</td>
+              <td>{{ clientes.telefone }}</td>
+              <td>{{ clientes.ultimaVizita | date: 'dd/MM/y' }}</td>
+              <td class="profissional-column" >{{ clientes.ultimoProfissional }}</td>
+              <td class="button-column">
+                <p-button icon="pi pi-user-plus" class="button-spacing" pTooltip="Adicionar" tooltipPosition="top"></p-button>
+                <p-button icon="pi pi-user-edit" class="button-spacing" pTooltip="Editar" tooltipPosition="top"></p-button>
+                <p-button icon="pi pi-info-circle" class="button-spacing" pTooltip="Detalhar" tooltipPosition="top"></p-button>
+                <p-button icon="pi pi-trash" class="button-spacing" pTooltip="Deletar" tooltipPosition="top"></p-button>
+              </td>
+
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
+
+    <div class="p-col-12 mb-3">
+      <p-button label="Novo Cliente"/>
+    </div>
+
+  </div>
+</div>

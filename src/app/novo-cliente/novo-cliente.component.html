@@ -1,0 +1,86 @@
+<div class="container">
+  <form autocomplete="off" #clienteForm="ngForm">
+    <div class="p-grid">
+
+      <div class="p-col-12">
+         <h1>Novo Cliente</h1>
+      </div>
+
+      <div class="p-grid">
+        <div class="p-fluid max-col-12 mb-3">
+          <label>Nome</label>
+          <input type="text" pInputText name="nome"
+          ngModel #nome="ngModel" required>
+        </div>
+
+        <div class="agrupar p-fluid mb-3">
+          <div class="flex-grow-3">
+            <label>Celular</label>
+            <p-inputMask mask="(99) 99999-9999" placeholder="(xx) xxxxx-xxxx" name="celular"
+            ngModel #celular="ngModel" required></p-inputMask>
+          </div>
+          <div>
+            <label>Data Nascimento</label>
+            <input type="date" pInputText name="dataNascimento"
+            ngModel #dataNascimento="ngModel" required>
+          </div>
+          <div>
+            <label>Dias para retornar</label>
+            <input type="text" pInputText name="diasRetorno"
+            ngModel #diasRetorno="ngModel" required>
+          </div>
+        </div>
+
+        <div class="agrupar p-fluid mb-3">
+          <div class="flex-grow-3">
+            <label>Rua</label>
+            <input type="text" pInputText>
+          </div>
+          <div>
+            <label>numero</label>
+            <input type="text" pInputText>
+          </div>
+        </div>
+
+        <div class="agrupar p-fluid mb-3">
+          <div class="flex-grow-3">
+            <label>Bairro</label>
+            <input type="text" pInputText>
+          </div>
+          <div>
+            <label>cep</label>
+            <p-inputMask mask="99.999-999"></p-inputMask>
+          </div>
+          <div>
+            <label>Complemento</label>
+            <input type="text" pInputText>
+          </div>
+        </div>
+
+        <div class="agrupar p-fluid mb-3">
+          <div class="flex-grow-3">
+            <label>Cidade</label>
+            <input type="text" pInputText>
+          </div>
+          <div>
+            <label>Estado</label>
+            <input type="text" pInputText>
+          </div>
+        </div>
+
+        <div class="p-fluid mb-3">
+          <label>Obsevação</label>
+          <textarea rows="5" cols="30" pInputTextarea name="observacao"
+            ngModel #descricao="ngModel"></textarea>
+        </div>
+
+        <div class="p-col-3">
+          <p-button class="button-spacing" icon="pi pi-save" pTooltip="salvar" tooltipPosition="top"
+          [disabled]="!clienteForm.valid"/>
+          <p-button icon="pi pi-images" pTooltip="adicionar fotos" tooltipPosition="top"/>
+        </div>
+
+      </div>
+    </div>
+  </form>
+</div>
