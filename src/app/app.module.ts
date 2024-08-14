@@ -15,15 +15,17 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ToastModule } from 'primeng/toast'
 import { ChartModule } from 'primeng/chart';
 
-
-
-
-import { BuscaClientesComponent } from './busca-clientes/busca-clientes.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
-import { NovoClienteComponent } from './novo-cliente/novo-cliente.component';
+
 import { AtendimentoComponent } from './atendimento/atendimento.component';
 import { CaixaComponent } from './caixa/caixa.component';
 import { ComissoesGeraisComponent } from './comissoes-gerais/comissoes-gerais.component';
+import { CurrencyPipe } from '@angular/common';
+import { ClientesModule } from './clientes/clientes.module';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+
+
+import { ClienteService } from './clientes/cliente.service';
 
 
 
@@ -33,9 +35,7 @@ import { ComissoesGeraisComponent } from './comissoes-gerais/comissoes-gerais.co
 @NgModule({
   declarations: [
     AppComponent,
-    BuscaClientesComponent,
     NavBarComponent,
-    NovoClienteComponent,
     AtendimentoComponent,
     CaixaComponent,
     ComissoesGeraisComponent
@@ -52,9 +52,16 @@ import { ComissoesGeraisComponent } from './comissoes-gerais/comissoes-gerais.co
     InputTextareaModule,
     FormsModule,
     ToastModule,
-    ChartModule
+    ChartModule,
+    ClientesModule,
+
+
   ],
-  providers: [],
+  providers: [
+    CurrencyPipe,
+    ClienteService,
+    provideHttpClient(withInterceptorsFromDi())
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
