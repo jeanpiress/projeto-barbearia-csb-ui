@@ -14,7 +14,6 @@ import { InputMaskModule } from 'primeng/inputmask';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ChartModule } from 'primeng/chart';
 
-import { AtendimentoComponent } from './atendimento/atendimento.component';
 import { ClientesModule } from './clientes/clientes.module';
 
 
@@ -28,8 +27,7 @@ import { FinanceirosModule } from './financeiros/financeiros.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    AtendimentoComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,

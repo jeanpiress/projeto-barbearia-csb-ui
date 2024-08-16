@@ -28,4 +28,19 @@ export class FinanceiroService {
     return this.http.delete<void>(`${this.pedidoUrl}/excluir/${codigo}`)
   }
 
+  pesquisarPedidosAguardando(): Observable<any>{
+    return this.http.get(`${this.pedidoUrl}/aguardando`)
+  }
+
+  pesquisarPedidosEmAtendimento(): Observable<any>{
+    return this.http.get(`${this.pedidoUrl}/emAtendimento`)
+  }
+
+  cancelarPedido(codigo: number): Observable<void>{
+    return this.http.delete<void>(`${this.pedidoUrl}/cancelar/${codigo}`)
+  }
+
+  alterarPedidoParaEmAtendimento(codigo: number): Observable<void>{
+    return this.http.put<void>(`${this.pedidoUrl}/${codigo}/iniciar`, {})
+  }
 }

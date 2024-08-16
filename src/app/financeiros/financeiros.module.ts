@@ -12,12 +12,15 @@ import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { TableModule } from 'primeng/table';
 import { TooltipModule } from 'primeng/tooltip';
+import { AtendimentoComponent } from './atendimento/atendimento.component';
+
 
 
 
 @NgModule({
   declarations: [
-    CaixaComponent
+    CaixaComponent,
+    AtendimentoComponent
   ],
   imports: [
     CommonModule,
@@ -36,7 +39,8 @@ import { TooltipModule } from 'primeng/tooltip';
     provideHttpClient(withInterceptorsFromDi())
   ],
   exports:[
-    CaixaComponent
+    CaixaComponent,
+    AtendimentoComponent
   ]
 })
 export class FinanceirosModule { }

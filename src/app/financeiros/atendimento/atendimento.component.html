@@ -21,14 +21,16 @@
           </ng-template>
           <ng-template pTemplate="body" let-clientes>
             <tr>
-              <td>{{ clientes.nome }}</td>
-              <td>{{ clientes.chegada | date: 'dd/MM/y' }}</td>
-              <td>{{ clientes.marcadoPara | date: 'dd/MM/y' }}</td>
-              <td class="profissional-column" >{{ clientes.profissional }}</td>
+              <td>{{ clientes.cliente.nome }}</td>
+              <td>{{ clientes.chegada | date: 'dd/MM/yy HH:mm' }}</td>
+              <td>{{ clientes.horario | date: 'dd/MM/yy HH:mm' }}</td>
+              <td class="profissional-column" >{{ clientes.profissional.nome }}</td>
               <td class="button-column">
-                <p-button icon="pi pi-check-square" class="button-spacing" pTooltip="Em atendimento" tooltipPosition="top"></p-button>
+                <p-button icon="pi pi-check-square" class="button-spacing" pTooltip="Em atendimento" tooltipPosition="top"
+                (click)="alterarPedidoParaEmAtendimento(clientes)"></p-button>
                 <p-button icon="pi pi-user-edit" class="button-spacing" pTooltip="Alterar Profissional" tooltipPosition="top"></p-button>
-                <p-button icon="pi pi-trash" class="button-spacing" pTooltip="Cancelar" tooltipPosition="top"></p-button>
+                <p-button icon="pi pi-trash" class="button-spacing" pTooltip="Cancelar" tooltipPosition="top"
+                (click)="cancelarPedido(clientes)"></p-button>
               </td>
 
             </tr>
@@ -58,13 +60,14 @@
           </ng-template>
           <ng-template pTemplate="body" let-atendimento>
             <tr>
-              <td>{{ atendimento.nome }}</td>
-              <td>{{ atendimento.inicio | date: 'dd/MM/y' }}</td>
-              <td>{{ atendimento.profissional }}</td>
+              <td>{{ atendimento.cliente.nome }}</td>
+              <td>{{ atendimento.inicioAtendimento | date: 'dd/MM/yy HH:mm' }}</td>
+              <td>{{ atendimento.profissional.nome }}</td>
               <td class="button-column">
                 <p-button icon="pi pi-shopping-cart" class="button-spacing" pTooltip="Carrinho" tooltipPosition="top"></p-button>
                 <p-button icon="pi pi-money-bill" class="button-spacing" pTooltip="Receber" tooltipPosition="top"></p-button>
-                <p-button icon="pi pi-trash" class="button-spacing" pTooltip="Cancelar" tooltipPosition="top"></p-button>
+                <p-button icon="pi pi-trash" class="button-spacing" pTooltip="Cancelar" tooltipPosition="top"
+                (click)="cancelarPedido(atendimento)"></p-button>
               </td>
 
             </tr>
