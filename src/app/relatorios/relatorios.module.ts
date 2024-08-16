@@ -1,26 +1,25 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { BuscaClientesComponent } from './busca-clientes/busca-clientes.component';
-import { NovoClienteComponent } from './novo-cliente/novo-cliente.component';
-
-import { InputTextareaModule } from 'primeng/inputtextarea';
-import { FormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { ButtonModule } from 'primeng/button';
-import { ChartModule } from 'primeng/chart';
-import { InputMaskModule } from 'primeng/inputmask';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InputTextModule } from 'primeng/inputtext';
 import { TableModule } from 'primeng/table';
 import { TooltipModule } from 'primeng/tooltip';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { InputMaskModule } from 'primeng/inputmask';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { FormsModule } from '@angular/forms';
+import { ChartModule } from 'primeng/chart';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ComissoesGeraisComponent } from './comissoes-gerais/comissoes-gerais.component';
+
 
 
 @NgModule({
   declarations: [
-    BuscaClientesComponent,
-    NovoClienteComponent],
+    ComissoesGeraisComponent
+  ],
   imports: [
     CommonModule,
     ButtonModule,
@@ -34,12 +33,11 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
     ChartModule,
     ConfirmDialogModule
   ],
+  exports: [
+    ComissoesGeraisComponent
+  ],
   providers: [
     provideHttpClient(withInterceptorsFromDi())
-  ],
-  exports:[
-    BuscaClientesComponent,
-    NovoClienteComponent
   ]
 })
-export class ClientesModule { }
+export class RelatoriosModule { }

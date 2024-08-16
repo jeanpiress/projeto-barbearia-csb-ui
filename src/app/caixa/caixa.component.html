@@ -25,7 +25,7 @@
               <td>{{ atendidos.inicioAtendimento | date: 'dd/MM/yy HH:mm' }}</td>
               <td style="text-align: center;">{{ atendidos.profissional }}</td>
               <td style="text-align: center;">{{ atendidos.formaPagamento }}</td>
-              <td style="text-align: center;">{{ formatCurrency(atendidos.valor)}}</td>
+              <td style="text-align: center;">{{ atendidos.valor | currency:'BRL'}}</td>
               <td class="button-column">
                 <p-button icon="pi pi-trash" class="button-spacing" pTooltip="Deletar" tooltipPosition="top"></p-button>
               </td>
@@ -42,22 +42,22 @@
           <h2>Cliente Atendidos: {{resultados.clienteAtendidos }}</h2>
         </div>
         <div class="p-fiel mb-3">
-          <h2>Total Dinheiro: {{ formatCurrency(resultados.totalDinheiro) }}</h2>
+          <h2>Total Dinheiro: {{ resultados.totalDinheiro | currency:'BRL' }}</h2>
         </div>
         <div class="p-fiel mb-3">
-          <h2>Total Pix: {{formatCurrency(resultados.totalPix) }}</h2>
+          <h2>Total Pix: {{resultados.totalPix | currency:'BRL' }}</h2>
         </div>
         <div class="p-fiel mb-3">
-          <h2>Total Crédito: {{formatCurrency(resultados.totalCredito)}}</h2>
+          <h2>Total Crédito: {{resultados.totalCredito | currency:'BRL'}}</h2>
         </div>
         <div class="p-fiel mb-3">
-          <h2>Total Débito: {{formatCurrency(resultados.totalDebito)}}</h2>
+          <h2>Total Débito: {{resultados.totalDebito | currency:'BRL'}}</h2>
         </div>
         <div class="p-fiel mb-3">
-          <h2>Fundo de caixa: {{formatCurrency(resultados.fundoCaixa)}}</h2>
+          <h2>Fundo de caixa: {{resultados.fundoCaixa | currency:'BRL'}}</h2>
         </div>
         <div class="p-fiel mb-3">
-          <h2>Total: {{formatCurrency(resultados.total)}}</h2>
+          <h2>Total: {{resultados.total | currency:'BRL'}}</h2>
         </div>
       </div>
       <div class="p-col-6">

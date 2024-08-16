@@ -1,11 +1,21 @@
 <app-nav-bar></app-nav-bar>
-<app-busca-clientes></app-busca-clientes>
+<app-comissoes-gerais></app-comissoes-gerais>
 
 
 <!--
-<app-comissoes-gerais></app-comissoes-gerais>
+<app-busca-clientes></app-busca-clientes>
+<app-busca-clientes></app-busca-clientes>
 <app-caixa></app-caixa>
 <app-atendimento></app-atendimento>
 <app-busca-clientes></app-busca-clientes>
 <app-novo-cliente></app-novo-cliente>
 -->
+
+<p-toast></p-toast>
+<p-confirmDialog header="Confirmação" icon="pi pi-question-circle" #confirmacao>
+  <p-footer>
+    <p-button icon="pi pi-check" label="Sim" (click)="confirmacao.accept()"/>
+    <p-button icon="pi pi-times" label="Não" (click)="confirmacao.reject()"/>
+  </p-footer>
+</p-confirmDialog>
+

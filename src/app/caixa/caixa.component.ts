@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
-import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-caixa',
   templateUrl: './caixa.component.html',
-  styleUrl: './caixa.component.css',
-  providers: [CurrencyPipe]
+  styleUrl: './caixa.component.css'
 })
 export class CaixaComponent {
 
@@ -30,7 +28,7 @@ export class CaixaComponent {
   pieChartData: any;
   options: any;
 
-  constructor(private currencyPipe: CurrencyPipe) {}
+  constructor() {}
 
   ngOnInit() {
     this.configurarGrafico();
@@ -60,9 +58,5 @@ export class CaixaComponent {
         }
       ]
     };
-  }
-
-  formatCurrency(value: number): string {
-    return this.currencyPipe.transform(value, 'BRL', 'symbol', '1.2-2')?.replace('.', ',') || '';
   }
 }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root'
@@ -15,11 +15,9 @@ export class ClienteService {
   pesquisar(nome: string): Observable<any>{
     let params = new HttpParams().set('nome', nome);
 
-    return this.http.get(`${this.clienteUrl}`, { params }).pipe(
-      map(response => {
-        return response;
-      })
-    );
+    return this.http.get(`${this.clienteUrl}`, { params })
   }
 
+  excluir(codigo: number): Observable<void>{
+    return this.http.delete<void>(`${this.clienteUrl}/${codigo}`)}
 }

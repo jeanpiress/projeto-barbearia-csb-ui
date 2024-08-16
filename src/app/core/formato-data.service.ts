@@ -1,0 +1,42 @@
+import { Injectable } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class FormatoDataService {
+
+  constructor() { }
+
+  formatDate(date: Date): string {
+    const timezoneOffset = -date.getTimezoneOffset();
+    const sign = timezoneOffset >= 0 ? '+' : '-';
+    const pad = (n: number) => n < 10 ? '0' + n : n;
+
+    const formattedDate = date.getFullYear() +
+      '-' + pad(date.getMonth() + 1) +
+      '-' + pad(date.getDate()) +
+      'T' + pad(date.getHours()) +
+      ':' + pad(date.getMinutes()) +
+      ':' + pad(date.getSeconds()) +
+      sign + pad(Math.floor(Math.abs(timezoneOffset) / 60)) +
+      ':' + pad(Math.abs(timezoneOffset) % 60);
+
+    return formattedDate;
+  }
+
+  formatDateWithTime(dateStr: string, time: string): string {
+    const date = new Date(dateStr);
+    const timezoneOffset = -date.getTimezoneOffset();
+    const sign = timezoneOffset >= 0 ? '+' : '-';
+    const pad = (n: number) => n < 10 ? '0' + n : n;
+
+    const formattedDate = date.getFullYear() +
+      '-' + pad(date.getMonth() + 1) +
+      '-' + pad(date.getDate()) +
+      'T' + time +
+      sign + pad(Math.floor(Math.abs(timezoneOffset) / 60)) +
+      ':' + pad(Math.abs(timezoneOffset) % 60);
+
+    return formattedDate;
+  }
+}
