@@ -16,6 +16,7 @@ import { NotificationService } from './notification.service';
 
 import localePt from '@angular/common/locales/pt';
 import { FormatoDataService } from './formato-data.service';
+import { FinanceiroService } from '../financeiros/financeiro.service';
 
 
 
@@ -39,7 +40,7 @@ registerLocaleData(localePt);
     NotificationService,
     RelatorioService,
     FormatoDataService,
-    FormatoDataService
+    FinanceiroService
   ],
   exports: [
     NavBarComponent,

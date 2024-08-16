@@ -15,13 +15,13 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ChartModule } from 'primeng/chart';
 
 import { AtendimentoComponent } from './atendimento/atendimento.component';
-import { CaixaComponent } from './caixa/caixa.component';
 import { ClientesModule } from './clientes/clientes.module';
 
 
 
 import { CoreModule } from './core/core.module';
 import { RelatoriosModule } from './relatorios/relatorios.module';
+import { FinanceirosModule } from './financeiros/financeiros.module';
 
 
 
@@ -29,8 +29,7 @@ import { RelatoriosModule } from './relatorios/relatorios.module';
 @NgModule({
   declarations: [
     AppComponent,
-    AtendimentoComponent,
-    CaixaComponent
+    AtendimentoComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +45,8 @@ import { RelatoriosModule } from './relatorios/relatorios.module';
     ChartModule,
     ClientesModule,
     CoreModule,
-    RelatoriosModule
+    RelatoriosModule,
+    FinanceirosModule
 
   ],
   providers: [],
