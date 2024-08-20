@@ -63,3 +63,7 @@
   object-fit: cover; /* Garante que a imagem preencha o espaço da maneira correta */
   vertical-align: middle; /* Alinha a imagem ao meio do texto */
 }
+
+.navbar-item.ativo{
+  background-color: rgb(197, 225, 233);
+}

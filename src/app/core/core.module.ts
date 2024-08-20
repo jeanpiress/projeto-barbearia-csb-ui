@@ -17,6 +17,7 @@ import { NotificationService } from './notification.service';
 import localePt from '@angular/common/locales/pt';
 import { FormatoDataService } from './formato-data.service';
 import { FinanceiroService } from '../financeiros/financeiro.service';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -28,7 +29,8 @@ registerLocaleData(localePt);
   imports: [
     CommonModule,
     ToastModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    RouterModule
   ],
   providers: [
     {provide: LOCALE_ID, useValue: 'pt-BR'},

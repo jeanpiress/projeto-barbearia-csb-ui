@@ -10,50 +10,50 @@
         <div class="p-fluid max-col-12 mb-3">
           <label>Nome</label>
           <input type="text" pInputText name="nome"
-          ngModel #nome="ngModel" required>
+          [(ngModel)]="cliente.nome" required>
         </div>
 
         <div class="agrupar p-fluid mb-3">
           <div class="flex-grow-3">
             <label>Celular</label>
-            <p-inputMask mask="(99) 99999-9999" placeholder="(xx) xxxxx-xxxx" name="celular"
-            ngModel #celular="ngModel" required></p-inputMask>
+            <p-inputMask mask="99 99999-9999" placeholder="(xx) xxxxx-xxxx" name="celular"
+            [(ngModel)]="cliente.celular" required></p-inputMask>
           </div>
           <div>
             <label>Data Nascimento</label>
             <input type="date" pInputText name="dataNascimento"
-            ngModel #dataNascimento="ngModel" required>
+            [(ngModel)]="cliente.dataNascimento" required>
           </div>
           <div>
             <label>Dias para retornar</label>
             <input type="text" pInputText name="diasRetorno"
-            ngModel #diasRetorno="ngModel" required>
+            [(ngModel)]="cliente.diasRetorno" required>
           </div>
         </div>
 
         <div class="agrupar p-fluid mb-3">
           <div class="flex-grow-3">
             <label>Rua</label>
-            <input type="text" pInputText>
+            <input type="text" pInputText name="rua" [(ngModel)]="cliente.endereco.logradouro">
           </div>
           <div>
             <label>numero</label>
-            <input type="text" pInputText>
+            <input type="text" pInputText name="numero" [(ngModel)]="cliente.endereco.numero" >
           </div>
         </div>
 
         <div class="agrupar p-fluid mb-3">
           <div class="flex-grow-3">
             <label>Bairro</label>
-            <input type="text" pInputText>
+            <input type="text" pInputText name="bairro" [(ngModel)]="cliente.endereco.bairro" >
           </div>
           <div>
             <label>cep</label>
-            <p-inputMask mask="99.999-999"></p-inputMask>
+            <p-inputMask mask="99.999-999" name="cep" [(ngModel)]="cliente.endereco.cep" ></p-inputMask>
           </div>
           <div>
             <label>Complemento</label>
-            <input type="text" pInputText>
+            <input type="text" pInputText name="complemento" [(ngModel)]="cliente.endereco.complemento" >
           </div>
         </div>
 
@@ -71,12 +71,12 @@
         <div class="p-fluid mb-3">
           <label>Obsevação</label>
           <textarea rows="5" cols="30" pInputTextarea name="observacao"
-            ngModel #descricao="ngModel"></textarea>
+          [(ngModel)]="cliente.observacao"></textarea>
         </div>
 
         <div class="p-col-3">
           <p-button class="button-spacing" icon="pi pi-save" pTooltip="salvar" tooltipPosition="top"
-          [disabled]="!clienteForm.valid"/>
+          [disabled]="!clienteForm.valid" (click)="salvar()"/>
           <p-button icon="pi pi-images" pTooltip="adicionar fotos" tooltipPosition="top"/>
         </div>
 

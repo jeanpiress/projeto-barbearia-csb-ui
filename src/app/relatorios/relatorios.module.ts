@@ -13,6 +13,7 @@ import { FormsModule } from '@angular/forms';
 import { ChartModule } from 'primeng/chart';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ComissoesGeraisComponent } from './comissoes-gerais/comissoes-gerais.component';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -31,7 +32,8 @@ import { ComissoesGeraisComponent } from './comissoes-gerais/comissoes-gerais.co
     InputTextareaModule,
     FormsModule,
     ChartModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    RouterModule
   ],
   exports: [
     ComissoesGeraisComponent

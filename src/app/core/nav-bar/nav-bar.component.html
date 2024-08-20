@@ -11,21 +11,21 @@
   <ul class="navbar-menu" [hidden]="!exibindoMenu">
     <li class="navbar-usuario">
       Jean Pires
-      <img src="https://fastly.picsum.photos/id/40/4106/2806.jpg?hmac=MY3ra98ut044LaWPEKwZowgydHZ_rZZUuOHrc3mL5mI" alt="Perfil" class="profile-picture">
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjQWAIONPy3WaGsqk4X7c8DCWMJEXae2kAxtyq7SguQ8-ynAbTjCgnpIAJVsiVPStlC8CZttA5m5JxmrumhBTt3KLUK9FwdwlyXSN7yz0KB_n6lePLEPsNuIhm-juGncMTQEcMnnXcVj0U/s1600/unnamed-795336.jpg" alt="Perfil" class="profile-picture">
     </li>
-    <li class="navbar-item">
-      <a href="#"><i class="pi pi-credit-card"></i> Caixa</a>
+    <li class="navbar-item" routerLinkActive="ativo">
+      <a routerLink="/caixa"><i class="pi pi-credit-card"></i> Caixa</a>
     </li>
-    <li class="navbar-item">
-      <a href="#"><i class="pi pi-users"></i> Fila de atendimento</a>
+    <li class="navbar-item" routerLinkActive="ativo">
+      <a routerLink="/atendimento"><i class="pi pi-users"></i> Fila de atendimento</a>
     </li>
-    <li class="navbar-item">
-      <a href="#"><i class="pi pi-user"></i> Clientes</a>
+    <li class="navbar-item" routerLinkActive="ativo">
+      <a routerLink="/clientes/buscar"><i class="pi pi-user"></i> Clientes</a>
     </li>
-    <li class="navbar-item">
+    <li class="navbar-item" routerLinkActive="ativo">
       <a href="#"><i class="pi pi-briefcase"></i> Profissionais</a>
     </li>
-    <li class="navbar-item">
+    <li class="navbar-item" routerLinkActive="ativo">
       <a href="#"><i class="pi pi-sign-out"></i> Logout</a>
     </li>
   </ul>

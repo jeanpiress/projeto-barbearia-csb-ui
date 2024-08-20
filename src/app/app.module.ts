@@ -21,8 +21,21 @@ import { ClientesModule } from './clientes/clientes.module';
 import { CoreModule } from './core/core.module';
 import { RelatoriosModule } from './relatorios/relatorios.module';
 import { FinanceirosModule } from './financeiros/financeiros.module';
+import { RouterModule, Routes } from '@angular/router';
+import { BuscaClientesComponent } from './clientes/busca-clientes/busca-clientes.component';
+import { NovoClienteComponent } from './clientes/novo-cliente/novo-cliente.component';
+import { CaixaComponent } from './financeiros/caixa/caixa.component';
+import { AtendimentoComponent } from './financeiros/atendimento/atendimento.component';
+import { ComissoesGeraisComponent } from './relatorios/comissoes-gerais/comissoes-gerais.component';
 
+const routes: Routes =[
+  {path: 'clientes/buscar', component: BuscaClientesComponent},
+  {path: 'clientes/novo', component: NovoClienteComponent},
+  {path: 'caixa', component: CaixaComponent},
+  {path: 'atendimento', component: AtendimentoComponent},
+  {path: 'relatorios/comissoes/gerais', component: ComissoesGeraisComponent}
 
+]
 
 
 @NgModule({
@@ -44,7 +57,8 @@ import { FinanceirosModule } from './financeiros/financeiros.module';
     ClientesModule,
     CoreModule,
     RelatoriosModule,
-    FinanceirosModule
+    FinanceirosModule,
+    RouterModule.forRoot(routes)
 
   ],
   providers: [],

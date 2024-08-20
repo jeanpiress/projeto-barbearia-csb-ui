@@ -38,6 +38,15 @@ export class AtendimentoComponent implements OnInit{
     this.financeiroService.pesquisarPedidosEmAtendimento().subscribe(emAtendimento => this.emAtendimento = emAtendimento);
   }
 
+  confirmarCancelamentoPedido(pedido: any){
+    this.confirmation.confirm({
+      message: 'Tem certeza que deseja cancelar esse atendimento?',
+      accept: () => {
+        this.cancelarPedido(pedido);
+      }
+    })
+  }
+
   cancelarPedido(pedido: any){
     this.financeiroService.cancelarPedido(pedido.id).subscribe({
       next: () => {
@@ -48,6 +57,15 @@ export class AtendimentoComponent implements OnInit{
         this.errorHandler.handle(erro)
       }
     });;
+  }
+
+  confirmarPedidoParaAtendimento(pedido: any){
+    this.confirmation.confirm({
+      message: 'Tem certeza que deseja enviar esse cliente para Em Atendimento?',
+      accept: () => {
+        this.alterarPedidoParaEmAtendimento(pedido);
+      }
+    })
   }
 
   alterarPedidoParaEmAtendimento(pedido: any){

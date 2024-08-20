@@ -1,0 +1,34 @@
+<p-dialog #dialog header="Detalhes do Cliente" [(visible)]="display" [modal]="true" [closable]="true" [responsive]="true"
+  [style]="{ 'width': '95vw', 'max-width': '1280px', 'height': '90vh' }">
+  <div *ngIf="cliente">
+    <p><strong>Nome:</strong> {{ cliente.nome }}</p>
+    <p><strong>Celular:</strong> {{ cliente.celular }}</p>
+    <p><strong>Data de Nascimento:</strong> {{ cliente.dataNascimento | date: 'dd/MM/y' }}</p>
+    <p><strong>Última Visita:</strong> {{ cliente.ultimaVisita | date: 'dd/MM/y' }}</p>
+    <p><strong>Último Profissional:</strong> {{ cliente.profissional?.nome ?? ' - ' }}</p>
+    <p><strong>Pontos:</strong> {{ cliente.pontos }}</p>
+    <p><strong>Previsão de Retorno:</strong> {{ cliente.previsaoRetorno | date: 'dd/MM/y' }}</p>
+    <p-fieldset legend="Observação" class="p-mb-4">
+      <p class="m-0">
+        {{ cliente.observacao }}
+      </p>
+    </p-fieldset>
+    <br>
+    <div class="galleria-container">
+      <p-galleria
+        [value]="images"
+        [responsiveOptions]="responsiveOptions"
+        [containerStyle]="{ 'max-width': '640px' }"
+        [numVisible]="5">
+        <ng-template pTemplate="item" let-item>
+          <img [src]="item.itemImageSrc" class="tamanho-imagem-grande" />
+        </ng-template>
+        <ng-template pTemplate="thumbnail" let-item>
+          <div class="grid grid-nogutter justify-content-center">
+            <img [src]="item.thumbnailImageSrc" class="tamanho-imagem-pequena" />
+          </div>
+        </ng-template>
+      </p-galleria>
+    </div>
+  </div>
+</p-dialog>

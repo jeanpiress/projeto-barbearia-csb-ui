@@ -15,12 +15,20 @@ import { TableModule } from 'primeng/table';
 import { TooltipModule } from 'primeng/tooltip';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { RouterModule } from '@angular/router';
+import { DialogModule } from 'primeng/dialog';
+import { ClientesDetalhesComponent } from './clientes-detalhes/clientes-detalhes.component';
+import { FieldsetModule } from 'primeng/fieldset';
+import { GalleriaModule } from 'primeng/galleria';
+import { ClientesEditarModalComponent } from './clientes-editar-modal/clientes-editar-modal.component';
 
 
 @NgModule({
   declarations: [
     BuscaClientesComponent,
-    NovoClienteComponent],
+    NovoClienteComponent,
+    ClientesDetalhesComponent,
+    ClientesEditarModalComponent],
   imports: [
     CommonModule,
     ButtonModule,
@@ -32,7 +40,11 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
     InputTextareaModule,
     FormsModule,
     ChartModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    RouterModule,
+    DialogModule,
+    FieldsetModule,
+    GalleriaModule
   ],
   providers: [
     provideHttpClient(withInterceptorsFromDi())

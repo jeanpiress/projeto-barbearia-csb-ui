@@ -1,53 +1,70 @@
+import { Component, OnInit } from '@angular/core';
 import { ConfirmationService } from 'primeng/api';
 import { NotificationService } from '../../core/notification.service';
 import { ClienteService } from './../cliente.service';
-import { Component, OnInit } from '@angular/core';
 import { ErrorHandlerService } from '../../core/error-handler.service';
-
-
 
 @Component({
   selector: 'app-busca-clientes',
   templateUrl: './busca-clientes.component.html',
-  styleUrl: './busca-clientes.component.css'
+  styleUrls: ['./busca-clientes.component.css']
 })
-export class BuscaClientesComponent implements OnInit{
+export class BuscaClientesComponent implements OnInit {
 
   nomeBusca: string = '';
-  clientes = []
+  clientes = [];
+  selectedCliente: any = null;
+  displayDetalhes: boolean = false;
+  displayEditar: boolean = false;
 
   constructor(
     private clienteService: ClienteService,
     private notificationService: NotificationService,
     private confirmation: ConfirmationService,
     private errorHandler: ErrorHandlerService
-  ){}
+  ) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
-  pesquisar(){
+  pesquisar() {
     this.clienteService.pesquisar(this.nomeBusca).subscribe(clientes => this.clientes = clientes);
   }
 
-  confirmarExclusao(cliente: any){
+  confirmarExclusao(cliente: any) {
     this.confirmation.confirm({
       message: 'Tem certeza que deseja excluir este cliente?',
       accept: () => {
         this.excluir(cliente);
       }
-    })
+    });
   }
 
-  excluir(cliente: any){
+  excluir(cliente: any) {
     this.clienteService.excluir(cliente.id).subscribe({
       next: () => {
         this.notificationService.showSuccess('Sucesso', 'Cliente excluído com sucesso!');
         this.pesquisar();
       },
       error: erro => {
-        this.errorHandler.handle(erro)
+        this.errorHandler.handle(erro);
       }
-    });;
+    });
   }
+
+  mostrarDetalhes(cliente: any) {
+    this.displayDetalhes = false;
+    setTimeout(() => {
+      this.selectedCliente = cliente;
+      this.displayDetalhes  = true;
+    }, 0);
+  }
+
+  editarCliente(cliente: any) {
+    this.displayEditar = false;
+    setTimeout(() => {
+      this.selectedCliente = cliente;
+      this.displayEditar  = true;
+    }, 0);
+  }
+
 }

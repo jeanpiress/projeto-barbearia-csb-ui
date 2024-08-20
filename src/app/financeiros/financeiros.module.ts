@@ -13,6 +13,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { TableModule } from 'primeng/table';
 import { TooltipModule } from 'primeng/tooltip';
 import { AtendimentoComponent } from './atendimento/atendimento.component';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -33,7 +34,8 @@ import { AtendimentoComponent } from './atendimento/atendimento.component';
     InputTextareaModule,
     FormsModule,
     ChartModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    RouterModule
   ],
   providers: [
     provideHttpClient(withInterceptorsFromDi())

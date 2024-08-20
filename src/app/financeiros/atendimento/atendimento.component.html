@@ -27,10 +27,10 @@
               <td class="profissional-column" >{{ clientes.profissional.nome }}</td>
               <td class="button-column">
                 <p-button icon="pi pi-check-square" class="button-spacing" pTooltip="Em atendimento" tooltipPosition="top"
-                (click)="alterarPedidoParaEmAtendimento(clientes)"></p-button>
+                (click)="confirmarPedidoParaAtendimento(clientes)"></p-button>
                 <p-button icon="pi pi-user-edit" class="button-spacing" pTooltip="Alterar Profissional" tooltipPosition="top"></p-button>
                 <p-button icon="pi pi-trash" class="button-spacing" pTooltip="Cancelar" tooltipPosition="top"
-                (click)="cancelarPedido(clientes)"></p-button>
+                (click)="confirmarCancelamentoPedido(clientes)"></p-button>
               </td>
 
             </tr>
@@ -67,7 +67,7 @@
                 <p-button icon="pi pi-shopping-cart" class="button-spacing" pTooltip="Carrinho" tooltipPosition="top"></p-button>
                 <p-button icon="pi pi-money-bill" class="button-spacing" pTooltip="Receber" tooltipPosition="top"></p-button>
                 <p-button icon="pi pi-trash" class="button-spacing" pTooltip="Cancelar" tooltipPosition="top"
-                (click)="cancelarPedido(atendimento)"></p-button>
+                (click)="confirmarCancelamentoPedido(atendimento)"></p-button>
               </td>
 
             </tr>

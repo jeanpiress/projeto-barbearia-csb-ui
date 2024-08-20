@@ -32,11 +32,13 @@
                 <td>{{ clientes.nome }}</td>
                 <td>{{ clientes.celular }}</td>
                 <td>{{ clientes.ultimaVisita | date: 'dd/MM/y' }}</td>
-                <td class="profissional-column" >{{ clientes.profissional.nome }}</td>
+                <td class="profissional-column">{{ clientes.profissional?.nome ?? ' - ' }}</td>
                 <td class="button-column">
                   <p-button icon="pi pi-user-plus" class="button-spacing" pTooltip="Adicionar a Fila" tooltipPosition="top"></p-button>
-                  <p-button icon="pi pi-user-edit" class="button-spacing" pTooltip="Editar" tooltipPosition="top"></p-button>
-                  <p-button icon="pi pi-info-circle" class="button-spacing" pTooltip="Detalhar" tooltipPosition="top"></p-button>
+                  <p-button icon="pi pi-user-edit" class="button-spacing" pTooltip="Editar" tooltipPosition="top"
+                  (click)="editarCliente(clientes)"></p-button>
+                  <p-button icon="pi pi-info-circle" class="button-spacing" pTooltip="Detalhar" tooltipPosition="top"
+                  (click)="mostrarDetalhes(clientes)"></p-button>
                   <p-button icon="pi pi-trash" class="button-spacing" pTooltip="Deletar" tooltipPosition="top"
                   (click)="excluir(clientes)"></p-button>
                 </td>
@@ -49,8 +51,10 @@
     </form>
 
     <div class="p-col-12 mb-3">
-      <p-button label="Novo Cliente"/>
+      <p-button label="Novo Cliente" routerLink="/clientes/novo"/>
     </div>
+    <app-clientes-detalhes *ngIf="selectedCliente" [cliente]="selectedCliente" [(display)]="displayDetalhes"></app-clientes-detalhes>
+    <app-clientes-editar-modal *ngIf="selectedCliente" [cliente]="selectedCliente" [(display)]="displayEditar"></app-clientes-editar-modal>
 
   </div>
 </div>

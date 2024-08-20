@@ -24,18 +24,15 @@ export class FormatoDataService {
     return formattedDate;
   }
 
-  formatDateWithTime(dateStr: string, time: string): string {
+  public formatDateWithTime(dateStr: string, time: string): string {
     const date = new Date(dateStr);
-    const timezoneOffset = -date.getTimezoneOffset();
-    const sign = timezoneOffset >= 0 ? '+' : '-';
     const pad = (n: number) => n < 10 ? '0' + n : n;
 
     const formattedDate = date.getFullYear() +
       '-' + pad(date.getMonth() + 1) +
-      '-' + pad(date.getDate()) +
+      '-' + pad(date.getDate() + 1) +
       'T' + time +
-      sign + pad(Math.floor(Math.abs(timezoneOffset) / 60)) +
-      ':' + pad(Math.abs(timezoneOffset) % 60);
+      '-03:00';
 
     return formattedDate;
   }
