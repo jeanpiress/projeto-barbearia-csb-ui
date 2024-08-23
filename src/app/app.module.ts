@@ -25,15 +25,22 @@ import { RouterModule, Routes } from '@angular/router';
 import { BuscaClientesComponent } from './clientes/busca-clientes/busca-clientes.component';
 import { NovoClienteComponent } from './clientes/novo-cliente/novo-cliente.component';
 import { CaixaComponent } from './financeiros/caixa/caixa.component';
-import { AtendimentoComponent } from './financeiros/atendimento/atendimento.component';
 import { ComissoesGeraisComponent } from './relatorios/comissoes-gerais/comissoes-gerais.component';
+import { AtendimentoComponent } from './pedidos/atendimento/atendimento.component';
+import { PedidosModule } from './pedidos/pedidos.module';
+import { ProfissionaisModule } from './profissionais/profissionais.module';
+import { BuscaProfissionaisComponent } from './profissionais/busca-profissionais/busca-profissionais.component';
+import { NovoProfissionalComponent } from './profissionais/novo-profissional/novo-profissional.component';
 
 const routes: Routes =[
   {path: 'clientes/buscar', component: BuscaClientesComponent},
   {path: 'clientes/novo', component: NovoClienteComponent},
   {path: 'caixa', component: CaixaComponent},
   {path: 'atendimento', component: AtendimentoComponent},
-  {path: 'relatorios/comissoes/gerais', component: ComissoesGeraisComponent}
+  {path: 'relatorios/comissoes/gerais', component: ComissoesGeraisComponent},
+  {path: 'profissionais/buscar', component: BuscaProfissionaisComponent},
+  {path: 'profissionais/novo', component: NovoProfissionalComponent}
+
 
 ]
 
@@ -58,6 +65,8 @@ const routes: Routes =[
     CoreModule,
     RelatoriosModule,
     FinanceirosModule,
+    PedidosModule,
+    ProfissionaisModule,
     RouterModule.forRoot(routes)
 
   ],

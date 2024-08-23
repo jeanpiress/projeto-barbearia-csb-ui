@@ -18,6 +18,8 @@ import localePt from '@angular/common/locales/pt';
 import { FormatoDataService } from './formato-data.service';
 import { FinanceiroService } from '../financeiros/financeiro.service';
 import { RouterModule } from '@angular/router';
+import { ProfissionalService } from '../profissionais/profissional.service';
+import { TreeModule } from 'primeng/tree';
 
 
 
@@ -42,7 +44,10 @@ registerLocaleData(localePt);
     NotificationService,
     RelatorioService,
     FormatoDataService,
-    FinanceiroService
+    FinanceiroService,
+    ProfissionalService,
+    TreeModule,
+    NavBarComponent
   ],
   exports: [
     NavBarComponent,

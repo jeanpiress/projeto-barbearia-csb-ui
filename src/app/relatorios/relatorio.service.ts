@@ -17,6 +17,6 @@ export class RelatorioService {
     };
 
     console.log(body)
-    return this.http.post(`${this.relatorioUrl}/comissoes-data`, body);
+    return this.http.post(`${this.relatorioUrl}/comissoes/data`, body);
   }
 }

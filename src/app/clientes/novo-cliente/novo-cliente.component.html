@@ -1,10 +1,7 @@
-<div class="container">
+<p-dialog header="Novo Cliente" [(visible)]="display" [modal]="true" [closable]="true"
+  [style]="{ 'width': '95vw', 'max-width': '1280px', 'height': '75vh' }" >
   <form autocomplete="off" #clienteForm="ngForm">
     <div class="p-grid">
-
-      <div class="p-col-12">
-         <h1>Novo Cliente</h1>
-      </div>
 
       <div class="p-grid">
         <div class="p-fluid max-col-12 mb-3">
@@ -34,26 +31,26 @@
         <div class="agrupar p-fluid mb-3">
           <div class="flex-grow-3">
             <label>Rua</label>
-            <input type="text" pInputText name="rua" [(ngModel)]="cliente.endereco.logradouro">
+            <input type="text" pInputText name="rua" [(ngModel)]="endereco.logradouro">
           </div>
           <div>
             <label>numero</label>
-            <input type="text" pInputText name="numero" [(ngModel)]="cliente.endereco.numero" >
+            <input type="text" pInputText name="numero" [(ngModel)]="endereco.numero" >
           </div>
         </div>
 
         <div class="agrupar p-fluid mb-3">
           <div class="flex-grow-3">
             <label>Bairro</label>
-            <input type="text" pInputText name="bairro" [(ngModel)]="cliente.endereco.bairro" >
+            <input type="text" pInputText name="bairro" [(ngModel)]="endereco.bairro" >
           </div>
           <div>
             <label>cep</label>
-            <p-inputMask mask="99.999-999" name="cep" [(ngModel)]="cliente.endereco.cep" ></p-inputMask>
+            <p-inputMask mask="99.999-999" name="cep" [(ngModel)]="endereco.cep" ></p-inputMask>
           </div>
           <div>
             <label>Complemento</label>
-            <input type="text" pInputText name="complemento" [(ngModel)]="cliente.endereco.complemento" >
+            <input type="text" pInputText name="complemento" [(ngModel)]="endereco.complemento" >
           </div>
         </div>
 
@@ -83,4 +80,4 @@
       </div>
     </div>
   </form>
-</div>
+</p-dialog>

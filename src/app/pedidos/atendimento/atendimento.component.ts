@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ConfirmationService } from 'primeng/api';
 import { ErrorHandlerService } from '../../core/error-handler.service';
 import { NotificationService } from '../../core/notification.service';
-import { FinanceiroService } from '../financeiro.service';
+import { PedidoService } from '../pedido.service';
+import { Cliente } from '../../core/model';
 
 @Component({
   selector: 'app-atendimento',
@@ -11,15 +12,11 @@ import { FinanceiroService } from '../financeiro.service';
 })
 export class AtendimentoComponent implements OnInit{
 
-  clientes = [
-
-  ]
-  emAtendimento = [
-
-  ]
+  clientes = []
+  emAtendimento = []
 
   constructor(
-    private financeiroService: FinanceiroService,
+    private pedidoService: PedidoService,
     private notificationService: NotificationService,
     private errorHandler: ErrorHandlerService,
     private confirmation: ConfirmationService
@@ -31,11 +28,11 @@ export class AtendimentoComponent implements OnInit{
   }
 
   pesquisarPedidosAgurdando(){
-    this.financeiroService.pesquisarPedidosAguardando().subscribe(clientes => this.clientes = clientes);
+    this.pedidoService.pesquisarPedidosAguardando().subscribe(clientes => this.clientes = clientes);
   }
 
   pesquisarPedidosEmAtendimento(){
-    this.financeiroService.pesquisarPedidosEmAtendimento().subscribe(emAtendimento => this.emAtendimento = emAtendimento);
+    this.pedidoService.pesquisarPedidosEmAtendimento().subscribe(emAtendimento => this.emAtendimento = emAtendimento);
   }
 
   confirmarCancelamentoPedido(pedido: any){
@@ -48,7 +45,7 @@ export class AtendimentoComponent implements OnInit{
   }
 
   cancelarPedido(pedido: any){
-    this.financeiroService.cancelarPedido(pedido.id).subscribe({
+    this.pedidoService.cancelarPedido(pedido.id).subscribe({
       next: () => {
         this.notificationService.showSuccess('Sucesso', 'Pedido cancelado com sucesso!');
         this.pesquisarPedidosAgurdando();
@@ -69,7 +66,7 @@ export class AtendimentoComponent implements OnInit{
   }
 
   alterarPedidoParaEmAtendimento(pedido: any){
-    this.financeiroService.alterarPedidoParaEmAtendimento(pedido.id).subscribe({
+    this.pedidoService.alterarPedidoParaEmAtendimento(pedido.id).subscribe({
       next: () => {
         this.notificationService.showSuccess('Sucesso', 'Pedido cancelado com sucesso!');
         this.ngOnInit();
@@ -79,4 +76,5 @@ export class AtendimentoComponent implements OnInit{
       }
     });;
   }
+
 }

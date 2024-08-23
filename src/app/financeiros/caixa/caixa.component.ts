@@ -3,6 +3,7 @@ import { FinanceiroService } from '../financeiro.service';
 import { NotificationService } from '../../core/notification.service';
 import { ErrorHandlerService } from '../../core/error-handler.service';
 import { ConfirmationService } from 'primeng/api';
+import { PedidoService } from '../../pedidos/pedido.service';
 
 @Component({
   selector: 'app-caixa',
@@ -31,7 +32,8 @@ export class CaixaComponent {
     private financeiroService: FinanceiroService,
     private notificationService: NotificationService,
     private errorHandler: ErrorHandlerService,
-    private confirmation: ConfirmationService
+    private confirmation: ConfirmationService,
+    private pedidoService: PedidoService,
   ) {}
 
   ngOnInit() {
@@ -67,7 +69,7 @@ export class CaixaComponent {
   }
 
   pesquisarPedidosPagosCaixAberto(){
-    this.financeiroService.pesquisarPedidosPagosCaixaAberto().subscribe(atendidos => this.atendidos = atendidos);
+    this.pedidoService.pesquisarPedidosPagosCaixaAberto().subscribe(atendidos => this.atendidos = atendidos);
   }
 
   confirmarFechamentoDeCaixa(){
@@ -93,11 +95,11 @@ export class CaixaComponent {
   }
 
   excluirPedido(pedido: any){
-    this.financeiroService.excluirPedido(pedido.id).subscribe({
+    this.pedidoService.excluirPedido(pedido.id).subscribe({
       next: () => {
         this.notificationService.showSuccess('Sucesso', 'Pedido excluído com sucesso!');
         this.pesquisarCaixaAberto();
-        this.pesquisarPedidosPagosCaixAberto();
+      this.pesquisarPedidosPagosCaixAberto();
       },
       error: erro => {
         this.errorHandler.handle(erro)

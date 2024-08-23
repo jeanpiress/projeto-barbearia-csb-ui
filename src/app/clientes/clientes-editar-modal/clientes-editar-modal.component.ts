@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { ErrorHandlerService } from '../../core/error-handler.service';
-import { FormatoDataService } from '../../core/formato-data.service';
-import { Cliente, ClienteInput } from '../../core/model';
+import { Cliente, ClienteInput, Endereco } from '../../core/model';
 import { NotificationService } from '../../core/notification.service';
 import { ClienteService } from '../cliente.service';
 
@@ -12,6 +11,7 @@ import { ClienteService } from '../cliente.service';
 })
 export class ClientesEditarModalComponent {
   @Input() cliente: any = new Cliente();
+  @Input() endereco: any = new Endereco();
   @Input() display: boolean = false;
   @Output() displayChange = new EventEmitter<boolean>();
 
@@ -20,15 +20,14 @@ export class ClientesEditarModalComponent {
     private notificationService: NotificationService,
     private errorHandler: ErrorHandlerService
   ){}
-  ngOnInit() {}
+  ngOnInit() { }
 
   salvar(){
     const clienteImput = new ClienteInput(this.cliente);
-    console.log(clienteImput.dataNascimento);
+    clienteImput.endereco = this.endereco;
     this.clienteService.editarCliente(this.cliente.id, clienteImput).subscribe({
       next: () => {
         this.notificationService.showSuccess('Sucesso', 'Cliente editado com sucesso!');
-        console.log(this.cliente);
         this.close();
       },
       error: erro => {

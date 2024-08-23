@@ -23,19 +23,13 @@ export class ComissoesGeraisComponent implements OnInit{
   ) {}
 
   ngOnInit() {
-    this.dataInicio = this.formatoData.formatDate(new Date());
-    this.dataFim = this.formatoData.formatDate(new Date());
-
     this.buscarComissoes();
   }
 
   buscarComissoes() {
     if (this.dataInicio && this.dataFim) {
-      const inicioFormatado = this.formatoData.formatDateWithTime(this.dataInicio, '00:00:00');
-      const fimFormatado = this.formatoData.formatDateWithTime(this.dataFim, '23:59:59');
-
-      this.relatorioService.pesquisarComissoesData(inicioFormatado, fimFormatado).subscribe({
-        next: (resposta) => {
+        this.relatorioService.pesquisarComissoesData(this.dataInicio + 'T00:00:00-03:00', this.dataFim + 'T23:59:59-03:00').subscribe({
+          next: (resposta) => {
           this.comissoes = resposta;
         },
         error: (erro) => {
@@ -44,7 +38,16 @@ export class ComissoesGeraisComponent implements OnInit{
         }
       });
     } else {
-      console.error('Datas de início e fim são obrigatórias');
+      this.relatorioService.pesquisarComissoesData(new Date().toISOString().substring(0, 10) +
+      'T00:00:00-03:00', new Date().toISOString().substring(0, 10) + 'T23:59:59-03:00').subscribe({
+        next: (resposta) => {
+        this.comissoes = resposta;
+      },
+      error: (erro) => {
+        this.errorHandler.handle(erro)
+
+      }
+    });
     }
   }
 

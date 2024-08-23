@@ -3,6 +3,7 @@ import { ConfirmationService } from 'primeng/api';
 import { NotificationService } from '../../core/notification.service';
 import { ClienteService } from './../cliente.service';
 import { ErrorHandlerService } from '../../core/error-handler.service';
+import { NavBarComponent } from '../../core/nav-bar/nav-bar.component';
 
 @Component({
   selector: 'app-busca-clientes',
@@ -16,6 +17,8 @@ export class BuscaClientesComponent implements OnInit {
   selectedCliente: any = null;
   displayDetalhes: boolean = false;
   displayEditar: boolean = false;
+  displayNovoCliente: boolean = false;
+
 
   constructor(
     private clienteService: ClienteService,
@@ -53,6 +56,7 @@ export class BuscaClientesComponent implements OnInit {
 
   mostrarDetalhes(cliente: any) {
     this.displayDetalhes = false;
+    this.notificationService.hideNavBar(true);
     setTimeout(() => {
       this.selectedCliente = cliente;
       this.displayDetalhes  = true;
@@ -61,9 +65,19 @@ export class BuscaClientesComponent implements OnInit {
 
   editarCliente(cliente: any) {
     this.displayEditar = false;
+    this.notificationService.hideNavBar(true);
     setTimeout(() => {
       this.selectedCliente = cliente;
       this.displayEditar  = true;
+    }, 0);
+  }
+
+  novoCliente(cliente: any) {
+    this.displayNovoCliente = false;
+    this.notificationService.hideNavBar(true);
+    setTimeout(() => {
+      this.selectedCliente = cliente;
+      this.displayNovoCliente  = true;
     }, 0);
   }
 

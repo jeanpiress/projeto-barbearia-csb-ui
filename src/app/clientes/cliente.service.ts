@@ -23,7 +23,7 @@ export class ClienteService {
   excluir(codigo: number): Observable<void>{
     return this.http.delete<void>(`${this.clienteUrl}/${codigo}`)}
 
-  novoCliente(cliente: Cliente): Observable<any>{
+  novoCliente(cliente: ClienteInput): Observable<any>{
     return this.http.post(`${this.clienteUrl}`, cliente);
   }
 

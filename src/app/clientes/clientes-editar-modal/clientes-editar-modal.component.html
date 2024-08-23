@@ -1,5 +1,5 @@
-<p-dialog header="Editar Cliente" [(visible)]="display" [modal]="true" [closable]="true" [responsive]="true"
-  [style]="{ 'width': '95vw', 'max-width': '1280px', 'height': '90vh' }">
+<p-dialog header="Editar Cliente" [(visible)]="display" [modal]="true" [closable]="true"
+  [style]="{ 'width': '95vw', 'max-width': '1280px', 'height': '75vh' }">
 
   <form #clienteForm="ngForm">
     <div class="p-grid">
@@ -26,37 +26,37 @@
       <div class="agrupar p-fluid mb-3">
         <div class="flex-grow-3">
           <label>Rua</label>
-          <input type="text" pInputText name="rua" [(ngModel)]="cliente.endereco.logradouro" />
+          <input type="text" pInputText name="rua" [(ngModel)]="endereco.logradouro" />
         </div>
         <div>
           <label>Numero</label>
-          <input type="text" pInputText name="numero" [(ngModel)]="cliente.endereco.numero" />
+          <input type="text" pInputText name="numero" [(ngModel)]="endereco.numero" />
         </div>
       </div>
 
       <div class="agrupar p-fluid mb-3">
         <div class="flex-grow-3">
           <label>Bairro</label>
-          <input type="text" pInputText name="bairro" [(ngModel)]="cliente.endereco.bairro" />
+          <input type="text" pInputText name="bairro" [(ngModel)]="endereco.bairro" />
         </div>
         <div>
           <label>CEP</label>
-          <p-inputMask mask="99.999-999" name="cep" [(ngModel)]="cliente.endereco.cep" />
+          <p-inputMask mask="99.999-999" name="cep" [(ngModel)]="endereco.cep" />
         </div>
         <div>
           <label>Complemento</label>
-          <input type="text" pInputText name="complemento" [(ngModel)]="cliente.endereco.complemento" />
+          <input type="text" pInputText name="complemento" [(ngModel)]="endereco.complemento" />
         </div>
       </div>
 
       <div class="agrupar p-fluid mb-3">
         <div class="flex-grow-3">
           <label>Cidade</label>
-          <input type="text" pInputText name="cidade" [(ngModel)]="cliente.endereco.cidade" />
+          <input type="text" pInputText name="cidade" />
         </div>
         <div>
           <label>Estado</label>
-          <input type="text" pInputText name="estado" [(ngModel)]="cliente.endereco.estado" />
+          <input type="text" pInputText name="estado"  />
         </div>
       </div>
 

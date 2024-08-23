@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ConfirmationService } from 'primeng/api';
 import { ErrorHandlerService } from '../../core/error-handler.service';
 import { NotificationService } from '../../core/notification.service';
 import { ClienteService } from '../cliente.service';
-import { Cliente, Endereco } from '../../core/model';
+import { Cliente, ClienteInput, Endereco } from '../../core/model';
 import { FormatoDataService } from '../../core/formato-data.service';
 
 
@@ -13,30 +13,39 @@ import { FormatoDataService } from '../../core/formato-data.service';
   styleUrl: './novo-cliente.component.css'
 })
 export class NovoClienteComponent implements OnInit{
+  @Input() cliente = new Cliente();
+  @Input() endereco = new Endereco();
+  @Input() display: boolean = false;
+  @Output() displayChange = new EventEmitter<boolean>();
 
-  cliente = new Cliente();
   constructor(
     private clienteService: ClienteService,
     private notificationService: NotificationService,
-    private formatoData: FormatoDataService,
     private errorHandler: ErrorHandlerService
   ){}
 
-  ngOnInit( ) {
+  ngOnInit(  ) {
   }
 
   salvar(){
-    const dataNascimento = new Date(this.formatoData.formatDateWithTime(this.cliente.dataNascimento.toString(), '00:00:00'));
-    this.cliente.dataNascimento = dataNascimento;
-    this.clienteService.novoCliente(this.cliente).subscribe({
+    this.cliente.dataNascimento = this.cliente.dataNascimento.substring(0, 10) + 'T13:00:00-03:00';
+    const clienteImput = new ClienteInput(this.cliente);
+    clienteImput.endereco = this.endereco;
+    this.clienteService.novoCliente(clienteImput).subscribe({
       next: () => {
         this.notificationService.showSuccess('Sucesso', 'Cliente criado com sucesso!');
         this.resetForm();
+        this.close();
       },
       error: erro => {
         this.errorHandler.handle(erro)
       }
     });
+  }
+  close() {
+    this.display = false;
+    this.displayChange.emit(this.display);
+    this.clienteService.pesquisar(this.cliente.nome);
   }
 
   resetForm() {

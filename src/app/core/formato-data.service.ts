@@ -30,7 +30,7 @@ export class FormatoDataService {
 
     const formattedDate = date.getFullYear() +
       '-' + pad(date.getMonth() + 1) +
-      '-' + pad(date.getDate() + 1) +
+      '-' + pad(date.getDate()) +
       'T' + time +
       '-03:00';
 
