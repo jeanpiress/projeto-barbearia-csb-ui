@@ -15,13 +15,16 @@ import { TableModule } from 'primeng/table';
 import { TooltipModule } from 'primeng/tooltip';
 import { AtendimentoComponent } from './atendimento/atendimento.component';
 import { DialogModule } from 'primeng/dialog';
+import { EmEsperaModalComponent } from './em-espera-modal/em-espera-modal.component';
+import { DropdownModule } from 'primeng/dropdown';
 
 
 
 
 @NgModule({
   declarations: [
-    AtendimentoComponent
+    AtendimentoComponent,
+    EmEsperaModalComponent
   ],
   imports: [
     CommonModule,
@@ -36,13 +39,15 @@ import { DialogModule } from 'primeng/dialog';
     ChartModule,
     ConfirmDialogModule,
     RouterModule,
-    DialogModule
+    DialogModule,
+    DropdownModule
   ],
   providers: [
     provideHttpClient(withInterceptorsFromDi())
   ],
   exports: [
-    AtendimentoComponent
+    AtendimentoComponent,
+    EmEsperaModalComponent
   ]
 })
 export class PedidosModule { }

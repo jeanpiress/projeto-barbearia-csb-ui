@@ -31,15 +31,16 @@ import { PedidosModule } from './pedidos/pedidos.module';
 import { ProfissionaisModule } from './profissionais/profissionais.module';
 import { BuscaProfissionaisComponent } from './profissionais/busca-profissionais/busca-profissionais.component';
 import { NovoProfissionalComponent } from './profissionais/novo-profissional/novo-profissional.component';
+import { SegurancaModule } from './seguranca/seguranca.module';
+import { LoginFormComponent } from './seguranca/login-form/login-form.component';
 
 const routes: Routes =[
   {path: 'clientes/buscar', component: BuscaClientesComponent},
-  {path: 'clientes/novo', component: NovoClienteComponent},
   {path: 'caixa', component: CaixaComponent},
   {path: 'atendimento', component: AtendimentoComponent},
   {path: 'relatorios/comissoes/gerais', component: ComissoesGeraisComponent},
   {path: 'profissionais/buscar', component: BuscaProfissionaisComponent},
-  {path: 'profissionais/novo', component: NovoProfissionalComponent}
+  {path: 'login', component: LoginFormComponent}
 
 
 ]
@@ -67,7 +68,8 @@ const routes: Routes =[
     FinanceirosModule,
     PedidosModule,
     ProfissionaisModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    SegurancaModule
 
   ],
   providers: [],

@@ -3,7 +3,6 @@ import { ConfirmationService } from 'primeng/api';
 import { NotificationService } from '../../core/notification.service';
 import { ClienteService } from './../cliente.service';
 import { ErrorHandlerService } from '../../core/error-handler.service';
-import { NavBarComponent } from '../../core/nav-bar/nav-bar.component';
 
 @Component({
   selector: 'app-busca-clientes',

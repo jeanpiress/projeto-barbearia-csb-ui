@@ -12,8 +12,10 @@ import { Cliente } from '../../core/model';
 })
 export class AtendimentoComponent implements OnInit{
 
-  clientes = []
+  emEspera = []
   emAtendimento = []
+  selectedPedido: any = null;
+  displayEmEspera: boolean = false;
 
   constructor(
     private pedidoService: PedidoService,
@@ -28,7 +30,7 @@ export class AtendimentoComponent implements OnInit{
   }
 
   pesquisarPedidosAgurdando(){
-    this.pedidoService.pesquisarPedidosAguardando().subscribe(clientes => this.clientes = clientes);
+    this.pedidoService.pesquisarPedidosAguardando().subscribe(clientes => this.emEspera = clientes);
   }
 
   pesquisarPedidosEmAtendimento(){
@@ -75,6 +77,15 @@ export class AtendimentoComponent implements OnInit{
         this.errorHandler.handle(erro)
       }
     });;
+  }
+
+  adicionarEmEspera(pedido: any) {
+    this.displayEmEspera = false;
+    this.notificationService.hideNavBar(true);
+    setTimeout(() => {
+      this.selectedPedido = pedido;
+      this.displayEmEspera  = true;
+    }, 0);
   }
 
 }

@@ -34,4 +34,8 @@ export class PedidoService {
   alterarPedidoParaEmAtendimento(codigo: number): Observable<void>{
     return this.http.put<void>(`${this.pedidoUrl}/${codigo}/iniciar`, {})
   }
+
+  novoPedido(pedido: any): Observable<void>{
+    return this.http.post<void>(`${this.pedidoUrl}`, pedido)
+  }
 }

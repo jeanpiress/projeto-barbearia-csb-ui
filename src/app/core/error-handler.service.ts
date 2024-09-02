@@ -11,28 +11,31 @@ export class ErrorHandlerService {
     private notificationService: NotificationService,
   ) { }
 
-  handle(errorResponse: any){
+  handle(errorResponse: any) {
     let msg: string = '';
 
-    if(typeof errorResponse === 'string'){
-
+    if (typeof errorResponse === 'string') {
       msg = errorResponse;
     } else if (errorResponse.error && errorResponse.status >= 400 && errorResponse.status <= 499) {
+      msg = 'Ocorreu um erro ao processar a sua solicitação';
 
-        msg = 'Ocorreu um erro ao processar a sua solicitação';
+      if (errorResponse.error instanceof Object && errorResponse.error.detail) {
+        msg = errorResponse.error.detail;
+      } else if (errorResponse.error instanceof Object && errorResponse.error.title) {
+        msg = errorResponse.error.title;
+      }
 
-        if (errorResponse.error instanceof Object && errorResponse.error.title) {
-          msg = errorResponse.error.title;
-        }
-
-        console.error('Ocorreu um erro', errorResponse);
+      console.error('Ocorreu um erro', errorResponse);
     } else {
-        msg = 'Erro ao processar serviço remoto. Tente novamente';
-        console.log('Ocorreu um erro ', errorResponse);
+      msg = 'Erro ao processar serviço remoto. Tente novamente';
+      console.error('Ocorreu um erro ', errorResponse);
     }
 
     this.notificationService.showError('Erro', msg);
     return throwError(() => errorResponse);
+  }
 
+  showCustomError(summary: string, detail: string) {
+    this.notificationService.showError(summary, detail);
   }
 }

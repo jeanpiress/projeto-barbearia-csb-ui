@@ -8,7 +8,7 @@
 
     <div class="p-grid">
       <div class="p-col-12 mb-3">
-        <p-table [value]="clientes" styleClass="p-datatable-striped" [tableStyle]="{ 'min-width': '50rem' }" responsiveLayout="stack"
+        <p-table [value]="emEspera" styleClass="p-datatable-striped" [tableStyle]="{ 'min-width': '50rem' }" responsiveLayout="stack"
         [breakpoint]="'960px'">
           <ng-template pTemplate="header">
             <tr>
@@ -19,18 +19,18 @@
               <th class="button-column"></th>
             </tr>
           </ng-template>
-          <ng-template pTemplate="body" let-clientes>
+          <ng-template pTemplate="body" let-clientesEmEspera>
             <tr>
-              <td>{{ clientes.cliente.nome }}</td>
-              <td>{{ clientes.chegada | date: 'dd/MM/yy HH:mm' }}</td>
-              <td>{{ clientes.horario | date: 'dd/MM/yy HH:mm' }}</td>
-              <td class="profissional-column" >{{ clientes.profissional.nome }}</td>
+              <td>{{ clientesEmEspera.cliente.nome }}</td>
+              <td>{{ clientesEmEspera.chegada | date: 'dd/MM/yy HH:mm' }}</td>
+              <td>{{ clientesEmEspera.horario | date: 'dd/MM/yy HH:mm' }}</td>
+              <td class="profissional-column" >{{ clientesEmEspera.profissional.nome }}</td>
               <td class="button-column">
                 <p-button icon="pi pi-check-square" class="button-spacing" pTooltip="Em atendimento" tooltipPosition="top"
-                (click)="confirmarPedidoParaAtendimento(clientes)"></p-button>
+                (click)="confirmarPedidoParaAtendimento(clientesEmEspera)"></p-button>
                 <p-button icon="pi pi-user-edit" class="button-spacing" pTooltip="Alterar Profissional" tooltipPosition="top"></p-button>
                 <p-button icon="pi pi-trash" class="button-spacing" pTooltip="Cancelar" tooltipPosition="top"
-                (click)="confirmarCancelamentoPedido(clientes)"></p-button>
+                (click)="confirmarCancelamentoPedido(clientesEmEspera)"></p-button>
               </td>
 
             </tr>
@@ -40,7 +40,7 @@
     </div>
 
     <div class="p-col-12 mb-3">
-      <p-button icon="pi pi-user-plus" pTooltip="Adicionar em Espera" tooltipPosition="top"/>
+      <p-button icon="pi pi-user-plus" pTooltip="Adicionar em Espera" tooltipPosition="top" (click)="adicionarEmEspera(emEspera)"/>
     </div>
 
 
@@ -58,16 +58,16 @@
               <th class="button-column"></th>
             </tr>
           </ng-template>
-          <ng-template pTemplate="body" let-atendimento>
+          <ng-template pTemplate="body" let-clientesEmAtendimento>
             <tr>
-              <td>{{ atendimento.cliente.nome }}</td>
-              <td>{{ atendimento.inicioAtendimento | date: 'dd/MM/yy HH:mm' }}</td>
-              <td>{{ atendimento.profissional.nome }}</td>
+              <td>{{ clientesEmAtendimento.cliente.nome }}</td>
+              <td>{{ clientesEmAtendimento.inicioAtendimento | date: 'dd/MM/yy HH:mm' }}</td>
+              <td>{{ clientesEmAtendimento.profissional.nome }}</td>
               <td class="button-column">
                 <p-button icon="pi pi-shopping-cart" class="button-spacing" pTooltip="Carrinho" tooltipPosition="top"></p-button>
                 <p-button icon="pi pi-money-bill" class="button-spacing" pTooltip="Receber" tooltipPosition="top"></p-button>
                 <p-button icon="pi pi-trash" class="button-spacing" pTooltip="Cancelar" tooltipPosition="top"
-                (click)="confirmarCancelamentoPedido(atendimento)"></p-button>
+                (click)="confirmarCancelamentoPedido(clientesEmAtendimento)"></p-button>
               </td>
 
             </tr>
@@ -80,5 +80,6 @@
       <p-button icon="pi pi-user-plus" pTooltip="Atendimento Direto" tooltipPosition="top"/>
     </div>
 
+    <app-em-espera-modal *ngIf="selectedPedido" [pedido]="selectedPedido" [(display)]="displayEmEspera"></app-em-espera-modal>
   </div>
 </div>

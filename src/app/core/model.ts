@@ -7,6 +7,7 @@ export class Endereco {
 }
 
 export class Profissional {
+  id: number = 1;
   nome: string = ' ';
   nomeExibicao: string = ' ';
   celular: string = ' ';
@@ -54,6 +55,7 @@ export class ProfissionalInput {
 
 
 export class Cliente {
+  id: number = 1;
   nome: string = ' ';
   celular: string = ' ';
   dataNascimento: string = ' ';
@@ -85,8 +87,13 @@ export class ClienteInput {
       bairro: cliente?.endereco?.bairro ?? ''
     };
   }
+
+
 }
 
+export class Pedido {
+  nome: string = ' ';
+}
 
 
 

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 
 @Component({
@@ -8,9 +9,15 @@ import { MessageService } from 'primeng/api';
 })
 export class AppComponent {
 
-  constructor(private messageService: MessageService) {}
+  constructor(private messageService: MessageService,
+              private router: Router
+  ) {}
 
   showSuccess() {
     this.messageService.add({severity:'success', summary:'Success', detail:'Message Content'});
+  }
+
+  exibindoNavBar(){
+    return this.router.url !== '/login';
   }
 }
