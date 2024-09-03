@@ -10,10 +10,10 @@
 
   <ul class="navbar-menu" [hidden]="!exibindoMenu">
     <li class="navbar-usuario">
-      Jean Pires
+      {{auth.jwtPayload?.nome_exibicao}}
       <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjQWAIONPy3WaGsqk4X7c8DCWMJEXae2kAxtyq7SguQ8-ynAbTjCgnpIAJVsiVPStlC8CZttA5m5JxmrumhBTt3KLUK9FwdwlyXSN7yz0KB_n6lePLEPsNuIhm-juGncMTQEcMnnXcVj0U/s1600/unnamed-795336.jpg" alt="Perfil" class="profile-picture">
     </li>
-    <li class="navbar-item" routerLinkActive="ativo">
+    <li class="navbar-item" routerLinkActive="ativo" *ngIf="auth.temPermissao('RECEPCAO')">
       <a routerLink="/caixa"><i class="pi pi-credit-card"></i> Caixa</a>
     </li>
     <li class="navbar-item" routerLinkActive="ativo">
@@ -29,7 +29,7 @@
       <a routerLink="relatorios/comissoes/gerais"><i class="pi pi-wallet"></i> Comissoes</a>
     </li>
     <li class="navbar-item" routerLinkActive="ativo">
-      <a href="#"><i class="pi pi-sign-out"></i> Logout</a>
+      <a href="javascript:;" (click)="logout()"><i class="pi pi-sign-out"></i> Logout</a>
     </li>
   </ul>
 

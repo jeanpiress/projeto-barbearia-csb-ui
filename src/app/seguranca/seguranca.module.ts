@@ -7,11 +7,14 @@ import { PasswordModule } from 'primeng/password';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { FormsModule } from '@angular/forms';
-import { JwtInterceptor, JwtModule } from '@auth0/angular-jwt';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { tokenGetter } from '../core/core.module';
+import { JwtModule } from '@auth0/angular-jwt';
+import { HTTP_INTERCEPTORS} from '@angular/common/http';
+import { JwtInterceptor } from './jwt.interceptor';
 
-
+export function tokenGetter() {
+  const token = localStorage.getItem('token');
+  return token;
+}
 
 @NgModule({
   declarations: [
@@ -23,12 +26,11 @@ import { tokenGetter } from '../core/core.module';
     PasswordModule,
     InputTextModule,
     ButtonModule,
-    HttpClientModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
-        allowedDomains: ['localhost:8080'], // Adapte para seu domínio
-        disallowedRoutes: ['http://localhost:8080/oauth/token'] // Adapte para suas rotas de login
+        allowedDomains: ['localhost:8080'],
+        disallowedRoutes: ['http://localhost:8080/oauth/token']
       }
     }),
     FormsModule

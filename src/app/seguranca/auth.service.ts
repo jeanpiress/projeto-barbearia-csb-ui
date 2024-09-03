@@ -4,7 +4,6 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { catchError, map, Observable } from 'rxjs';
 import { ErrorHandlerService } from '../core/error-handler.service';
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -30,6 +29,7 @@ export class AuthService {
     return this.http.post<any>(this.oauthUrl, body, { headers, withCredentials: true })
       .pipe(
         map(response => {
+          console.log('Resposta da autenticação:', response);
           this.armazenarToken(response.access_token);
         }),
         catchError(error => {
@@ -44,18 +44,47 @@ export class AuthService {
       );
   }
 
-
-
   private armazenarToken(token: string) {
     this.jwtPayload = this.jwtHelper.decodeToken(token);
-    localStorage.setItem('token', token); // Armazena o token no localStorage
+    console.log('Token armazenado:', token); // Adiciona este log
+    localStorage.setItem('token', token);
   }
 
   private carregarToken() {
     const token = localStorage.getItem('token');
 
     if (token) {
+      console.log('Token carregado do localStorage:', token); // Adiciona este log
       this.armazenarToken(token);
+    } else {
+      console.log('Nenhum token encontrado no localStorage.'); // Adiciona este log
     }
+  }
+
+  getToken(): string | null {
+    const token = localStorage.getItem('token');
+    console.log('Token recuperado pelo getToken:', token); // Adiciona este log
+    return token;
+  }
+
+  isTokenExpired(): boolean {
+    const token = this.getToken();
+    return token ? this.jwtHelper.isTokenExpired(token) : true;
+  }
+
+  logout() {
+    localStorage.removeItem('token');
+    this.jwtPayload = null;
+    console.log('Usuário deslogado. Token removido.'); // Adiciona este log
+  }
+
+  temPermissao(permissao: string){
+    return this.jwtPayload && this.jwtPayload.authorities.includes(permissao);
+  }
+
+  isAccessTokenInvalido(){
+    const token = localStorage.getItem('token')
+
+    return !token || this.jwtHelper.isTokenExpired(token);
   }
 }
