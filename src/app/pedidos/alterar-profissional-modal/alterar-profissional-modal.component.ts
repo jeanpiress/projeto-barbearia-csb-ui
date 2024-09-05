@@ -1,19 +1,18 @@
-import { AtendimentoComponent } from './../atendimento/atendimento.component';
-import { PedidoService } from './../pedido.service';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Cliente, Pedido, Profissional } from '../../core/model';
-import { ErrorHandlerService } from '../../core/error-handler.service';
-import { NotificationService } from '../../core/notification.service';
-import { ClienteService } from '../../clientes/cliente.service';
 import { map } from 'rxjs';
+import { ErrorHandlerService } from '../../core/error-handler.service';
+import { Pedido, Profissional } from '../../core/model';
+import { NotificationService } from '../../core/notification.service';
 import { ProfissionalService } from '../../profissionais/profissional.service';
+import { AtendimentoComponent } from '../atendimento/atendimento.component';
+import { PedidoService } from '../pedido.service';
 
 @Component({
-  selector: 'app-em-espera-modal',
-  templateUrl: './em-espera-modal.component.html',
-  styleUrl: './em-espera-modal.component.css'
+  selector: 'app-alterar-profissional-modal',
+  templateUrl: './alterar-profissional-modal.component.html',
+  styleUrl: './alterar-profissional-modal.component.css'
 })
-export class EmEsperaModalComponent {
+export class AlterarProfissionalModalComponent {
   @Input() pedido: any = new Pedido();
   @Input() display: boolean = false;
   @Output() displayChange = new EventEmitter<boolean>();
@@ -26,7 +25,6 @@ export class EmEsperaModalComponent {
 
   constructor(
     private pedidoService: PedidoService,
-    private clienteService: ClienteService,
     private profissionalService: ProfissionalService,
     private notificationService: NotificationService,
     private errorHandler: ErrorHandlerService,
@@ -35,33 +33,6 @@ export class EmEsperaModalComponent {
   ngOnInit() {
     this.carregarProfissionais();
    }
-
-  onInput(event: any) {
-    const input = event.target.value;
-    if (input.length >= 4) {
-      this.carregarClientes();
-    } else {
-      this.clientes = [];
-    }
-  }
-
-  carregarClientes() {
-    if (this.nomeClienteBusca.length >= 4) {
-    this.clienteService.pesquisar(this.nomeClienteBusca)
-      .pipe(
-        map((clientes: Cliente[]) =>
-          clientes.map(cliente => ({ label: cliente.nome, value: cliente.id }))
-        )
-      )
-      .subscribe(clientesFormatados => {
-        this.clientes = clientesFormatados;
-
-        if (this.clientes.length > 0) {
-          this.clienteSelecionado = this.clientes[0].value;
-        }
-      });
-    }
-  }
 
   carregarProfissionais() {
     this.profissionalService.pesquisar('ativos')
@@ -76,22 +47,24 @@ export class EmEsperaModalComponent {
 
   }
 
-  salvarPedido() {
-   const novoPedido = {
-      horario: new Date().toISOString(),
-      cliente: { id: this.clienteSelecionado },
-      profissional: { id: this.profissionalSelecionado.value }
-    };
-    this.pedidoService.novoPedido(novoPedido).subscribe({
+  alterarProfissional() {
+    if (!this.profissionalSelecionado || !this.pedido) {
+      this.notificationService.showError('Erro', 'Profissional ou pedido não selecionado');
+      return;
+    }
+    console.log(this.profissionalSelecionado.value)
+
+    this.pedidoService.alterarProfissional(this.pedido.id, this.profissionalSelecionado.value).subscribe({
       next: () => {
-        this.notificationService.showSuccess('Sucesso', 'Pedido enviado para a fila com sucesso!');
+        this.notificationService.showSuccess('Sucesso', 'Profissional alterado com sucesso!');
         this.atendimentoComponent.pesquisarPedidosAgurdando();
         this.atendimentoComponent.pesquisarPedidosEmAtendimento();
         this.close();
       },
       error: erro => {
-        this.errorHandler.handle(erro)
-      }});
+        this.errorHandler.handle(erro);
+      }
+    });
   }
 
   close() {

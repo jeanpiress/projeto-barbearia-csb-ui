@@ -16,6 +16,7 @@ export class AtendimentoComponent implements OnInit{
   emAtendimento = []
   selectedPedido: any = null;
   displayEmEspera: boolean = false;
+  displayAlterarProfissional: boolean = false;
 
   constructor(
     private pedidoService: PedidoService,
@@ -85,6 +86,15 @@ export class AtendimentoComponent implements OnInit{
     setTimeout(() => {
       this.selectedPedido = pedido;
       this.displayEmEspera  = true;
+    }, 0);
+  }
+
+  alterarProfissional(pedido: any) {
+    this.displayAlterarProfissional = false;
+    this.notificationService.hideNavBar(true);
+    setTimeout(() => {
+      this.selectedPedido = pedido;
+      this.displayAlterarProfissional  = true;
     }, 0);
   }
 

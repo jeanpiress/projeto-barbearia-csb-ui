@@ -38,4 +38,8 @@ export class PedidoService {
   novoPedido(pedido: any): Observable<void>{
     return this.http.post<void>(`${this.pedidoUrl}`, pedido)
   }
+
+  alterarProfissional(pedidoId: string, profissionalId: string): Observable<void>{
+    return this.http.put<void>(`${this.pedidoUrl}/${pedidoId}/profissional/${profissionalId}`, {})
+  }
 }

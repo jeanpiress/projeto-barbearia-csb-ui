@@ -17,6 +17,8 @@ import { AtendimentoComponent } from './atendimento/atendimento.component';
 import { DialogModule } from 'primeng/dialog';
 import { EmEsperaModalComponent } from './em-espera-modal/em-espera-modal.component';
 import { DropdownModule } from 'primeng/dropdown';
+import { AlterarProfissionalModalComponent } from './alterar-profissional-modal/alterar-profissional-modal.component';
+import { CoreModule } from '../core/core.module';
 
 
 
@@ -24,7 +26,8 @@ import { DropdownModule } from 'primeng/dropdown';
 @NgModule({
   declarations: [
     AtendimentoComponent,
-    EmEsperaModalComponent
+    EmEsperaModalComponent,
+    AlterarProfissionalModalComponent
   ],
   imports: [
     CommonModule,
@@ -40,7 +43,8 @@ import { DropdownModule } from 'primeng/dropdown';
     ConfirmDialogModule,
     RouterModule,
     DialogModule,
-    DropdownModule
+    DropdownModule,
+    CoreModule
   ],
   providers: [
     provideHttpClient(withInterceptorsFromDi())

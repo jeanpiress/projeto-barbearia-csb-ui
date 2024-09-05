@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RelatorioService } from '../relatorio.service';
 import { ErrorHandlerService } from '../../core/error-handler.service';
-import { FormatoDataService } from '../../core/formato-data.service';
 
 
 @Component({
@@ -18,8 +17,7 @@ export class ComissoesGeraisComponent implements OnInit{
 
   constructor(
     private relatorioService: RelatorioService,
-    private errorHandler: ErrorHandlerService,
-    private formatoData: FormatoDataService
+    private errorHandler: ErrorHandlerService
   ) {}
 
   ngOnInit() {
@@ -51,8 +49,5 @@ export class ComissoesGeraisComponent implements OnInit{
     }
   }
 
-  formatDate(data: Date){
-    this.formatoData.formatDate(data);
-  }
 
 }

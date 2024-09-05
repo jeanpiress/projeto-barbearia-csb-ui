@@ -1,0 +1,18 @@
+<p-dialog [(visible)]="display" header="Escolha outro Profissional" [modal]="true" [closable]="true"
+  [style]="{ 'width': '95vw', 'max-width': '450px', 'height': '25vh' }">
+  <form #alterarProfissionalForm="ngForm" (ngSubmit)="alterarProfissional()">
+    <div class="p-grid">
+      <div class="p-fluid max-col-12 mb-3">
+        <label for="profissionalDropdown"></label>
+        <p-dropdown
+          [options]="profissionais" [(ngModel)]="profissionalSelecionado"  optionLabel="label"
+          placeholder="Selecione um Profissional" [ngModelOptions]="{standalone: true}">
+        </p-dropdown>
+      </div>
+      <div class="p-col-3">
+        <p-button icon="pi pi-user-edit" pTooltip="Alterar" tooltipPosition="top" type="submit"/>
+      </div>
+    </div>
+  </form>
+</p-dialog>
+

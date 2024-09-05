@@ -1,10 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ConfirmationService } from 'primeng/api';
 import { ErrorHandlerService } from '../../core/error-handler.service';
 import { NotificationService } from '../../core/notification.service';
 import { ClienteService } from '../cliente.service';
 import { Cliente, ClienteInput, Endereco } from '../../core/model';
-import { FormatoDataService } from '../../core/formato-data.service';
 
 
 @Component({

@@ -28,7 +28,8 @@
               <td class="button-column">
                 <p-button icon="pi pi-check-square" class="button-spacing" pTooltip="Em atendimento" tooltipPosition="top"
                 (click)="confirmarPedidoParaAtendimento(clientesEmEspera)"></p-button>
-                <p-button icon="pi pi-user-edit" class="button-spacing" pTooltip="Alterar Profissional" tooltipPosition="top"></p-button>
+                <p-button icon="pi pi-user-edit" class="button-spacing" pTooltip="Alterar Profissional" tooltipPosition="top"
+                (click)="alterarProfissional(clientesEmEspera)"></p-button>
                 <p-button icon="pi pi-trash" class="button-spacing" pTooltip="Cancelar" tooltipPosition="top"
                 (click)="confirmarCancelamentoPedido(clientesEmEspera)"></p-button>
               </td>
@@ -81,5 +82,7 @@
     </div>
 
     <app-em-espera-modal *ngIf="selectedPedido" [pedido]="selectedPedido" [(display)]="displayEmEspera"></app-em-espera-modal>
+    <app-alterar-profissional-modal *ngIf="selectedPedido" [pedido]="selectedPedido" [(display)]="displayAlterarProfissional"
+    (displayChange)="displayAlterarProfissional = $event"></app-alterar-profissional-modal>
   </div>
 </div>

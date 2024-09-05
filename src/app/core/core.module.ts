@@ -18,7 +18,6 @@ import { RelatorioService } from '../relatorios/relatorio.service';
 import { ClienteService } from '../clientes/cliente.service';
 import { ErrorHandlerService } from './error-handler.service';
 import { NotificationService } from './notification.service';
-import { FormatoDataService } from './formato-data.service';
 import { FinanceiroService } from '../financeiros/financeiro.service';
 import { ProfissionalService } from '../profissionais/profissional.service';
 import { AuthService } from '../seguranca/auth.service';
@@ -54,7 +53,6 @@ registerLocaleData(localePt);
     ErrorHandlerService,
     NotificationService,
     RelatorioService,
-    FormatoDataService,
     FinanceiroService,
     ProfissionalService,
     AuthService

@@ -3,7 +3,6 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Endereco, Profissional, ProfissionalInput } from '../../core/model';
 import { ProfissionalService } from '../profissional.service';
 import { ErrorHandlerService } from '../../core/error-handler.service';
-import { FormatoDataService } from '../../core/formato-data.service';
 import { NotificationService } from '../../core/notification.service';
 
 @Component({
