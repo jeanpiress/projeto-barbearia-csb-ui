@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="p-grid">
+
+    <div class="p-col-12 mb-3">
+      <h1>Cliente para Retornar</h1>
+    </div>
+
+    <form (ngSubmit)="buscarClientesRetorno()" autocomplete="off">
+      <div class="item">
+        <label>Intervalo de Dias</label>
+      </div>
+      <div class="item mb-3">
+        <input type="number" pInputText name="inicio" placeholder="Dias" [(ngModel)]="diasBusca">
+      </div>
+      <div class="p-col-12 mb-3">
+        <p-button label="Buscar" type="submit"/>
+      </div>
+      <div class="p-grid">
+        <div class="p-col-12 mb-3">
+          <p-table [value]="clientes" styleClass="p-datatable-striped" [tableStyle]="{ 'min-width': '50rem' }" responsiveLayout="stack"
+          [breakpoint]="'960px'">
+            <ng-template pTemplate="header">
+              <tr>
+                <th style="width: 350px;">Nome</th>
+                <th style="text-align: center;">Retorno Desejado</th>
+                <th style="text-align: center;">Dias Passados do Retorno</th>
+                <th style="text-align: center;">Celular</th>
+                <th style="text-align: center;" >WhatsApp</th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-relatorio>
+              <tr>
+                <td>{{ relatorio.cliente.nome }}</td>
+                <td style="text-align: center;">{{ relatorio.cliente.diasRetorno }}</td>
+                <td style="text-align: center;">{{ relatorio.diasPassadosRetorno }}</td>
+                <td style="text-align: center;">{{ relatorio.cliente.celular}}</td>
+                <td style="text-align: center;">
+                  <a [href]="'https://wa.me/+55' + relatorio.cliente.celular" target="_blank">
+                      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" width="20" height="20">
+                  </a>
+              </td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
+      </div>
+  </form>
+  </div>
+</div>

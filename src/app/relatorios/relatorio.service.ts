@@ -15,8 +15,10 @@ export class RelatorioService {
       inicio: dataInicio,
       fim: dataFim
     };
-
-    console.log(body)
     return this.http.post(`${this.relatorioUrl}/comissoes/data`, body);
+  }
+
+  pesquisarClientesRetorno(diasBusca : any): Observable<any>{
+    return this.http.get(`${this.relatorioUrl}/cliente/volta/${diasBusca}`);
   }
 }

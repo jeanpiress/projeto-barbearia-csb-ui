@@ -27,6 +27,7 @@ import { PagamentoModalComponent } from './pagamento-modal/pagamento-modal.compo
 
 
 
+
 @NgModule({
   declarations: [
     AtendimentoComponent,

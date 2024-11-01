@@ -14,12 +14,14 @@ import { ChartModule } from 'primeng/chart';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ComissoesGeraisComponent } from './comissoes-gerais/comissoes-gerais.component';
 import { RouterModule } from '@angular/router';
+import { ClientesRetornoComponent } from './clientes-retorno/clientes-retorno.component';
 
 
 
 @NgModule({
   declarations: [
-    ComissoesGeraisComponent
+    ComissoesGeraisComponent,
+    ClientesRetornoComponent
   ],
   imports: [
     CommonModule,

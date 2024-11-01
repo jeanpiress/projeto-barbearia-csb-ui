@@ -32,14 +32,17 @@ import { BuscaProfissionaisComponent } from './profissionais/busca-profissionais
 import { SegurancaModule } from './seguranca/seguranca.module';
 import { LoginFormComponent } from './seguranca/login-form/login-form.component';
 import { ItensModule } from './itens/itens.module';
+import { ClientesRetornoComponent } from './relatorios/clientes-retorno/clientes-retorno.component';
 
 const routes: Routes =[
   {path: 'clientes/buscar', component: BuscaClientesComponent},
+  {path: 'clientes/retorno', component: ClientesRetornoComponent},
   {path: 'caixa', component: CaixaComponent},
   {path: 'atendimento', component: AtendimentoComponent},
   {path: 'relatorios/comissoes/gerais', component: ComissoesGeraisComponent},
   {path: 'profissionais/buscar', component: BuscaProfissionaisComponent},
   {path: 'login', component: LoginFormComponent}
+
 
 
 ]

@@ -159,13 +159,13 @@ export class CarrinhoModalComponent implements OnInit {
   }
 
   finalizarCompra() {
-    this.adicionarItensAoPedido();
     this.fechar();
   }
 
 
   fechar() {
     this.display = false;
+    this.adicionarItensAoPedido();
     this.displayChange.emit(this.display);
   }
 

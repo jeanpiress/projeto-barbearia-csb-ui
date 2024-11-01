@@ -81,6 +81,15 @@ export class CaixaComponent {
     })
   }
 
+  confirmarExclusaoPedido(pedido: any){
+    this.confirmation.confirm({
+      message: 'Tem certeza que deseja excluir este pedido?',
+      accept: () => {
+        this.excluirPedido(pedido);
+      }
+    })
+  }
+
   fecharCaixa(){
     this.financeiroService.fecharCaixa().subscribe({
       next: () => {
