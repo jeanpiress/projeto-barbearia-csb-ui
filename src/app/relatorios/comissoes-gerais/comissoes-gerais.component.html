@@ -31,6 +31,7 @@
               <tr>
                 <th style="width: 350px;">Nome</th>
                 <th style="text-align: center;">Cliente Atendidos</th>
+                <th style="text-align: center;">Faturamento</th>
                 <th style="text-align: center;" >TKM</th>
                 <th style="text-align: center;" >Comissao</th>
               </tr>
@@ -39,6 +40,7 @@
               <tr>
                 <td>{{ comissoes.profissional.nome }}</td>
                 <td style="text-align: center;">{{ comissoes.clienteAtendidos }}</td>
+                <td style="text-align: center;">{{ comissoes.totalVendas | currency: 'BRL'}}</td>
                 <td style="text-align: center;">{{ comissoes.tkm | currency: 'BRL'}}</td>
                 <td style="text-align: center;">{{ comissoes.totalComissao | currency: 'BRL'}}</td>
               </tr>

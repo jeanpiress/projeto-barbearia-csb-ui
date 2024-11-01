@@ -23,16 +23,15 @@ import { RelatoriosModule } from './relatorios/relatorios.module';
 import { FinanceirosModule } from './financeiros/financeiros.module';
 import { RouterModule, Routes } from '@angular/router';
 import { BuscaClientesComponent } from './clientes/busca-clientes/busca-clientes.component';
-import { NovoClienteComponent } from './clientes/novo-cliente/novo-cliente.component';
 import { CaixaComponent } from './financeiros/caixa/caixa.component';
 import { ComissoesGeraisComponent } from './relatorios/comissoes-gerais/comissoes-gerais.component';
 import { AtendimentoComponent } from './pedidos/atendimento/atendimento.component';
 import { PedidosModule } from './pedidos/pedidos.module';
 import { ProfissionaisModule } from './profissionais/profissionais.module';
 import { BuscaProfissionaisComponent } from './profissionais/busca-profissionais/busca-profissionais.component';
-import { NovoProfissionalComponent } from './profissionais/novo-profissional/novo-profissional.component';
 import { SegurancaModule } from './seguranca/seguranca.module';
 import { LoginFormComponent } from './seguranca/login-form/login-form.component';
+import { ItensModule } from './itens/itens.module';
 
 const routes: Routes =[
   {path: 'clientes/buscar', component: BuscaClientesComponent},
@@ -69,7 +68,8 @@ const routes: Routes =[
     PedidosModule,
     ProfissionaisModule,
     RouterModule.forRoot(routes),
-    SegurancaModule
+    SegurancaModule,
+    ItensModule
 
   ],
   providers: [],

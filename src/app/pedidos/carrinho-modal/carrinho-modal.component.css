@@ -1,0 +1,33 @@
+.product-item {
+  border: 1px solid #ccc;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 0.5rem;
+}
+
+.product-detail {
+  margin-bottom: 1rem;
+}
+
+.product-action {
+  text-align: right;
+}
+
+.quantity-control button {
+  border: none;
+  background: none;
+  font-size: 1.5em; /* Ajuste o tamanho conforme necessário */
+  margin: 0 5px; /* Espaçamento entre os botões */
+}
+
+.quantity-control span {
+  font-size: 1.5em; /* Ajuste o tamanho da quantidade se necessário */
+}
+
+th {
+  text-align: center; /* Centraliza o texto no cabeçalho */
+}
+
+td {
+  text-align: center; /* Centraliza o texto no cabeçalho */
+}

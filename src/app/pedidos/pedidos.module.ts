@@ -19,6 +19,10 @@ import { EmEsperaModalComponent } from './em-espera-modal/em-espera-modal.compon
 import { DropdownModule } from 'primeng/dropdown';
 import { AlterarProfissionalModalComponent } from './alterar-profissional-modal/alterar-profissional-modal.component';
 import { CoreModule } from '../core/core.module';
+import { CarrinhoModalComponent } from './carrinho-modal/carrinho-modal.component';
+import { DataViewModule } from 'primeng/dataview';
+import { TagModule } from 'primeng/tag';
+import { PagamentoModalComponent } from './pagamento-modal/pagamento-modal.component';
 
 
 
@@ -27,7 +31,9 @@ import { CoreModule } from '../core/core.module';
   declarations: [
     AtendimentoComponent,
     EmEsperaModalComponent,
-    AlterarProfissionalModalComponent
+    AlterarProfissionalModalComponent,
+    CarrinhoModalComponent,
+    PagamentoModalComponent
   ],
   imports: [
     CommonModule,
@@ -44,14 +50,18 @@ import { CoreModule } from '../core/core.module';
     RouterModule,
     DialogModule,
     DropdownModule,
-    CoreModule
+    CoreModule,
+    DataViewModule,
+    TagModule
   ],
   providers: [
     provideHttpClient(withInterceptorsFromDi())
   ],
   exports: [
     AtendimentoComponent,
-    EmEsperaModalComponent
+    EmEsperaModalComponent,
+    CarrinhoModalComponent,
+    PagamentoModalComponent
   ]
 })
 export class PedidosModule { }

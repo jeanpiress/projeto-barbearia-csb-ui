@@ -1,4 +1,3 @@
-import { NotificationService } from './../../core/notification.service';
 import { Component } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { ErrorHandlerService } from '../../core/error-handler.service';

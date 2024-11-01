@@ -42,4 +42,20 @@ export class PedidoService {
   alterarProfissional(pedidoId: string, profissionalId: string): Observable<void>{
     return this.http.put<void>(`${this.pedidoUrl}/${pedidoId}/profissional/${profissionalId}`, {})
   }
+
+  buscarPedidoporId(pedidoId: string): Observable<any>{
+    return this.http.get(`${this.pedidoUrl}/${pedidoId}`)
+  }
+
+  adicionarItemPedidoAoPedido(pedidoId: string, itemPedidoId: string): Observable<void>{
+    return this.http.put<void>(`${this.pedidoUrl}/${pedidoId}/add-item/${itemPedidoId}`, {})
+  }
+
+  limparPedido(pedidoId: any): Observable<void>{
+    return this.http.delete<void>(`${this.pedidoUrl}/${pedidoId}/remove-todos-itens`)
+  }
+
+  pagarPedido(codigo: any, formaPagamento: any): Observable<void>{
+    return this.http.put<void>(`${this.pedidoUrl}/${codigo}/pagar`, formaPagamento)
+  }
 }

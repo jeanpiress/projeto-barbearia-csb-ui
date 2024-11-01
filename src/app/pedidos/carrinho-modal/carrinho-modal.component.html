@@ -1,0 +1,72 @@
+<p-dialog [(visible)]="display" [modal]="true" [closable]="true" [style]="{ 'width': '95vw', 'max-width': '1280px', 'height': '90vh' }">
+  <div class="p-field p-grid">
+    <div class="p-col-12 p-md-4">
+      <p-dropdown [options]="categorias" [(ngModel)]="categoriaSelecionada" optionLabel="label"
+        placeholder="Selecione uma categoria" [ngModelOptions]="{standalone: true}" (onChange)="carregarProdutos($event)">
+      </p-dropdown>
+    </div>
+  </div>
+  <div *ngIf="produtos.length > 0">
+    <p-dataView [value]="produtos">
+      <ng-template pTemplate="list" let-produto>
+        <div class="grid grid-nogutter">
+          <div class="col-12" *ngFor="let produto of produtos; let first = first">
+            <div class="flex flex-column sm:flex-row sm:align-items-center p-4 gap-3" [ngClass]="{ 'border-top-1 surface-border': !first }">
+              <div class="flex flex-column md:flex-row justify-content-between md:align-items-center flex-1 gap-4">
+                <div class="flex flex-row md:flex-column justify-content-between align-items-start gap-2">
+                  <div>
+                    <div class="text-lg font-medium text-900 mt-2">{{ produto.nome }}</div>
+                  </div>
+                </div>
+                <div class="flex flex-column md:align-items-end gap-5">
+                  <div class="flex flex-row-reverse md:flex-row gap-2">
+                    <p-button icon="pi pi-shopping-cart" class="flex-auto md:flex-initial white-space-nowrap" label="{{ produto.preco | currency:'BRL'}}" (click)="adicionarAoCarrinho(produto)"></p-button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </p-dataView>
+  </div>
+  <h2>Produtos Selecionados</h2>
+<p-table [value]="produtosSelecionados" styleClass="p-datatable-striped" [tableStyle]="{ 'min-width': '50rem' }" responsiveLayout="stack" [breakpoint]="'960px'">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Produto</th>
+      <th>Preço Unitário</th>
+      <th>Quantidade</th>
+      <th>Subtotal</th>
+      <th>Ação</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-item>
+    <tr>
+      <td>{{ item.produto.nome }}</td>
+      <td>{{ item.produto.preco | currency:'BRL' }}</td>
+      <td>
+        <div class="quantity-control">
+          <button (click)="diminuirQuantidade(item.produto)">-</button>
+          {{ item.quantidade }}
+          <button (click)="aumentarQuantidade(item.produto)">+</button>
+        </div>
+      </td>
+      <td>{{ item.precoTotal | currency:'BRL' }}</td>
+      <td>
+        <p-button icon="pi pi-trash" class="p-button-danger" (click)="removerProduto(item)"></p-button>
+      </td>
+    </tr>
+  </ng-template>
+
+</p-table>
+
+
+  <div class="total-section">
+    <h3>Total: {{ calcularTotal() | currency:'BRL' }}</h3>
+  </div>
+
+  <div class="p-d-flex p-jc-between">
+    <p-button label="Finalizar Compra" icon="pi pi-shopping-cart" (click)="finalizarCompra()"></p-button>
+  </div>
+</p-dialog>

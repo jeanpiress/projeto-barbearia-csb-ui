@@ -1,22 +1,25 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ConfirmationService } from 'primeng/api';
 import { ErrorHandlerService } from '../../core/error-handler.service';
 import { NotificationService } from '../../core/notification.service';
 import { PedidoService } from '../pedido.service';
-import { Cliente } from '../../core/model';
+import { Pedido } from '../../core/model';
+
 
 @Component({
   selector: 'app-atendimento',
   templateUrl: './atendimento.component.html',
-  styleUrl: './atendimento.component.css'
+  styleUrls: ['./atendimento.component.css']
 })
-export class AtendimentoComponent implements OnInit{
+export class AtendimentoComponent implements OnInit {
 
-  emEspera = []
-  emAtendimento = []
-  selectedPedido: any = null;
+  emEspera: Pedido[] = [];
+  emAtendimento: Pedido[] = [];
+  selectedPedido: Pedido | null = null;
   displayEmEspera: boolean = false;
   displayAlterarProfissional: boolean = false;
+  displayCarrinho: boolean = false;
+  displayPagamentoModal: boolean = false;
 
   constructor(
     private pedidoService: PedidoService,
@@ -25,59 +28,64 @@ export class AtendimentoComponent implements OnInit{
     private confirmation: ConfirmationService
   ) {}
 
-  ngOnInit(){
+  ngOnInit() {
+    this.atualizarPedidos();
+  }
+
+  pesquisarPedidosAgurdando() {
+    this.pedidoService.pesquisarPedidosAguardando().subscribe(clientes => this.emEspera = clientes);
+  }
+
+  pesquisarPedidosEmAtendimento() {
+    this.pedidoService.pesquisarPedidosEmAtendimento().subscribe(emAtendimento => this.emAtendimento = emAtendimento);
+    console.log('pedidos atualizados');
+  }
+
+  atualizarPedidos(){
     this.pesquisarPedidosAgurdando();
     this.pesquisarPedidosEmAtendimento();
   }
 
-  pesquisarPedidosAgurdando(){
-    this.pedidoService.pesquisarPedidosAguardando().subscribe(clientes => this.emEspera = clientes);
-  }
-
-  pesquisarPedidosEmAtendimento(){
-    this.pedidoService.pesquisarPedidosEmAtendimento().subscribe(emAtendimento => this.emAtendimento = emAtendimento);
-  }
-
-  confirmarCancelamentoPedido(pedido: any){
+  confirmarCancelamentoPedido(pedido: Pedido) {
     this.confirmation.confirm({
       message: 'Tem certeza que deseja cancelar esse atendimento?',
       accept: () => {
         this.cancelarPedido(pedido);
       }
-    })
+    });
   }
 
-  cancelarPedido(pedido: any){
+  cancelarPedido(pedido: Pedido) {
     this.pedidoService.cancelarPedido(pedido.id).subscribe({
       next: () => {
         this.notificationService.showSuccess('Sucesso', 'Pedido cancelado com sucesso!');
-        this.pesquisarPedidosAgurdando();
+        this.atualizarPedidos();
       },
       error: erro => {
-        this.errorHandler.handle(erro)
+        this.errorHandler.handle(erro);
       }
-    });;
+    });
   }
 
-  confirmarPedidoParaAtendimento(pedido: any){
+  confirmarPedidoParaAtendimento(pedido: Pedido) {
     this.confirmation.confirm({
       message: 'Tem certeza que deseja enviar esse cliente para Em Atendimento?',
       accept: () => {
         this.alterarPedidoParaEmAtendimento(pedido);
       }
-    })
+    });
   }
 
-  alterarPedidoParaEmAtendimento(pedido: any){
+  alterarPedidoParaEmAtendimento(pedido: Pedido) {
     this.pedidoService.alterarPedidoParaEmAtendimento(pedido.id).subscribe({
       next: () => {
-        this.notificationService.showSuccess('Sucesso', 'Pedido cancelado com sucesso!');
+        this.notificationService.showSuccess('Sucesso', 'Pedido alterado para Em Atendimento!');
         this.ngOnInit();
       },
       error: erro => {
-        this.errorHandler.handle(erro)
+        this.errorHandler.handle(erro);
       }
-    });;
+    });
   }
 
   adicionarEmEspera(pedido: any) {
@@ -85,7 +93,7 @@ export class AtendimentoComponent implements OnInit{
     this.notificationService.hideNavBar(true);
     setTimeout(() => {
       this.selectedPedido = pedido;
-      this.displayEmEspera  = true;
+      this.displayEmEspera = true;
     }, 0);
   }
 
@@ -94,7 +102,32 @@ export class AtendimentoComponent implements OnInit{
     this.notificationService.hideNavBar(true);
     setTimeout(() => {
       this.selectedPedido = pedido;
-      this.displayAlterarProfissional  = true;
+      this.displayAlterarProfissional = true;
+    }, 0);
+  }
+
+  abrirCarrinho(pedido: Pedido) {
+    this.displayCarrinho = false;
+    this.notificationService.hideNavBar(true);
+
+    this.pedidoService.limparPedido(pedido.id).subscribe({
+      next: () => {
+        console.log('Carrinho limpo');
+        this.selectedPedido = pedido;
+        this.displayCarrinho = true;
+      },
+      error: (err) => {
+        console.error('Erro ao limpar o carrinho:', err);
+      }
+    });
+  }
+
+  pagamentoModal(pedido: Pedido) {
+    this.displayPagamentoModal = false;
+    this.notificationService.hideNavBar(true);
+    setTimeout(() => {
+      this.selectedPedido = pedido;
+      this.displayPagamentoModal = true;
     }, 0);
   }
 

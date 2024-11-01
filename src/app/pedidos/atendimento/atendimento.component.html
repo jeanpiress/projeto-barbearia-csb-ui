@@ -65,8 +65,10 @@
               <td>{{ clientesEmAtendimento.inicioAtendimento | date: 'dd/MM/yy HH:mm' }}</td>
               <td>{{ clientesEmAtendimento.profissional.nome }}</td>
               <td class="button-column">
-                <p-button icon="pi pi-shopping-cart" class="button-spacing" pTooltip="Carrinho" tooltipPosition="top"></p-button>
-                <p-button icon="pi pi-money-bill" class="button-spacing" pTooltip="Receber" tooltipPosition="top"></p-button>
+                <p-button icon="pi pi-shopping-cart" class="button-spacing" pTooltip="Carrinho" tooltipPosition="top"
+                (click)="abrirCarrinho(clientesEmAtendimento)"></p-button>
+                <p-button icon="pi pi-money-bill" class="button-spacing" pTooltip="Receber" tooltipPosition="top"
+                (click)="pagamentoModal(clientesEmAtendimento)"></p-button>
                 <p-button icon="pi pi-trash" class="button-spacing" pTooltip="Cancelar" tooltipPosition="top"
                 (click)="confirmarCancelamentoPedido(clientesEmAtendimento)"></p-button>
               </td>
@@ -84,5 +86,7 @@
     <app-em-espera-modal *ngIf="selectedPedido" [pedido]="selectedPedido" [(display)]="displayEmEspera"></app-em-espera-modal>
     <app-alterar-profissional-modal *ngIf="selectedPedido" [pedido]="selectedPedido" [(display)]="displayAlterarProfissional"
     (displayChange)="displayAlterarProfissional = $event"></app-alterar-profissional-modal>
+    <app-carrinho-modal *ngIf="selectedPedido" [pedido]="selectedPedido" [(display)]="displayCarrinho"></app-carrinho-modal>
+    <app-pagamento-modal *ngIf="selectedPedido" [pedido]="selectedPedido" [(display)]="displayPagamentoModal"></app-pagamento-modal>
   </div>
 </div>

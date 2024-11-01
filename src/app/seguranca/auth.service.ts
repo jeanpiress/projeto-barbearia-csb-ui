@@ -17,7 +17,7 @@ export class AuthService {
     private jwtHelper: JwtHelperService,
     private errorHandler: ErrorHandlerService
   ) {
-    this.carregarToken(); // Carrega o token ao iniciar o serviço
+    this.carregarToken();
   }
 
   login(usuario: string, senha: string): Observable<void> {
@@ -27,26 +27,26 @@ export class AuthService {
     const body = `username=${usuario}&password=${senha}&grant_type=password`;
 
     return this.http.post<any>(this.oauthUrl, body, { headers, withCredentials: true })
-      .pipe(
-        map(response => {
-          console.log('Resposta da autenticação:', response);
-          this.armazenarToken(response.access_token);
-        }),
-        catchError(error => {
-          // Trata apenas o erro específico de senha ou usuário inválidos
-          if (error.status === 400 && error.error.error === 'invalid_grant') {
-            this.errorHandler.showCustomError('Erro de autenticação', 'Usuário inexistente ou senha inválida');
-            return new Observable<void>(); // Interrompe a propagação do erro
-          }
-          // Retorna todos os outros erros para serem tratados pelo ErrorHandlerService
-          return this.errorHandler.handle(error);
-        })
-      );
+  .pipe(
+    map(response => {
+      console.log('Resposta da autenticação:', response);
+      this.armazenarToken(response.access_token);
+    }),
+    catchError(error => {
+      console.error('Erro na autenticação:', error);
+      if (error.status === 400 && error.error.error === 'invalid_grant') {
+        this.errorHandler.showCustomError('Erro de autenticação', 'Usuário inexistente ou senha inválida');
+        return new Observable<void>();
+      }
+
+      return this.errorHandler.handle(error);
+    })
+  );
   }
 
   private armazenarToken(token: string) {
     this.jwtPayload = this.jwtHelper.decodeToken(token);
-    console.log('Token armazenado:', token); // Adiciona este log
+    console.log('Token armazenado:', token);
     localStorage.setItem('token', token);
   }
 

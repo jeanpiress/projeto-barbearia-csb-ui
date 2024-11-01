@@ -21,6 +21,7 @@ import { NotificationService } from './notification.service';
 import { FinanceiroService } from '../financeiros/financeiro.service';
 import { ProfissionalService } from '../profissionais/profissional.service';
 import { AuthService } from '../seguranca/auth.service';
+import { ItemService } from '../itens/item.service';
 
 export function tokenGetter() {
   return localStorage.getItem("access_token");
@@ -35,7 +36,7 @@ registerLocaleData(localePt);
     ToastModule,
     ConfirmDialogModule,
     RouterModule,
-    TreeModule, // Mover TreeModule para imports
+    TreeModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
@@ -46,7 +47,7 @@ registerLocaleData(localePt);
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'pt-BR' },
-    provideHttpClient(withInterceptorsFromDi()), // Usar apenas o provideHttpClient
+    provideHttpClient(withInterceptorsFromDi()),
     ClienteService,
     MessageService,
     ConfirmationService,
@@ -55,7 +56,8 @@ registerLocaleData(localePt);
     RelatorioService,
     FinanceiroService,
     ProfissionalService,
-    AuthService
+    AuthService,
+    ItemService
   ],
   exports: [
     NavBarComponent,

@@ -1,0 +1,13 @@
+<p-dialog [(visible)]="display" [modal]="true" [closable]="true" [style]="{ 'width': '95vw', 'max-width': '1280px', 'height': '50vh' }">
+  <div class="p-field p-grid">
+    <div class="p-col-12 p-md-4">
+      <h2> Selecione forma de pagamento</h2>
+      <p-dropdown [options]="formaPagamentoOptions" [(ngModel)]="formaPagamentoSelecionada"
+    placeholder="Selecione um status">
+</p-dropdown>
+    </div>
+  </div>
+  <div class="p-d-flex p-jc-between">
+    <p-button label="Realizar pagamento" icon="pi pi-shopping-cart" (click)="finalizarPagamento()"></p-button>
+  </div>
+</p-dialog>
