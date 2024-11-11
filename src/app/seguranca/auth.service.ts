@@ -29,7 +29,6 @@ export class AuthService {
     return this.http.post<any>(this.oauthUrl, body, { headers, withCredentials: true })
   .pipe(
     map(response => {
-      console.log('Resposta da autenticação:', response);
       this.armazenarToken(response.access_token);
     }),
     catchError(error => {
@@ -54,16 +53,14 @@ export class AuthService {
     const token = localStorage.getItem('token');
 
     if (token) {
-      console.log('Token carregado do localStorage:', token); // Adiciona este log
       this.armazenarToken(token);
     } else {
-      console.log('Nenhum token encontrado no localStorage.'); // Adiciona este log
+      console.log('Nenhum token encontrado no localStorage.');
     }
   }
 
   getToken(): string | null {
     const token = localStorage.getItem('token');
-    console.log('Token recuperado pelo getToken:', token); // Adiciona este log
     return token;
   }
 
@@ -75,7 +72,6 @@ export class AuthService {
   logout() {
     localStorage.removeItem('token');
     this.jwtPayload = null;
-    console.log('Usuário deslogado. Token removido.'); // Adiciona este log
   }
 
   temPermissao(permissao: string){

@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ItemPedido, ItemPedidoImput } from '../core/model';
+import { ItemPedido, ItemPedidoImput, Produto, ProdutoInput } from '../core/model';
 
 @Injectable({
   providedIn: 'root'
@@ -26,4 +26,27 @@ export class ItemService {
     return this.http.post<ItemPedido>(`${this.itemPedidoUrl}`, itemPedido);
   }
 
+  criarNovoProduto(produto: ProdutoInput): Observable<Produto>{
+    return this.http.post<Produto>(`${this.produtoUrl}`, produto);
+  }
+
+  buscarProdutos(nome: string, isAtivo: boolean, categoriaId?: any): Observable<any>{
+    let params = new HttpParams()
+      .set('nome', nome)
+      .set('isAtivo', isAtivo.toString());
+
+    if(categoriaId != null){
+      params = params.set('categoriaId', categoriaId);}
+      console.log(params);
+
+    return this.http.get(`${this.produtoUrl}`, { params });
+  }
+
+  desativarProduto(produtoId: any): Observable<void>{
+    return this.http.delete<void>(`${this.produtoUrl}/${produtoId}/desativar`);
+  }
+
+  editarProduto(produtoId: any, produto: ProdutoInput): Observable<any>{
+    return this.http.put(`${this.produtoUrl}/${produtoId}`, produto);
+  }
 }

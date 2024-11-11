@@ -87,6 +87,6 @@
     <app-alterar-profissional-modal *ngIf="selectedPedido" [pedido]="selectedPedido" [(display)]="displayAlterarProfissional"
     (displayChange)="displayAlterarProfissional = $event"></app-alterar-profissional-modal>
     <app-carrinho-modal *ngIf="selectedPedido" [pedido]="selectedPedido" [(display)]="displayCarrinho"></app-carrinho-modal>
-    <app-pagamento-modal *ngIf="selectedPedido" [pedido]="selectedPedido" [(display)]="displayPagamentoModal"></app-pagamento-modal>
+    <app-pagamento-modal *ngIf="selectedPedido" [pedido]="selectedPedido" [(display)]="displayPagamentoModal" (pedidoPago)="pesquisarPedidosEmAtendimento()"></app-pagamento-modal>
   </div>
 </div>

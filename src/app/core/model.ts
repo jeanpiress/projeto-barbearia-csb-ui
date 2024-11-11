@@ -96,6 +96,10 @@ export class Categoria {
   nome: string = ' ';
 }
 
+export class CategoriaId {
+  id: number = 1;
+}
+
 export class Produto {
   id: number = 1;
   nome: string = ' ';
@@ -103,6 +107,20 @@ export class Produto {
   precoEmPontos: number = 0;
   categoria: Categoria = new Categoria();
 }
+
+export class ProdutoInput {
+  nome: string = ' ';
+  preco: any;
+  precoEmPontos: any;
+  temEstoque: boolean = false;
+  estoque: any;
+  vendidoPorPonto: boolean = false;
+  pesoPontuacaoCliente: any;
+  pesoPontuacaoProfissional: any;
+  comissaoBase: any;
+  categoria: CategoriaId = new CategoriaId();
+}
+
 export class ProdutoId {
   id: number = 1;
 }

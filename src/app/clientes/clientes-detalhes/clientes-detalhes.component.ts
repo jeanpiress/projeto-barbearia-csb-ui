@@ -73,7 +73,6 @@ export class ClientesDetalhesComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    // Acessa o DOM do modal e ajusta o scroll para o topo
     if (this.dialog) {
       this.dialog.onShow.subscribe(() => {
         const content = document.querySelector('.p-dialog-content');

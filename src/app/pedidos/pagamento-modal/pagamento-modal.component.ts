@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormaPagamento, Pedido } from '../../core/model';
 import { PedidoService } from '../pedido.service';
-import { Router } from '@angular/router';
 import { NotificationService } from '../../core/notification.service';
 import { ErrorHandlerService } from '../../core/error-handler.service';
+import { finalize } from 'rxjs';
 
 
 @Component({
@@ -15,16 +15,17 @@ export class PagamentoModalComponent implements OnInit{
   @Input() display: boolean = false;
   @Input() pedido: any = new Pedido();
   @Output() displayChange = new EventEmitter<boolean>();
+  @Output() pedidoPago = new EventEmitter<void>();
 
   formasPagamento: any[] = [];
 
   formaPagamentoSelecionada: any;
   formaPagamentoOptions: { label: string, value: string }[] = [];
+  isLoading: boolean = false;
 
   constructor(private pedidoService: PedidoService,
               private notificationService: NotificationService,
-              private errorHandler: ErrorHandlerService,
-              private router: Router) {}
+              private errorHandler: ErrorHandlerService) {}
 
   ngOnInit(): void {
     this.formaPagamentoOptions = Object.keys(FormaPagamento).map(key => ({
@@ -34,26 +35,26 @@ export class PagamentoModalComponent implements OnInit{
   }
 
   realizarPagamento(): void {
+    this.isLoading = true;
     const formaPagamentoBody = {
       "formaPagamento": this.formaPagamentoSelecionada
     };
     this.pedidoService.pagarPedido(this.pedido.id, formaPagamentoBody)
-    .subscribe({
+    .pipe(
+      finalize(() => {
+        this.isLoading = false;
+      })
+    ).subscribe({
       next: () => {
         this.notificationService.showSuccess('Sucesso', 'Pedido pago com sucesso!');
+        this.pedidoPago.emit();
+        this.fechar();
       },
       error: erro => {
         this.errorHandler.handle(erro);
       }
     });
   }
-
-  finalizarPagamento() {
-    this.realizarPagamento();
-    this.fechar();
-    this.router.navigate(['/atendimento']);
-  }
-
 
   fechar() {
     this.display = false;
