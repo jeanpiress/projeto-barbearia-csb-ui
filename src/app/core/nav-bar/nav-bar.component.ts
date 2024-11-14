@@ -10,6 +10,8 @@ import { Router } from '@angular/router';
 })
 export class NavBarComponent implements OnInit{
   exibindoMenu: boolean = false;
+  exibindoRelatorios: boolean = false;
+
   constructor(private notificationService: NotificationService,
               public auth: AuthService,
               private router: Router

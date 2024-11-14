@@ -67,3 +67,19 @@
 .navbar-item.ativo{
   background-color: rgb(197, 225, 233);
 }
+
+.navbar-menu .submenu {
+  list-style-type: none;
+  padding-left: 0;
+  margin-top: 10px; /* Espaçamento entre "Relatórios" e os itens do submenu */
+}
+
+.navbar-menu .submenu .navbar-item {
+  padding: 8px 0; /* Espaçamento vertical entre os itens "Comissões" e "Clientes para Retornar" */
+}
+
+.navbar-item a {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Espaço entre o ícone e o texto do item */
+}
