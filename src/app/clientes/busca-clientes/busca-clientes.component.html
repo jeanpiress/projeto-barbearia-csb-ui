@@ -1,6 +1,6 @@
 <div class="container">
   <div class="p-grid">
-    <form autocomplete="off">
+    <form autocomplete="off" (ngSubmit)="pesquisar()">
       <div class="p-col-12 mb-3">
         <h1>Clientes</h1>
       </div>
@@ -11,7 +11,7 @@
       </div>
 
       <div class="p-col-12 mb-3">
-        <p-button label="Buscar" (click)="pesquisar()"/>
+        <p-button label="Buscar" type="submit"/>
       </div>
 
       <div class="p-grid">

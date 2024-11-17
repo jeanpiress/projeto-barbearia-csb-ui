@@ -29,7 +29,14 @@ export class BuscaClientesComponent implements OnInit {
   ngOnInit() {}
 
   pesquisar() {
-    this.clienteService.pesquisar(this.nomeBusca).subscribe(clientes => this.clientes = clientes);
+    this.clienteService.pesquisar(this.nomeBusca, true).subscribe({
+      next: (clientes) => {
+        this.clientes = clientes;
+      },
+      error: (erro) => {
+        this.errorHandler.handle(erro);
+      }
+    });
   }
 
   confirmarExclusao(cliente: any) {
@@ -42,7 +49,7 @@ export class BuscaClientesComponent implements OnInit {
   }
 
   excluir(cliente: any) {
-    this.clienteService.excluir(cliente.id).subscribe({
+    this.clienteService.desativar(cliente.id).subscribe({
       next: () => {
         this.notificationService.showSuccess('Sucesso', 'Cliente excluído com sucesso!');
         this.pesquisar();

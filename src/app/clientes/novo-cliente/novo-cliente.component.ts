@@ -43,7 +43,7 @@ export class NovoClienteComponent implements OnInit{
   close() {
     this.display = false;
     this.displayChange.emit(this.display);
-    this.clienteService.pesquisar(this.cliente.nome);
+    this.clienteService.pesquisar(this.cliente.nome, true);
   }
 
   resetForm() {

@@ -14,14 +14,16 @@ export class ClienteService {
 
   constructor(private http: HttpClient) { }
 
-  pesquisar(nome: string): Observable<any>{
-    let params = new HttpParams().set('nome', nome);
+  pesquisar(nome: string, ativo: boolean): Observable<any>{
+    let params = new HttpParams()
+                .set('nome', nome)
+                .set('ativo', ativo);
 
     return this.http.get(`${this.clienteUrl}`, { params })
   }
 
-  excluir(codigo: number): Observable<void>{
-    return this.http.delete<void>(`${this.clienteUrl}/${codigo}`)}
+  desativar(codigo: number): Observable<void>{
+    return this.http.delete<void>(`${this.clienteUrl}/${codigo}/desativar`)}
 
   novoCliente(cliente: ClienteInput): Observable<any>{
     return this.http.post(`${this.clienteUrl}`, cliente);

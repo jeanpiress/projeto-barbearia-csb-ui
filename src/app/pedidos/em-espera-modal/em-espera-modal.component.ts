@@ -47,7 +47,7 @@ export class EmEsperaModalComponent {
 
   carregarClientes() {
     if (this.nomeClienteBusca.length >= 4) {
-    this.clienteService.pesquisar(this.nomeClienteBusca)
+    this.clienteService.pesquisar(this.nomeClienteBusca, true)
       .pipe(
         map((clientes: Cliente[]) =>
           clientes.map(cliente => ({ label: cliente.nome, value: cliente.id }))
