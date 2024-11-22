@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="p-grid">
+    <br> <h1>agendamento</h1>
+    <form autocomplete="off" #agendamentoForm="ngForm">
+      <div class="p-col-12 mb-3">
+        <input type="date" pInputText name="data"
+               [(ngModel)]="dataSelecionada" required>
+        <p-button label="Selecionar Data" (click)="atualizarData()" class="button-spacing"/>
+      </div>
+      <div class="p-col-12 centralizado">
+        <h2>{{dataFormatadaBr}}</h2>
+      </div>
+      <div class="p-col-12 mb-3 button-container">
+        <p-button label="Novo Agendamento" type="submit"></p-button>
+        <div class="button-group">
+          <p-button icon="pi pi-arrow-left" type="submit" (click)="diaAnterior()"></p-button>
+          <p-button label="Hoje" type="submit" (click)="voltarDataAtual()"></p-button>
+          <p-button icon="pi pi-arrow-right" type="submit" (click)="proximoDia()"></p-button>
+        </div>
+      </div>
+      <div class="p-col-12 mb-3">
+        <p-table [value]="agendamentos" styleClass="p-datatable-striped" [tableStyle]="{ 'min-width': '50rem' }" responsiveLayout="stack"
+        [breakpoint]="'960px'">
+          <ng-template pTemplate="header">
+            <tr>
+              <th>Horário</th>
+              <th>Cliente</th>
+              <th class="status-column">Status</th>
+              <th class="profissional-column">Profissional</th>
+              <th class="descricao-column">Descricao</th>
+              <th class="button-column"></th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-agendamento>
+            <tr>
+              <td>{{ agendamento.horario | date: 'HH:mm' }}</td>
+              <td>{{ agendamento.cliente?.nome ?? ' - '}}</td>
+              <td class="status-column">{{ agendamento.statusPedido}}</td>
+              <td class="profissional-column">{{ agendamento.profissional?.nome ?? ' - ' }}</td>
+              <td class="descricao-column">{{ agendamento.descricao }}</td>
+              <td class="button-column">
+                <p-button icon="pi pi-user-edit" class="button-spacing" pTooltip="Editar" tooltipPosition="top"></p-button>
+                <p-button icon="pi pi-info-circle" class="button-spacing" pTooltip="Detalhar" tooltipPosition="top"></p-button>
+                <p-button icon="pi pi-trash" class="button-spacing" pTooltip="Deletar" tooltipPosition="top"></p-button>
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </form>
+  </div>
+</div>

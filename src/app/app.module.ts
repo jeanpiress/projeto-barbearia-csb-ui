@@ -35,12 +35,14 @@ import { ItensModule } from './itens/itens.module';
 import { ClientesRetornoComponent } from './relatorios/clientes-retorno/clientes-retorno.component';
 import { ProdutosCadastroComponent } from './itens/produtos-cadastro/produtos-cadastro.component';
 import { ProdutosBuscarComponent } from './itens/produtos-buscar/produtos-buscar.component';
+import { AgendamentoNovoComponent } from './pedidos/agendamento-novo/agendamento-novo.component';
 
 const routes: Routes =[
   {path: 'clientes/buscar', component: BuscaClientesComponent},
   {path: 'relatorios/clientes-retorno', component: ClientesRetornoComponent},
   {path: 'caixa', component: CaixaComponent},
   {path: 'atendimento', component: AtendimentoComponent},
+  {path: 'agendamento', component: AgendamentoNovoComponent},
   {path: 'relatorios/comissoes/gerais', component: ComissoesGeraisComponent},
   {path: 'profissionais/buscar', component: BuscaProfissionaisComponent},
   {path: 'produtos/buscar', component: ProdutosBuscarComponent},

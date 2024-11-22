@@ -85,8 +85,7 @@ export class EmEsperaModalComponent {
     this.pedidoService.novoPedido(novoPedido).subscribe({
       next: () => {
         this.notificationService.showSuccess('Sucesso', 'Pedido enviado para a fila com sucesso!');
-        this.atendimentoComponent.pesquisarPedidosAgurdando();
-        this.atendimentoComponent.pesquisarPedidosEmAtendimento();
+        this.atendimentoComponent.atualizarPedidos();
         this.close();
       },
       error: erro => {

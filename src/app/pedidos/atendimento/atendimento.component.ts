@@ -3,7 +3,7 @@ import { ConfirmationService } from 'primeng/api';
 import { ErrorHandlerService } from '../../core/error-handler.service';
 import { NotificationService } from '../../core/notification.service';
 import { PedidoService } from '../pedido.service';
-import { Pedido } from '../../core/model';
+import { Pedido, StatusPagamento, StatusPedido } from '../../core/model';
 
 
 @Component({
@@ -15,6 +15,7 @@ export class AtendimentoComponent implements OnInit {
 
   emEspera: Pedido[] = [];
   emAtendimento: Pedido[] = [];
+  statusEmAtendimento = StatusPedido.EMATENDIMENTO;
   selectedPedido: Pedido | null = null;
   displayEmEspera: boolean = false;
   displayAlterarProfissional: boolean = false;
@@ -32,18 +33,18 @@ export class AtendimentoComponent implements OnInit {
     this.atualizarPedidos();
   }
 
-  pesquisarPedidosAgurdando() {
-    this.pedidoService.pesquisarPedidosAguardando().subscribe(clientes => this.emEspera = clientes);
-  }
 
-  pesquisarPedidosEmAtendimento() {
-    this.pedidoService.pesquisarPedidosEmAtendimento().subscribe(emAtendimento => this.emAtendimento = emAtendimento);
-    console.log('pedidos atualizados');
+
+  pesquisarPedidosStatusPedido(statusPedido: StatusPedido) {
+     this.pedidoService.pesquisarPedidosPorStatus(statusPedido, StatusPagamento.AGUARDANDO_PAGAMENTO).subscribe(
+      statusPedido ===  StatusPedido.AGUARDANDO
+      ? pedido => this.emEspera = pedido
+      : pedido => this.emAtendimento = pedido);
   }
 
   atualizarPedidos(){
-    this.pesquisarPedidosAgurdando();
-    this.pesquisarPedidosEmAtendimento();
+    this.pesquisarPedidosStatusPedido(StatusPedido.AGUARDANDO);
+    this.pesquisarPedidosStatusPedido(StatusPedido.EMATENDIMENTO);
   }
 
   confirmarCancelamentoPedido(pedido: Pedido) {
@@ -97,7 +98,7 @@ export class AtendimentoComponent implements OnInit {
     }, 0);
   }
 
-  alterarProfissional(pedido: any) {
+  alterarProfissional(pedido: Pedido) {
     this.displayAlterarProfissional = false;
     this.notificationService.hideNavBar(true);
     setTimeout(() => {

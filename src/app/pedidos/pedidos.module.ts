@@ -23,6 +23,7 @@ import { CarrinhoModalComponent } from './carrinho-modal/carrinho-modal.componen
 import { DataViewModule } from 'primeng/dataview';
 import { TagModule } from 'primeng/tag';
 import { PagamentoModalComponent } from './pagamento-modal/pagamento-modal.component';
+import { AgendamentoNovoComponent } from './agendamento-novo/agendamento-novo.component';
 
 
 
@@ -34,7 +35,8 @@ import { PagamentoModalComponent } from './pagamento-modal/pagamento-modal.compo
     EmEsperaModalComponent,
     AlterarProfissionalModalComponent,
     CarrinhoModalComponent,
-    PagamentoModalComponent
+    PagamentoModalComponent,
+    AgendamentoNovoComponent
   ],
   imports: [
     CommonModule,
@@ -62,7 +64,8 @@ import { PagamentoModalComponent } from './pagamento-modal/pagamento-modal.compo
     AtendimentoComponent,
     EmEsperaModalComponent,
     CarrinhoModalComponent,
-    PagamentoModalComponent
+    PagamentoModalComponent,
+    AgendamentoNovoComponent
   ]
 })
 export class PedidosModule { }

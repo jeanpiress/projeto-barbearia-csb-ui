@@ -1,3 +1,4 @@
+import { StatusPagamento } from './../../core/model';
 import { Component } from '@angular/core';
 import { FinanceiroService } from '../financeiro.service';
 import { NotificationService } from '../../core/notification.service';
@@ -69,7 +70,7 @@ export class CaixaComponent {
   }
 
   pesquisarPedidosPagosCaixAberto(){
-    this.pedidoService.pesquisarPedidosPagosCaixaAberto().subscribe(atendidos => this.atendidos = atendidos);
+    this.pedidoService.pesquisarPedidosPorStatusPagamentoEIsAberto(true, StatusPagamento.AGUARDANDO_PAGAMENTO).subscribe(atendidos => this.atendidos = atendidos);
   }
 
   confirmarFechamentoDeCaixa(){

@@ -1,4 +1,5 @@
-import { HttpClient } from '@angular/common/http';
+import { StatusPagamento } from './../core/model';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -11,21 +12,45 @@ export class PedidoService {
 
   constructor(private http: HttpClient) { }
 
-  pesquisarPedidosPagosCaixaAberto(): Observable<any>{
-    return this.http.get(`${this.pedidoUrl}`)
-  }
-
   excluirPedido(codigo: number): Observable<void>{
     return this.http.delete<void>(`${this.pedidoUrl}/excluir/${codigo}`)
   }
 
-  pesquisarPedidosAguardando(): Observable<any>{
-    return this.http.get(`${this.pedidoUrl}/aguardando`)
+  pesquisarTodosPedidos(): Observable<any> {
+    return this.http.get(`${this.pedidoUrl}`);
   }
 
-  pesquisarPedidosEmAtendimento(): Observable<any>{
-    return this.http.get(`${this.pedidoUrl}/emAtendimento`)
+  pesquisarPedidoPorData(horario: string): Observable<any> {
+    let params = new HttpParams().set('horario', horario);
+
+    return this.http.get(`${this.pedidoUrl}/horario`, {params});
   }
+
+  pesquisarPedidosPorStatusPagamentoEIsAberto(caixaAberto: boolean | null, statusPagamento: string | null): Observable<any> {
+    let params = new HttpParams();
+
+    if (caixaAberto !== null) {
+      params = params.set('isAberto', caixaAberto);
+    }
+    if (statusPagamento !== null) {
+      params = params.set('statusPagamento', statusPagamento);
+    }
+
+    return this.http.get(`${this.pedidoUrl}/caixa`, { params });
+  }
+
+  pesquisarPedidosPorStatus(statusPedido: string | null, statusPagamento: string | null): Observable<any> {
+    let params = new HttpParams();
+    if (statusPedido !== null) {
+      params = params.set('statusPedido', statusPedido);
+    }
+    if (statusPagamento !== null) {
+      params = params.set('statusPagamento', statusPagamento);
+    }
+
+    return this.http.get(`${this.pedidoUrl}/status`, { params });
+  }
+
 
   cancelarPedido(codigo: number): Observable<void>{
     return this.http.delete<void>(`${this.pedidoUrl}/cancelar/${codigo}`)

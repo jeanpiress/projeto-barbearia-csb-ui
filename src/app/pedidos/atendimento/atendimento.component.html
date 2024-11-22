@@ -19,19 +19,19 @@
               <th class="button-column"></th>
             </tr>
           </ng-template>
-          <ng-template pTemplate="body" let-clientesEmEspera>
+          <ng-template pTemplate="body" let-pedidoEmEspera>
             <tr>
-              <td>{{ clientesEmEspera.cliente.nome }}</td>
-              <td>{{ clientesEmEspera.chegada | date: 'dd/MM/yy HH:mm' }}</td>
-              <td>{{ clientesEmEspera.horario | date: 'dd/MM/yy HH:mm' }}</td>
-              <td class="profissional-column" >{{ clientesEmEspera.profissional.nome }}</td>
+              <td>{{ pedidoEmEspera.cliente.nome }}</td>
+              <td>{{ pedidoEmEspera.chegada | date: 'dd/MM/yy HH:mm' }}</td>
+              <td>{{ pedidoEmEspera.horario | date: 'dd/MM/yy HH:mm' }}</td>
+              <td class="profissional-column" >{{ pedidoEmEspera.profissional.nome }}</td>
               <td class="button-column">
                 <p-button icon="pi pi-check-square" class="button-spacing" pTooltip="Em atendimento" tooltipPosition="top"
-                (click)="confirmarPedidoParaAtendimento(clientesEmEspera)"></p-button>
+                (click)="confirmarPedidoParaAtendimento(pedidoEmEspera)"></p-button>
                 <p-button icon="pi pi-user-edit" class="button-spacing" pTooltip="Alterar Profissional" tooltipPosition="top"
-                (click)="alterarProfissional(clientesEmEspera)"></p-button>
+                (click)="alterarProfissional(pedidoEmEspera)"></p-button>
                 <p-button icon="pi pi-trash" class="button-spacing" pTooltip="Cancelar" tooltipPosition="top"
-                (click)="confirmarCancelamentoPedido(clientesEmEspera)"></p-button>
+                (click)="confirmarCancelamentoPedido(pedidoEmEspera)"></p-button>
               </td>
 
             </tr>
@@ -59,7 +59,7 @@
               <th class="button-column"></th>
             </tr>
           </ng-template>
-          <ng-template pTemplate="body" let-clientesEmAtendimento>
+          <ng-template pTemplate="body" let-clientesEmAtendimento let-statusEmAtendimento>
             <tr>
               <td>{{ clientesEmAtendimento.cliente.nome }}</td>
               <td>{{ clientesEmAtendimento.inicioAtendimento | date: 'dd/MM/yy HH:mm' }}</td>
@@ -87,6 +87,6 @@
     <app-alterar-profissional-modal *ngIf="selectedPedido" [pedido]="selectedPedido" [(display)]="displayAlterarProfissional"
     (displayChange)="displayAlterarProfissional = $event"></app-alterar-profissional-modal>
     <app-carrinho-modal *ngIf="selectedPedido" [pedido]="selectedPedido" [(display)]="displayCarrinho"></app-carrinho-modal>
-    <app-pagamento-modal *ngIf="selectedPedido" [pedido]="selectedPedido" [(display)]="displayPagamentoModal" (pedidoPago)="pesquisarPedidosEmAtendimento()"></app-pagamento-modal>
+    <app-pagamento-modal *ngIf="selectedPedido" [pedido]="selectedPedido" [(display)]="displayPagamentoModal" (pedidoPago)="pesquisarPedidosStatusPedido(statusEmAtendimento)"></app-pagamento-modal>
   </div>
 </div>

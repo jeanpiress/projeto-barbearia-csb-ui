@@ -1,0 +1,53 @@
+.button-spacing {
+  margin-left: 10px;
+}
+
+.centralizado {
+  display: flex;
+  justify-content: center; /* Centraliza horizontalmente */
+}
+
+.button-column {
+  width: 200px;
+  flex-direction: row;
+  text-align: center !important;
+  padding: 0 !important;
+}
+
+.status-column {
+  text-align: center !important;
+}
+
+.profissional-column {
+  text-align: center !important;
+}
+
+.descricao-column {
+  width: 300px !important;
+  text-align: center !important;
+  padding: 5 !important;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between; /* Garante que as divs fiquem nos extremos */
+  width: 100%; /* Garante que o container ocupe toda a largura disponível */
+  align-items: center; /* Alinha os itens verticalmente no centro */
+}
+
+.button-group {
+  display: flex; /* Flexbox para organizar os botões em linha */
+  justify-content: center; /* Centraliza os botões dentro do seu espaço */
+  gap: 10px; /* Espaçamento entre os botões */
+  position: absolute; /* Remove o comportamento do flexbox e usa posicionamento absoluto */
+  left: 50%; /* Posiciona a div no meio da tela */
+  transform: translateX(-50%); /* Move a div para a esquerda, centralizando no 50% da tela */
+}
+
+
+
+
+
+
+
+
