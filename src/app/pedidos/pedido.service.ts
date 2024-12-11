@@ -20,11 +20,20 @@ export class PedidoService {
     return this.http.get(`${this.pedidoUrl}`);
   }
 
-  pesquisarPedidoPorData(horario: string): Observable<any> {
-    let params = new HttpParams().set('horario', horario);
+  pesquisarPedidoPorDataExcetoStatus(horario: string, statusPedido: string): Observable<any> {
+    let params = new HttpParams()
+    .set('horario', horario)
+    .set('statusPedido', statusPedido);
 
     return this.http.get(`${this.pedidoUrl}/horario`, {params});
   }
+
+  pesquisarPedidosExceto(status: string): Observable<any> {
+    let params = new HttpParams().set('status', status);
+
+    return this.http.get(`${this.pedidoUrl}/exeto`, {params});
+  }
+
 
   pesquisarPedidosPorStatusPagamentoEIsAberto(caixaAberto: boolean | null, statusPagamento: string | null): Observable<any> {
     let params = new HttpParams();
@@ -62,6 +71,10 @@ export class PedidoService {
 
   novoPedido(pedido: any): Observable<void>{
     return this.http.post<void>(`${this.pedidoUrl}`, pedido)
+  }
+
+  alterarPedido(pedido: any, id: any): Observable<void>{
+    return this.http.put<void>(`${this.pedidoUrl}/${id}`, pedido)
   }
 
   alterarProfissional(pedidoId: string, profissionalId: string): Observable<void>{

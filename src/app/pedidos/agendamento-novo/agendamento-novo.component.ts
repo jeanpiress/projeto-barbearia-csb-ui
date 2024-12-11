@@ -1,6 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { Pedido } from '../../core/model';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Pedido, StatusPedido } from '../../core/model';
 import { PedidoService } from '../pedido.service';
+import { NotificationService } from '../../core/notification.service';
+import { ConfirmationService } from 'primeng/api';
+import { ErrorHandlerService } from '../../core/error-handler.service';
+import { InserirAgendamentoModalComponent } from '../inserir-agendamento-modal/inserir-agendamento-modal.component';
 
 
 @Component({
@@ -11,26 +15,40 @@ import { PedidoService } from '../pedido.service';
 export class AgendamentoNovoComponent implements OnInit{
   constructor(
     private pedidoService: PedidoService,
+    private notificationService: NotificationService,
+    private errorHandler: ErrorHandlerService,
+    private confirmation: ConfirmationService
   ) {}
 
   ngOnInit(): void {
     this.pesquisarPedidos();
   }
 
+  @ViewChild(InserirAgendamentoModalComponent)
+  inserirAgendamentoModal!: InserirAgendamentoModalComponent;
+
   agendamentos: Pedido[] = [];
   data: Date = new Date();
   dataSelecionada: string = this.dataISO;
+  displayNovoAgendamento: boolean = false;
+  displayEditarAgendamento: boolean = false;
+  selectedAgendamento: any = null;
 
   pesquisarPedidos() {
-    this.pedidoService.pesquisarPedidoPorData(this.dataSelecionada).subscribe({
+    this.pedidoService.pesquisarPedidoPorDataExcetoStatus(this.dataSelecionada, StatusPedido.CANCELADO).subscribe({
       next: (pedidos) => {
-        this.agendamentos = pedidos;
+        this.agendamentos = pedidos.sort((a: { horario: string | number | Date; }, b: { horario: string | number | Date; }) => {
+          const horarioA = new Date(a.horario).getTime();
+          const horarioB = new Date(b.horario).getTime();
+          return horarioA - horarioB;
+        });
       },
       error: (err) => {
         console.error('Erro ao buscar pedidos:', err);
       }
     });
   }
+
 
   get dataISO(): string {
     return this.data.toISOString().substring(0, 10);
@@ -75,6 +93,45 @@ export class AgendamentoNovoComponent implements OnInit{
     this.data.setDate(this.data.getDate() - 1);
     this.dataSelecionada = this.dataISO;
     this.pesquisarPedidos();
+  }
+
+  adicionarNovoAgendamento() {
+    this.displayNovoAgendamento = false;
+    this.notificationService.hideNavBar(true);
+    this.inserirAgendamentoModal.limparCampos();
+    setTimeout(() => {
+      this.displayNovoAgendamento = true;
+    }, 0);
+  }
+
+  editarAgendamento(agendamento: any) {
+    this.displayEditarAgendamento = false;
+    this.notificationService.hideNavBar(true);
+    setTimeout(() => {
+      this.displayEditarAgendamento = true;
+      this.selectedAgendamento = agendamento;
+    }, 0);
+  }
+
+  confirmarCancelamentoAgendamento(pedidoId: number) {
+    this.confirmation.confirm({
+      message: 'Tem certeza que deseja cancelar esse agendamento?',
+      accept: () => {
+        this.cancelarAgendamento(pedidoId);
+      }
+    });
+  }
+
+  cancelarAgendamento(pedidoId: number){
+    this.pedidoService.cancelarPedido(pedidoId).subscribe({
+      next: () => {
+        this.notificationService.showSuccess('Sucesso', 'Agendamento cancelado com sucesso!');
+        this.pesquisarPedidos();
+      },
+      error: erro => {
+        this.errorHandler.handle(erro);
+      }
+    });
   }
 
 }

@@ -47,7 +47,7 @@ export class EmEsperaModalComponent {
 
   carregarClientes() {
     if (this.nomeClienteBusca.length >= 4) {
-    this.clienteService.pesquisar(this.nomeClienteBusca, true)
+    this.clienteService.pesquisarClientes(this.nomeClienteBusca, true)
       .pipe(
         map((clientes: Cliente[]) =>
           clientes.map(cliente => ({ label: cliente.nome, value: cliente.id }))
@@ -64,7 +64,7 @@ export class EmEsperaModalComponent {
   }
 
   carregarProfissionais() {
-    this.profissionalService.pesquisar('ativos')
+    this.profissionalService.pesquisarProfissionais('ativos')
       .pipe(
         map((profissionais: Profissional[]) =>
           profissionais.map(profissional => ({ label: profissional.nome, value: profissional.id }))

@@ -12,7 +12,7 @@ export class ProfissionalService {
 
   constructor(private http: HttpClient) { }
 
-  pesquisar(isAtivo: string): Observable<any>{
+  pesquisarProfissionais(isAtivo: string): Observable<any>{
     return this.http.get(`${this.profissionalUrl}/${isAtivo}`)
   }
 

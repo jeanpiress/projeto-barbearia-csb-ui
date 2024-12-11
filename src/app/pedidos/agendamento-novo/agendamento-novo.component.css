@@ -44,6 +44,11 @@
   transform: translateX(-50%); /* Move a div para a esquerda, centralizando no 50% da tela */
 }
 
+.max-col-3 {
+  max-width: calc(100% / 12 * 3);
+  flex-direction: column;
+}
+
 
 
 

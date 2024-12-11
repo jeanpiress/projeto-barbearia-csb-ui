@@ -157,7 +157,7 @@ export class Usuario {
 }
 
 export class Pedido {
-  id: number = 1;
+  id: number = 0;
   horario: string = '';
   itemPedidos: ItemPedido[] = [];
   statusPagamento: string = ' ';
@@ -168,6 +168,7 @@ export class Pedido {
   comissaoGerada: number = 0;
   valorTotal: number = 0;
   caixaAberto: boolean = false;
+  descricao: string = '';
   pontuacaoProfissionalGerada: number = 0;
   pontuacaoClienteGerada: number = 0;
   criadoPor: Usuario = new Usuario();
@@ -181,6 +182,9 @@ export class Pedido {
   excluidoPor: Usuario | null = null;
   excluidoAs: string | null = null;
   inicioAtendimento: string | null = null;
+  duracao: string = '';
+  fim_horario: string = '';
+
 
 }
 

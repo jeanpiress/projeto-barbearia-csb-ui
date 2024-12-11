@@ -1,0 +1,33 @@
+@media (min-width: 960px){
+  .agrupar{
+    display: flex;
+    gap: 16px;
+  }
+  .max-col-9 {
+    max-width: calc(100% / 12 * 9);
+  }
+  .max-col-6 {
+    max-width: calc(100% / 12 * 6);
+  }
+  .max-col-4 {
+    max-width: calc(100% / 12 * 4);
+    flex-direction: column;
+  }
+  .max-col-3 {
+    max-width: calc(100% / 12 * 3);
+    flex-direction: column;
+  }
+  }
+
+  .flex-grow-1 {
+    flex-grow: 1;
+  }
+
+  .flex-grow-2 {
+    flex-grow: 2;
+  }
+
+  .flex-grow-3 {
+    flex-grow: 3;
+  }
+

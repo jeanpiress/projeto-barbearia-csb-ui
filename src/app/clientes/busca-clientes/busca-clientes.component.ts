@@ -29,7 +29,7 @@ export class BuscaClientesComponent implements OnInit {
   ngOnInit() {}
 
   pesquisar() {
-    this.clienteService.pesquisar(this.nomeBusca, true).subscribe({
+    this.clienteService.pesquisarClientes(this.nomeBusca, true).subscribe({
       next: (clientes) => {
         this.clientes = clientes;
       },

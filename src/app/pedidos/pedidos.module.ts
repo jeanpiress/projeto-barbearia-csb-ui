@@ -24,6 +24,9 @@ import { DataViewModule } from 'primeng/dataview';
 import { TagModule } from 'primeng/tag';
 import { PagamentoModalComponent } from './pagamento-modal/pagamento-modal.component';
 import { AgendamentoNovoComponent } from './agendamento-novo/agendamento-novo.component';
+import { InserirAgendamentoModalComponent } from './inserir-agendamento-modal/inserir-agendamento-modal.component';
+import { CalendarModule } from 'primeng/calendar';
+import { EditarAgendamentoModalComponent } from './editar-agendamento-modal/editar-agendamento-modal.component';
 
 
 
@@ -36,7 +39,9 @@ import { AgendamentoNovoComponent } from './agendamento-novo/agendamento-novo.co
     AlterarProfissionalModalComponent,
     CarrinhoModalComponent,
     PagamentoModalComponent,
-    AgendamentoNovoComponent
+    AgendamentoNovoComponent,
+    InserirAgendamentoModalComponent,
+    EditarAgendamentoModalComponent
   ],
   imports: [
     CommonModule,
@@ -55,7 +60,8 @@ import { AgendamentoNovoComponent } from './agendamento-novo/agendamento-novo.co
     DropdownModule,
     CoreModule,
     DataViewModule,
-    TagModule
+    TagModule,
+    CalendarModule
   ],
   providers: [
     provideHttpClient(withInterceptorsFromDi())
@@ -65,7 +71,9 @@ import { AgendamentoNovoComponent } from './agendamento-novo/agendamento-novo.co
     EmEsperaModalComponent,
     CarrinhoModalComponent,
     PagamentoModalComponent,
-    AgendamentoNovoComponent
+    AgendamentoNovoComponent,
+    InserirAgendamentoModalComponent,
+    EditarAgendamentoModalComponent
   ]
 })
 export class PedidosModule { }

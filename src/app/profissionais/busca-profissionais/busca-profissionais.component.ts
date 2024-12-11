@@ -29,7 +29,7 @@ export class BuscaProfissionaisComponent implements OnInit{
   }
 
   pesquisar() {
-    this.profissionalService.pesquisar(this.isAtivo).subscribe(profissionais => this.profissionais = profissionais);
+    this.profissionalService.pesquisarProfissionais(this.isAtivo).subscribe(profissionais => this.profissionais = profissionais);
   }
 
   ativarDesativar(profissionalId: any){

@@ -35,7 +35,7 @@ export class AlterarProfissionalModalComponent {
    }
 
   carregarProfissionais() {
-    this.profissionalService.pesquisar('ativos')
+    this.profissionalService.pesquisarProfissionais('ativos')
       .pipe(
         map((profissionais: Profissional[]) =>
           profissionais.map(profissional => ({ label: profissional.nome, value: profissional.id }))
