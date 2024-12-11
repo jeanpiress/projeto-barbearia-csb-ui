@@ -57,11 +57,11 @@
         <div class="agrupar p-fluid mb-3">
           <div class="flex-grow-3">
             <label>Cidade</label>
-            <input type="text" pInputText>
+            <input type="text" pInputText name="cidade" [(ngModel)]="endereco.cidade">
           </div>
           <div>
             <label>Estado</label>
-            <input type="text" pInputText>
+            <input type="text" pInputText name="estado" [(ngModel)]="endereco.estado">
           </div>
         </div>
 

@@ -32,6 +32,7 @@ import { EditarAgendamentoModalComponent } from './editar-agendamento-modal/edit
 
 
 
+
 @NgModule({
   declarations: [
     AtendimentoComponent,
@@ -41,7 +42,7 @@ import { EditarAgendamentoModalComponent } from './editar-agendamento-modal/edit
     PagamentoModalComponent,
     AgendamentoNovoComponent,
     InserirAgendamentoModalComponent,
-    EditarAgendamentoModalComponent
+    EditarAgendamentoModalComponent,
   ],
   imports: [
     CommonModule,
@@ -73,7 +74,7 @@ import { EditarAgendamentoModalComponent } from './editar-agendamento-modal/edit
     PagamentoModalComponent,
     AgendamentoNovoComponent,
     InserirAgendamentoModalComponent,
-    EditarAgendamentoModalComponent
+    EditarAgendamentoModalComponent,
   ]
 })
 export class PedidosModule { }

@@ -4,6 +4,9 @@ export class Endereco {
   numero: string = ' ';
   complemento: string = ' ';
   bairro: string = ' ';
+  cidade: string = '';
+  estado: string = '';
+
 }
 
 export class Profissional {
@@ -84,7 +87,9 @@ export class ClienteInput {
       logradouro: cliente?.endereco?.logradouro ?? '',
       numero: cliente?.endereco?.numero ?? '',
       complemento: cliente?.endereco?.complemento ?? '',
-      bairro: cliente?.endereco?.bairro ?? ''
+      bairro: cliente?.endereco?.bairro ?? '',
+      cidade: cliente?.endereco?.cidade ?? '',
+      estado: cliente?.endereco?.estado ?? ''
     };
   }
 

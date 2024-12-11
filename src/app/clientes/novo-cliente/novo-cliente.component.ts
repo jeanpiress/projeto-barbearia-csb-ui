@@ -22,11 +22,10 @@ export class NovoClienteComponent implements OnInit{
     private errorHandler: ErrorHandlerService
   ){}
 
-  ngOnInit(  ) {
+  ngOnInit() {
   }
 
   salvar(){
-    this.cliente.dataNascimento = this.cliente.dataNascimento.substring(0, 10) + 'T13:00:00-03:00';
     const clienteImput = new ClienteInput(this.cliente);
     clienteImput.endereco = this.endereco;
     this.clienteService.novoCliente(clienteImput).subscribe({
@@ -48,6 +47,7 @@ export class NovoClienteComponent implements OnInit{
 
   resetForm() {
     this.cliente = new Cliente();
+    this.endereco = new Endereco();
   }
 
 }

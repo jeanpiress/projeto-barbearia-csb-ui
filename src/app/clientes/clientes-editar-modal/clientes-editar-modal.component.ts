@@ -15,12 +15,16 @@ export class ClientesEditarModalComponent {
   @Input() display: boolean = false;
   @Output() displayChange = new EventEmitter<boolean>();
 
+  dataNascimento = new Date();
+
   constructor(
     private clienteService: ClienteService,
     private notificationService: NotificationService,
     private errorHandler: ErrorHandlerService
   ){}
-  ngOnInit() { }
+  ngOnInit() {
+
+   }
 
   salvar(){
     const clienteImput = new ClienteInput(this.cliente);
