@@ -27,20 +27,21 @@
                 <th class="button-column"></th>
               </tr>
             </ng-template>
-            <ng-template pTemplate="body" let-clientes>
+            <ng-template pTemplate="body" let-cliente>
               <tr>
-                <td>{{ clientes.nome }}</td>
-                <td>{{ clientes.celular }}</td>
-                <td>{{ clientes.ultimaVisita | date: 'dd/MM/y' }}</td>
-                <td class="profissional-column">{{ clientes.profissional?.nome ?? ' - ' }}</td>
+                <td>{{ cliente.nome }}</td>
+                <td>{{ cliente.celular }}</td>
+                <td>{{ cliente.ultimaVisita | date: 'dd/MM/y' }}</td>
+                <td class="profissional-column">{{ cliente.profissional?.nome ?? ' - ' }}</td>
                 <td class="button-column">
-                  <p-button icon="pi pi-user-plus" class="button-spacing" pTooltip="Adicionar a Fila" tooltipPosition="top"></p-button>
+                  <p-button icon="pi pi-user-plus" class="button-spacing" pTooltip="Adicionar a Fila" tooltipPosition="top"
+                  (click)="enviarFila(cliente)"></p-button>
                   <p-button icon="pi pi-user-edit" class="button-spacing" pTooltip="Editar" tooltipPosition="top"
-                  (click)="editarCliente(clientes)"></p-button>
+                  (click)="editarCliente(cliente)"></p-button>
                   <p-button icon="pi pi-info-circle" class="button-spacing" pTooltip="Detalhar" tooltipPosition="top"
-                  (click)="mostrarDetalhes(clientes)"></p-button>
+                  (click)="mostrarDetalhes(cliente)"></p-button>
                   <p-button icon="pi pi-trash" class="button-spacing" pTooltip="Deletar" tooltipPosition="top"
-                  (click)="excluir(clientes)"></p-button>
+                  (click)="excluir(cliente)"></p-button>
                 </td>
 
               </tr>
@@ -51,10 +52,11 @@
     </form>
 
     <div class="p-col-12 mb-3">
-      <p-button label="Novo Cliente" (click)="novoCliente(clientes)"/>
+      <p-button label="Novo Cliente" (click)="novoCliente()"/>
     </div>
     <app-clientes-detalhes *ngIf="selectedCliente" [cliente]="selectedCliente" [(display)]="displayDetalhes"></app-clientes-detalhes>
     <app-clientes-editar-modal *ngIf="selectedCliente" [cliente]="selectedCliente" [(display)]="displayEditar"></app-clientes-editar-modal>
-    <app-novo-cliente *ngIf="selectedCliente" [cliente]="selectedCliente" [(display)]="displayNovoCliente"></app-novo-cliente>
+    <app-novo-cliente [(display)]="displayNovoCliente" ></app-novo-cliente>
+    <app-enviar-fila-modal *ngIf="selectedCliente" [cliente]="selectedCliente" [(display)]="displayEnviarFila"></app-enviar-fila-modal>
   </div>
 </div>

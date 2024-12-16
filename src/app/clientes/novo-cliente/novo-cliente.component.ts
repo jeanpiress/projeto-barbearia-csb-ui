@@ -11,10 +11,11 @@ import { Cliente, ClienteInput, Endereco } from '../../core/model';
   styleUrl: './novo-cliente.component.css'
 })
 export class NovoClienteComponent implements OnInit{
-  @Input() cliente = new Cliente();
   @Input() endereco = new Endereco();
   @Input() display: boolean = false;
   @Output() displayChange = new EventEmitter<boolean>();
+
+  cliente = new Cliente();
 
   constructor(
     private clienteService: ClienteService,

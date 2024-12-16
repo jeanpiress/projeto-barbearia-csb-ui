@@ -17,6 +17,7 @@ export class BuscaClientesComponent implements OnInit {
   displayDetalhes: boolean = false;
   displayEditar: boolean = false;
   displayNovoCliente: boolean = false;
+  displayEnviarFila: boolean = false;
 
 
   constructor(
@@ -78,11 +79,19 @@ export class BuscaClientesComponent implements OnInit {
     }, 0);
   }
 
-  novoCliente(cliente: any) {
-    this.displayNovoCliente = false;
+  enviarFila(cliente: any) {
+    this.displayEnviarFila = false;
     this.notificationService.hideNavBar(true);
     setTimeout(() => {
       this.selectedCliente = cliente;
+      this.displayEnviarFila  = true;
+    }, 0);
+  }
+
+  novoCliente() {
+    this.displayNovoCliente = false;
+    this.notificationService.hideNavBar(true);
+    setTimeout(() => {
       this.displayNovoCliente  = true;
     }, 0);
   }

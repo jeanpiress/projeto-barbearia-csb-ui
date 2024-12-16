@@ -21,6 +21,9 @@ import { ClientesDetalhesComponent } from './clientes-detalhes/clientes-detalhes
 import { FieldsetModule } from 'primeng/fieldset';
 import { GalleriaModule } from 'primeng/galleria';
 import { ClientesEditarModalComponent } from './clientes-editar-modal/clientes-editar-modal.component';
+import { EnviarFilaModalComponent } from './enviar-fila-modal/enviar-fila-modal.component';
+import { DropdownModule } from 'primeng/dropdown';
+import { AtendimentoComponent } from '../pedidos/atendimento/atendimento.component';
 
 
 @NgModule({
@@ -28,7 +31,8 @@ import { ClientesEditarModalComponent } from './clientes-editar-modal/clientes-e
     BuscaClientesComponent,
     NovoClienteComponent,
     ClientesDetalhesComponent,
-    ClientesEditarModalComponent],
+    ClientesEditarModalComponent,
+    EnviarFilaModalComponent],
   imports: [
     CommonModule,
     ButtonModule,
@@ -44,14 +48,17 @@ import { ClientesEditarModalComponent } from './clientes-editar-modal/clientes-e
     RouterModule,
     DialogModule,
     FieldsetModule,
-    GalleriaModule
+    GalleriaModule,
+    DropdownModule
   ],
   providers: [
-    provideHttpClient(withInterceptorsFromDi())
+    provideHttpClient(withInterceptorsFromDi()),
+    AtendimentoComponent
   ],
   exports:[
     BuscaClientesComponent,
-    NovoClienteComponent
+    NovoClienteComponent,
+    EnviarFilaModalComponent
   ]
 })
 export class ClientesModule { }
