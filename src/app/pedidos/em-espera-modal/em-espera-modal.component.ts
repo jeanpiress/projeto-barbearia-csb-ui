@@ -78,7 +78,6 @@ export class EmEsperaModalComponent {
 
   salvarPedido() {
    const novoPedido = {
-      horario: new Date().toISOString(),
       cliente: { id: this.clienteSelecionado },
       profissional: { id: this.profissionalSelecionado.value }
     };

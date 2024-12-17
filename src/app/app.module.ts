@@ -33,7 +33,6 @@ import { SegurancaModule } from './seguranca/seguranca.module';
 import { LoginFormComponent } from './seguranca/login-form/login-form.component';
 import { ItensModule } from './itens/itens.module';
 import { ClientesRetornoComponent } from './relatorios/clientes-retorno/clientes-retorno.component';
-import { ProdutosCadastroComponent } from './itens/produtos-cadastro/produtos-cadastro.component';
 import { ProdutosBuscarComponent } from './itens/produtos-buscar/produtos-buscar.component';
 import { AgendamentoNovoComponent } from './pedidos/agendamento-novo/agendamento-novo.component';
 

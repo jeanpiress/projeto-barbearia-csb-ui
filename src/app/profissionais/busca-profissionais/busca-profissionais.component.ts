@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ProfissionalService } from '../profissional.service';
-import { ConfirmationService } from 'primeng/api';
 import { ErrorHandlerService } from '../../core/error-handler.service';
 import { NotificationService } from '../../core/notification.service';
+
 
 @Component({
   selector: 'app-busca-profissionais',
@@ -19,9 +19,7 @@ export class BuscaProfissionaisComponent implements OnInit{
   constructor(
     private profissionalService: ProfissionalService,
     private notificationService: NotificationService,
-    private confirmation: ConfirmationService,
-    private errorHandler: ErrorHandlerService
-  ) {}
+    private errorHandler: ErrorHandlerService) {}
 
 
   ngOnInit() {

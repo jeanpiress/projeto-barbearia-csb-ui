@@ -24,6 +24,7 @@ import { ClientesEditarModalComponent } from './clientes-editar-modal/clientes-e
 import { EnviarFilaModalComponent } from './enviar-fila-modal/enviar-fila-modal.component';
 import { DropdownModule } from 'primeng/dropdown';
 import { AtendimentoComponent } from '../pedidos/atendimento/atendimento.component';
+import { SharedModule } from '../shared/shared/shared.module';
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import { AtendimentoComponent } from '../pedidos/atendimento/atendimento.compone
     DialogModule,
     FieldsetModule,
     GalleriaModule,
-    DropdownModule
+    DropdownModule,
+    SharedModule
   ],
   providers: [
     provideHttpClient(withInterceptorsFromDi()),

@@ -113,7 +113,6 @@ export class AtendimentoComponent implements OnInit {
 
     this.pedidoService.limparPedido(pedido.id).subscribe({
       next: () => {
-        console.log('Carrinho limpo');
         this.selectedPedido = pedido;
         this.displayCarrinho = true;
       },

@@ -21,7 +21,7 @@
               <tr>
                 <td>{{ profissional.nomeExibicao }}</td>
                 <td>{{ profissional.nome }}</td>
-                <td>{{ profissional.celular }}</td>
+                <td>{{ profissional.celular | telefone}}</td>
                 <td class="button-column">
                   <p-button icon="pi pi-info-circle" class="button-spacing" pTooltip="Detalhar" tooltipPosition="top"></p-button>
                   <p-button icon="pi" [icon]="isAtivo === 'ativos' ? 'pi pi-eye-slash' : 'pi pi-eye'"
@@ -38,8 +38,8 @@
     </form>
 
     <div class="p-col-12 mb-3">
-      <p-button icon="pi pi-user-plus" class="button-spacing" pTooltip="Novo Profissional" tooltipPosition="top" (click)="modalNovoProfissional(profissionais)"/>
-      <p-button icon="pi pi-users" class="button-spacing" pTooltip="{{ isAtivo === 'ativos' ? 'Lista de inativos' : 'Lista de ativos' }}"
+      <p-button class="button-spacing" label="Novo Profissional" (click)="modalNovoProfissional(profissionais)"/>
+      <p-button class="button-spacing" label="{{ isAtivo === 'ativos' ? 'Inativos' : 'Ativos' }}"
         tooltipPosition="top" (click)="toggleAtivo()" (click)="pesquisar()"/>
     </div>
 

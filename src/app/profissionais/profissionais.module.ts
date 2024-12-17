@@ -18,6 +18,9 @@ import { TableModule } from 'primeng/table';
 import { TooltipModule } from 'primeng/tooltip';
 import { NovoProfissionalComponent } from './novo-profissional/novo-profissional.component';
 import { InputNumberModule } from 'primeng/inputnumber';
+import { SharedModule } from '../shared/shared/shared.module';
+
+
 
 
 
@@ -42,7 +45,8 @@ import { InputNumberModule } from 'primeng/inputnumber';
     DialogModule,
     FieldsetModule,
     GalleriaModule,
-    InputNumberModule
+    InputNumberModule,
+    SharedModule
   ],
   providers: [
     provideHttpClient(withInterceptorsFromDi())

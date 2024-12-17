@@ -30,7 +30,7 @@
             <ng-template pTemplate="body" let-cliente>
               <tr>
                 <td>{{ cliente.nome }}</td>
-                <td>{{ cliente.celular }}</td>
+                <td>{{ cliente.celular | telefone}}</td>
                 <td>{{ cliente.ultimaVisita | date: 'dd/MM/y' }}</td>
                 <td class="profissional-column">{{ cliente.profissional?.nome ?? ' - ' }}</td>
                 <td class="button-column">
