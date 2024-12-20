@@ -4,6 +4,7 @@ import { ErrorHandlerService } from '../../core/error-handler.service';
 import { NotificationService } from '../../core/notification.service';
 import { PedidoService } from '../pedido.service';
 import { Pedido, StatusPagamento, StatusPedido } from '../../core/model';
+import { tap } from 'rxjs';
 
 
 @Component({
@@ -18,6 +19,7 @@ export class AtendimentoComponent implements OnInit {
   statusEmAtendimento = StatusPedido.EMATENDIMENTO;
   selectedPedido: Pedido | null = null;
   displayEmEspera: boolean = false;
+  isEmEspera: boolean = true;
   displayAlterarProfissional: boolean = false;
   displayCarrinho: boolean = false;
   displayPagamentoModal: boolean = false;
@@ -30,7 +32,7 @@ export class AtendimentoComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.atualizarPedidos();
+    this.atualizarTodosPedidos();
   }
 
 
@@ -42,10 +44,33 @@ export class AtendimentoComponent implements OnInit {
       : pedido => this.emAtendimento = pedido);
   }
 
-  atualizarPedidos(){
-    this.pesquisarPedidosStatusPedido(StatusPedido.AGUARDANDO);
-    this.pesquisarPedidosStatusPedido(StatusPedido.EMATENDIMENTO);
-  }
+  atualizarTodosPedidos(): void {
+    this.emEspera = [];
+    this.emAtendimento = [];
+    this.pedidoService.pesquisarPedidosPorStatus(null, StatusPagamento.AGUARDANDO_PAGAMENTO)
+        .pipe(
+            tap((pedidos: any[]) => {
+                if (Array.isArray(pedidos)) {
+                    pedidos.forEach((pedido: any) => {
+                        if (pedido.statusPedido === 'AGUARDANDO') {
+                            this.emEspera.push(pedido);
+                        }
+                        if(pedido.statusPedido === 'EMATENDIMENTO') {
+                            this.emAtendimento.push(pedido);
+                        }
+                    });
+                } else {
+                    console.error('A resposta não é um array de pedidos.');
+                }
+            })
+        )
+        .subscribe({
+            next: () => {},
+            error: (erro) => {
+                console.error('Erro ao atualizar pedidos:', erro);
+            },
+        });
+}
 
   confirmarCancelamentoPedido(pedido: Pedido) {
     this.confirmation.confirm({
@@ -60,7 +85,7 @@ export class AtendimentoComponent implements OnInit {
     this.pedidoService.cancelarPedido(pedido.id).subscribe({
       next: () => {
         this.notificationService.showSuccess('Sucesso', 'Pedido cancelado com sucesso!');
-        this.atualizarPedidos();
+        this.atualizarTodosPedidos();
       },
       error: erro => {
         this.errorHandler.handle(erro);
@@ -77,11 +102,11 @@ export class AtendimentoComponent implements OnInit {
     });
   }
 
-  alterarPedidoParaEmAtendimento(pedido: Pedido) {
+  alterarPedidoParaEmAtendimento(pedido: Pedido): void {
     this.pedidoService.alterarPedidoParaEmAtendimento(pedido.id).subscribe({
       next: () => {
         this.notificationService.showSuccess('Sucesso', 'Pedido alterado para Em Atendimento!');
-        this.ngOnInit();
+        this.atualizarTodosPedidos();
       },
       error: erro => {
         this.errorHandler.handle(erro);
@@ -89,11 +114,11 @@ export class AtendimentoComponent implements OnInit {
     });
   }
 
-  adicionarEmEspera(pedido: any) {
+  adicionarEmEspera(isEmEspera: boolean) {
     this.displayEmEspera = false;
     this.notificationService.hideNavBar(true);
     setTimeout(() => {
-      this.selectedPedido = pedido;
+      this.isEmEspera = isEmEspera;
       this.displayEmEspera = true;
     }, 0);
   }

@@ -57,7 +57,7 @@ export class AlterarProfissionalModalComponent {
     this.pedidoService.alterarProfissional(this.pedido.id, this.profissionalSelecionado.value).subscribe({
       next: () => {
         this.notificationService.showSuccess('Sucesso', 'Profissional alterado com sucesso!');
-        this.atendimentoComponent.atualizarPedidos();
+        this.atendimentoComponent.atualizarTodosPedidos();
         this.close();
       },
       error: erro => {

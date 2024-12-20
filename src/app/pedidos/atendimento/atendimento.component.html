@@ -41,7 +41,7 @@
     </div>
 
     <div class="p-col-12 mb-3">
-      <p-button icon="pi pi-user-plus" pTooltip="Adicionar em Espera" tooltipPosition="top" (click)="adicionarEmEspera(emEspera)"/>
+      <p-button icon="pi pi-user-plus" pTooltip="Adicionar em Espera" tooltipPosition="top" (click)="adicionarEmEspera(true)"/>
     </div>
 
 
@@ -80,10 +80,10 @@
     </div>
 
     <div class="p-col-12 mb-3">
-      <p-button icon="pi pi-user-plus" pTooltip="Atendimento Direto" tooltipPosition="top"/>
+      <p-button icon="pi pi-user-plus" pTooltip="Atendimento Direto" tooltipPosition="top" (click)="adicionarEmEspera(false)" />
     </div>
 
-    <app-em-espera-modal *ngIf="selectedPedido" [pedido]="selectedPedido" [(display)]="displayEmEspera"></app-em-espera-modal>
+    <app-em-espera-modal [isEmEspera]="isEmEspera" [(display)]="displayEmEspera"></app-em-espera-modal>
     <app-alterar-profissional-modal *ngIf="selectedPedido" [pedido]="selectedPedido" [(display)]="displayAlterarProfissional"
     (displayChange)="displayAlterarProfissional = $event"></app-alterar-profissional-modal>
     <app-carrinho-modal *ngIf="selectedPedido" [pedido]="selectedPedido" [(display)]="displayCarrinho"></app-carrinho-modal>

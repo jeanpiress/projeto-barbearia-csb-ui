@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/
 import { map } from 'rxjs';
 import { ClienteService } from '../../clientes/cliente.service';
 import { ErrorHandlerService } from '../../core/error-handler.service';
-import { Cliente, Pedido, Profissional } from '../../core/model';
+import { Cliente, Pedido, Profissional, StatusPedido } from '../../core/model';
 import { NotificationService } from '../../core/notification.service';
 import { ProfissionalService } from '../../profissionais/profissional.service';
 import { PedidoService } from '../pedido.service';
@@ -118,7 +118,7 @@ export class InserirAgendamentoModalComponent {
       duracao: this.tempoSelecionado
     };
     this.adicionarTempo(dataCompleta, this.tempoSelecionado);
-    this.pedidoService.novoPedido(novoPedido).subscribe({
+    this.pedidoService.novoPedido(novoPedido, StatusPedido.AGENDADO).subscribe({
       next: () => {
         this.notificationService.showSuccess('Sucesso', 'Pedido enviado para a fila com sucesso!');
         console.log('data hora final ' + this.dataHoraFinal);

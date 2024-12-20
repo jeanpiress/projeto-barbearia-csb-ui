@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { map } from 'rxjs';
 import { ErrorHandlerService } from '../../core/error-handler.service';
-import { Cliente, Profissional } from '../../core/model';
+import { Cliente, Profissional, StatusPedido } from '../../core/model';
 import { NotificationService } from '../../core/notification.service';
 import { AtendimentoComponent } from '../../pedidos/atendimento/atendimento.component';
 import { PedidoService } from '../../pedidos/pedido.service';
@@ -64,10 +64,10 @@ export class EnviarFilaModalComponent {
       }
     }
 
-    this.pedidoService.novoPedido(novoPedido).subscribe({
+    this.pedidoService.novoPedido(novoPedido, StatusPedido.AGUARDANDO).subscribe({
       next: () => {
         this.notificationService.showSuccess('Sucesso', 'Profissional alterado com sucesso!');
-        this.atendimentoComponent.atualizarPedidos();
+        this.atendimentoComponent.atualizarTodosPedidos();
         this.close();
       },
       error: erro => {

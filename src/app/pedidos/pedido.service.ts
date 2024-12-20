@@ -69,8 +69,9 @@ export class PedidoService {
     return this.http.put<void>(`${this.pedidoUrl}/${codigo}/iniciar`, {})
   }
 
-  novoPedido(pedido: any): Observable<void>{
-    return this.http.post<void>(`${this.pedidoUrl}`, pedido)
+  novoPedido(pedido: any, status: string): Observable<void>{
+    let params = new HttpParams().set('statusPedido', status);
+    return this.http.post<void>(`${this.pedidoUrl}`, pedido,  { params })
   }
 
   alterarPedido(pedido: any, id: any): Observable<void>{

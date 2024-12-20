@@ -1,7 +1,7 @@
 import { AtendimentoComponent } from './../atendimento/atendimento.component';
 import { PedidoService } from './../pedido.service';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Cliente, Pedido, Profissional } from '../../core/model';
+import { Cliente, Pedido, Profissional, StatusPedido } from '../../core/model';
 import { ErrorHandlerService } from '../../core/error-handler.service';
 import { NotificationService } from '../../core/notification.service';
 import { ClienteService } from '../../clientes/cliente.service';
@@ -16,6 +16,7 @@ import { ProfissionalService } from '../../profissionais/profissional.service';
 export class EmEsperaModalComponent {
   @Input() pedido: any = new Pedido();
   @Input() display: boolean = false;
+  @Input() isEmEspera: boolean = true;
   @Output() displayChange = new EventEmitter<boolean>();
   nomeClienteBusca: string = '';
   clientes: any[] = [];
@@ -81,10 +82,11 @@ export class EmEsperaModalComponent {
       cliente: { id: this.clienteSelecionado },
       profissional: { id: this.profissionalSelecionado.value }
     };
-    this.pedidoService.novoPedido(novoPedido).subscribe({
+    const statusPedido = (this.isEmEspera) ? StatusPedido.AGUARDANDO : StatusPedido.EMATENDIMENTO;
+    this.pedidoService.novoPedido(novoPedido, statusPedido).subscribe({
       next: () => {
         this.notificationService.showSuccess('Sucesso', 'Pedido enviado para a fila com sucesso!');
-        this.atendimentoComponent.atualizarPedidos();
+        this.atendimentoComponent.pesquisarPedidosStatusPedido(statusPedido);
         this.close();
       },
       error: erro => {
