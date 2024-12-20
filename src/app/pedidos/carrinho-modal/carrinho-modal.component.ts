@@ -1,9 +1,9 @@
 import { ItemPedido, Produto } from './../../core/model';
 import { ItemService } from './../../itens/item.service';
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit, AfterViewInit } from '@angular/core';
 import { PedidoService } from '../pedido.service';
 import { Categoria, Pedido } from '../../core/model';
-import { map } from 'rxjs';
+import { map, switchMap } from 'rxjs';
 import { DropdownChangeEvent } from 'primeng/dropdown';
 
 @Component({
@@ -11,7 +11,7 @@ import { DropdownChangeEvent } from 'primeng/dropdown';
   templateUrl: './carrinho-modal.component.html',
   styleUrls: ['./carrinho-modal.component.css']
 })
-export class CarrinhoModalComponent implements OnInit {
+export class CarrinhoModalComponent implements OnInit{
   @Input() display: boolean = false;
   @Input() pedido: any = new Pedido();
   @Output() displayChange = new EventEmitter<boolean>();
@@ -27,7 +27,6 @@ export class CarrinhoModalComponent implements OnInit {
 
   ngOnInit(): void {
     this.carregarCategorias();
-    this.atualizarCarrinho();
   }
 
   carregarCategorias() {
@@ -39,20 +38,16 @@ export class CarrinhoModalComponent implements OnInit {
       )
       .subscribe(categoriasFormatadas => {
         this.categorias = categoriasFormatadas;
-        console.log('Categorias carregadas:', this.categorias);
-
         this.categoriaSelecionada = this.categorias.find(categoria => categoria.value === 1);
 
         if (this.categoriaSelecionada) {
           this.itemService.pesquisarProduto(this.categoriaSelecionada.value)
             .subscribe(produtos => {
               this.produtos = produtos;
-              console.log('Produtos carregados:', this.produtos);
             });
         }
       });
   }
-
 
   carregarProdutos(event: DropdownChangeEvent) {
     if (this.categoriaSelecionada) {
@@ -64,8 +59,8 @@ export class CarrinhoModalComponent implements OnInit {
     }
   }
 
-  buscarPedidoId(pedidoId: string): void {
-    this.pedidoService.buscarPedidoporId(pedidoId).subscribe({
+  buscarPedidoId(): void {
+    this.pedidoService.buscarPedidoporId(this.pedido.id).subscribe({
       next: (pedido: Pedido) => {
         this.pedido = pedido;
         this.atualizarCarrinho();
@@ -93,7 +88,6 @@ export class CarrinhoModalComponent implements OnInit {
         itemSelecionado.precoTotal = itemExistente.precoTotal;
       }
 
-      console.log('Quantidade aumentada para o produto:', produto);
     } else {
       const novoItem: ItemPedido = {
         id: 0,
@@ -106,23 +100,20 @@ export class CarrinhoModalComponent implements OnInit {
 
       this.pedido.itemPedidos.push(novoItem);
       this.produtosSelecionados.push(novoItem);
-
-      console.log('Produto adicionado ao pedido:', produto);
     }
-
     this.atualizarCarrinho();
   }
 
 
- atualizarCarrinho(): void {
-  this.produtosSelecionados = this.pedido.itemPedidos.map((item: ItemPedido) => ({
-    id: item.id,
-    produto: item.produto,
-    quantidade: item.quantidade,
-    observacao: item.observacao,
-    precoTotal: item.precoTotal
-  }));
-}
+  atualizarCarrinho(): void {
+    this.produtosSelecionados = this.pedido.itemPedidos.map((item: ItemPedido) => ({
+      id: item.id,
+      produto: item.produto,
+      quantidade: item.quantidade,
+      observacao: item.observacao,
+      precoTotal: item.precoTotal
+    }));
+  }
 
 
   atualizarQuantidade(item: any) {
@@ -170,30 +161,27 @@ export class CarrinhoModalComponent implements OnInit {
   }
 
   adicionarItensAoPedido(): void {
-    const itensPedidos: ItemPedido[] = this.pedido.itemPedidos;
-    itensPedidos.forEach(item => {const itemPedidoInput = {
-            quantidade: item.quantidade,
-            produto: {
-                id: item.produto.id
-            }
-        };
-        this.itemService.criarItemPedido(itemPedidoInput).subscribe({
-            next: (itemPedidoCriado: any) => {
-                this.pedidoService.adicionarItemPedidoAoPedido(this.pedido.id, itemPedidoCriado.id).subscribe({
-                    next: () => {
-                        console.log(`Item ${itemPedidoCriado.id} adicionado ao pedido ${this.pedido.id}`);
-                    },
-                    error: (erro) => {
-                        console.error('Erro ao adicionar item ao pedido:', erro);
-                    }
-                });
+    const listItensPedidoInput = this.pedido.itemPedidos.map((item: ItemPedido) => ({
+        quantidade: item.quantidade,
+        produto: { id: item.produto.id },
+    }));
+
+    this.pedidoService.removerItensNoBanco(this.pedido.id)
+        .pipe(
+            switchMap(() =>
+                this.itemService.criarItemEAdicionarEmPedido(listItensPedidoInput, this.pedido.id)
+            )
+        )
+        .subscribe({
+            next: () => {
+                console.log(`Itens criados e adicionados ao pedido ${this.pedido.id}`);
             },
             error: (erro) => {
-                console.error('Erro ao criar item pedido:', erro);
-            }
+                console.error('Erro ao criar itens pedido:', erro);
+            },
         });
-    });
-  }
+}
+
 
   aumentarQuantidade(produto: Produto): void {
     const itemExistente = this.pedido.itemPedidos.find((item: ItemPedido) => item.produto.id === produto.id)!;

@@ -1,4 +1,4 @@
-<p-dialog [(visible)]="display" [modal]="true" [closable]="true" [style]="{ 'width': '95vw', 'max-width': '1280px', 'height': '90vh' }">
+<p-dialog [(visible)]="display" (onShow)="buscarPedidoId()" [modal]="true" [closable]="true" [style]="{ 'width': '95vw', 'max-width': '1280px', 'height': '90vh' }">
   <div class="p-field p-grid">
     <div class="p-col-12 p-md-4">
       <p-dropdown [options]="categorias" [(ngModel)]="categoriaSelecionada" optionLabel="label"
@@ -67,6 +67,6 @@
   </div>
 
   <div class="p-d-flex p-jc-between">
-    <p-button label="Finalizar Compra" icon="pi pi-shopping-cart" (click)="finalizarCompra()"></p-button>
+    <p-button label="Salvar" icon="pi pi-shopping-cart" (click)="finalizarCompra()"></p-button>
   </div>
 </p-dialog>

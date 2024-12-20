@@ -110,16 +110,10 @@ export class AtendimentoComponent implements OnInit {
   abrirCarrinho(pedido: Pedido) {
     this.displayCarrinho = false;
     this.notificationService.hideNavBar(true);
-
-    this.pedidoService.limparPedido(pedido.id).subscribe({
-      next: () => {
-        this.selectedPedido = pedido;
-        this.displayCarrinho = true;
-      },
-      error: (err) => {
-        console.error('Erro ao limpar o carrinho:', err);
-      }
-    });
+    setTimeout(() => {
+      this.selectedPedido = pedido;
+      this.displayCarrinho = true;
+    }, 0);
   }
 
   pagamentoModal(pedido: Pedido) {

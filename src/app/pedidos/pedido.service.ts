@@ -85,11 +85,11 @@ export class PedidoService {
     return this.http.get(`${this.pedidoUrl}/${pedidoId}`)
   }
 
-  adicionarItemPedidoAoPedido(pedidoId: string, itemPedidoId: string): Observable<void>{
+  adicionarItemPedidoAoPedido(pedidoId: any, itemPedidoId: any): Observable<void>{
     return this.http.put<void>(`${this.pedidoUrl}/${pedidoId}/add-item/${itemPedidoId}`, {})
   }
 
-  limparPedido(pedidoId: any): Observable<void>{
+  removerItensNoBanco(pedidoId: any): Observable<void>{
     return this.http.delete<void>(`${this.pedidoUrl}/${pedidoId}/remove-todos-itens`)
   }
 

@@ -11,6 +11,7 @@ export class ItemService {
   categoriaUrl = 'http://localhost:8080/categorias'
   produtoUrl = 'http://localhost:8080/produtos'
   itemPedidoUrl = 'http://localhost:8080/itemPedidos'
+  pedidoUrl = 'http://localhost:8080/pedidos'
 
   constructor(private http: HttpClient) { }
 
@@ -24,6 +25,10 @@ export class ItemService {
 
   criarItemPedido(itemPedido: ItemPedidoImput): Observable<ItemPedido>{
     return this.http.post<ItemPedido>(`${this.itemPedidoUrl}`, itemPedido);
+  }
+
+  criarItemEAdicionarEmPedido(itensPedidos: any, pedidoId: any): Observable<ItemPedido>{
+    return this.http.put<ItemPedido>(`${this.pedidoUrl}/${pedidoId}/add-itens`, itensPedidos);
   }
 
   criarNovoProduto(produto: ProdutoInput): Observable<Produto>{

@@ -92,6 +92,12 @@ export class EmEsperaModalComponent {
       }});
   }
 
+  limparFiltros(){
+    this.nomeClienteBusca = '',
+    this.clienteSelecionado = null;
+    this.profissionalSelecionado = null;
+  }
+
   close() {
     this.display = false;
     this.displayChange.emit(this.display);

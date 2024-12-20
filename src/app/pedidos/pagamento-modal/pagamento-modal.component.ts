@@ -36,9 +36,9 @@ export class PagamentoModalComponent implements OnInit{
 
   realizarPagamento(): void {
     this.isLoading = true;
-    const formaPagamentoBody = {
-      "formaPagamento": this.formaPagamentoSelecionada
-    };
+      const formaPagamentoBody = {
+        "formaPagamento": this.formaPagamentoSelecionada
+      };
     this.pedidoService.pagarPedido(this.pedido.id, formaPagamentoBody)
     .pipe(
       finalize(() => {
@@ -46,13 +46,13 @@ export class PagamentoModalComponent implements OnInit{
       })
     ).subscribe({
       next: () => {
-        this.notificationService.showSuccess('Sucesso', 'Pedido pago com sucesso!');
-        this.pedidoPago.emit();
-        this.fechar();
+      this.notificationService.showSuccess('Sucesso', 'Pedido pago com sucesso!');
+      this.pedidoPago.emit();
+      this.fechar();
       },
       error: erro => {
-        this.errorHandler.handle(erro);
-      }
+      this.errorHandler.handle(erro);
+    }
     });
   }
 
