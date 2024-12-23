@@ -7,6 +7,19 @@
 </p-dropdown>
     </div>
   </div>
+  <div class="item mb-3">
+    <div class="p-col-6">
+      <div class="p-fiel mb-3">
+        <h3>Valor Total: {{pedido.valorTotal  | currency:'BRL' }}</h3>
+      </div>
+      <div class="p-fiel mb-3">
+        <h3>Cliente: {{ pedido.cliente.nome}}</h3>
+      </div>
+      <div class="p-fiel mb-3">
+        <h3>Profissional: {{pedido.profissional.nome }}</h3>
+      </div>
+    </div>
+  </div>
   <div class="p-d-flex p-jc-between mb-3">
     <p-button label="Realizar pagamento" icon="pi pi-shopping-cart" (click)="realizarPagamento()"></p-button>
   </div>

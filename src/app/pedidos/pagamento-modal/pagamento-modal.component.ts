@@ -59,6 +59,7 @@ export class PagamentoModalComponent implements OnInit{
   fechar() {
     this.display = false;
     this.displayChange.emit(this.display);
+    this.formaPagamentoSelecionada = null;
   }
 
 }
