@@ -16,7 +16,7 @@ export class Profissional {
   celular: string = ' ';
   cpf: string = ' ';
   dataNascimento: string = ' ';
-  salarioFixo: any;
+  salarioFixo: number = 0;
   diaPagamento: number = 0;
   ativo: boolean = true;
   endereco: Endereco = new Endereco();

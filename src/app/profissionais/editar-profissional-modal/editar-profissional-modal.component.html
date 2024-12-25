@@ -5,7 +5,7 @@
     <div class="p-grid">
 
       <div class="p-col-12">
-         <h1>Novo Profissional</h1>
+         <h1>Editar Profissional</h1>
       </div>
 
       <div class="p-grid">
@@ -87,8 +87,7 @@
         </div>
 
         <div class="p-col-3">
-          <p-button class="button-spacing" icon="pi pi-save" pTooltip="salvar" tooltipPosition="top"
-          [disabled]="!profissionalForm.valid" (click)="salvar()"/>
+          <p-button class="button-spacing" label="editar" [disabled]="!profissionalForm.valid" (click)="editar()"/>
         </div>
 
       </div>

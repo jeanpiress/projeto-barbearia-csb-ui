@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Profissional, ProfissionalInput } from '../core/model';
+import { ProfissionalInput } from '../core/model';
 
 @Injectable({
   providedIn: 'root'
@@ -23,5 +23,9 @@ export class ProfissionalService {
 
   novoProfissional(profissional: ProfissionalInput): Observable<any>{
     return this.http.post(`${this.profissionalUrl}`, profissional);
+  }
+
+  editarProfissional(profissional: ProfissionalInput, idProfissional: any): Observable<any>{
+    return this.http.put(`${this.profissionalUrl}/${idProfissional}`, profissional);
   }
 }

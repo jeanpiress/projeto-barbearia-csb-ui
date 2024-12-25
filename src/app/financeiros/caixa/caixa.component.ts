@@ -15,17 +15,7 @@ export class CaixaComponent {
 
   atendidos = []
 
-  resultados = {
-    clienteAtendidos: 5,
-    totalDinheiro: 45.00,
-    totalPix: 90.00,
-    totalCredito: 170.00,
-    totalDebito: 120.00,
-    totalVoucher: 0.0,
-    totalPontos: 0.0,
-    total: 425.00
-  };
-
+  resultados: any;
   pieChartData: any;
   options: any;
 
@@ -70,7 +60,7 @@ export class CaixaComponent {
   }
 
   pesquisarPedidosPagosCaixAberto(){
-    this.pedidoService.pesquisarPedidosPorStatusPagamentoEIsAberto(true, StatusPagamento.AGUARDANDO_PAGAMENTO).subscribe(atendidos => this.atendidos = atendidos);
+    this.pedidoService.pesquisarPedidosPorStatusPagamentoEIsAberto(true, StatusPagamento.PAGO).subscribe(atendidos => this.atendidos = atendidos);
   }
 
   confirmarFechamentoDeCaixa(){

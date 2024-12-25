@@ -19,6 +19,7 @@ import { TooltipModule } from 'primeng/tooltip';
 import { NovoProfissionalComponent } from './novo-profissional/novo-profissional.component';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { SharedModule } from '../shared/shared/shared.module';
+import { EditarProfissionalModalComponent } from './editar-profissional-modal/editar-profissional-modal.component';
 
 
 
@@ -27,7 +28,8 @@ import { SharedModule } from '../shared/shared/shared.module';
 @NgModule({
   declarations: [
     BuscaProfissionaisComponent,
-    NovoProfissionalComponent
+    NovoProfissionalComponent,
+    EditarProfissionalModalComponent
   ],
   imports: [
     CommonModule,
@@ -53,7 +55,8 @@ import { SharedModule } from '../shared/shared/shared.module';
   ],
   exports:[
     BuscaProfissionaisComponent,
-    NovoProfissionalComponent
+    NovoProfissionalComponent,
+    EditarProfissionalModalComponent
   ]
 })
 export class ProfissionaisModule { }

@@ -2,7 +2,7 @@
   <div class="p-grid">
     <form autocomplete="off">
       <div class="p-col-12 mb-3">
-        <h1>{{ isAtivo === 'ativos' ? 'Profissionais Ativos' : 'Profissionais Inativos' }}</h1>
+        <h1>{{ isAtivo ? 'Profissionais Ativos' : 'Profissionais Inativos' }}</h1>
       </div>
 
       <div class="p-grid">
@@ -23,10 +23,10 @@
                 <td>{{ profissional.nome }}</td>
                 <td>{{ profissional.celular | telefone}}</td>
                 <td class="button-column">
-                  <p-button icon="pi pi-info-circle" class="button-spacing" pTooltip="Detalhar" tooltipPosition="top"></p-button>
-                  <p-button icon="pi" [icon]="isAtivo === 'ativos' ? 'pi pi-eye-slash' : 'pi pi-eye'"
-                    class="button-spacing" pTooltip="{{ isAtivo === 'ativos' ? 'Inativar' : 'Ativar' }}" tooltipPosition="top"
-                    (click)="ativarDesativar(profissional.id)" >
+                  <p-button icon="pi pi-user-edit" class="button-spacing" pTooltip="Editar" tooltipPosition="top" (click)="editarProfissional(profissional)"></p-button>
+                  <p-button icon="pi" [icon]="isAtivo ? 'pi pi-eye-slash' : 'pi pi-eye'"
+                    class="button-spacing" pTooltip="{{ isAtivo ? 'Inativar' : 'Ativar' }}" tooltipPosition="top"
+                    (click)="confirmarAtivacaoDesativacao(profissional.id)" >
                   </p-button>
                 </td>
 
@@ -38,12 +38,12 @@
     </form>
 
     <div class="p-col-12 mb-3">
-      <p-button class="button-spacing" label="Novo Profissional" (click)="modalNovoProfissional(profissionais)"/>
-      <p-button class="button-spacing" label="{{ isAtivo === 'ativos' ? 'Inativos' : 'Ativos' }}"
+      <p-button class="button-spacing" label="Novo Profissional" (click)="modalNovoProfissional()"/>
+      <p-button class="button-spacing" label="{{ isAtivo ? 'Inativos' : 'Ativos' }}"
         tooltipPosition="top" (click)="toggleAtivo()" (click)="pesquisar()"/>
     </div>
 
-    <app-novo-profissional *ngIf="selectedProfissional" [profissional]="selectedProfissional" [(display)]="displayNovoProfissional"></app-novo-profissional>
-
+    <app-novo-profissional [(display)]="displayNovoProfissional"></app-novo-profissional>
+    <app-editar-profissional-modal *ngIf="selectedProfissional" [profissional]="selectedProfissional" [(display)]="displayEditarProfissional"></app-editar-profissional-modal>
   </div>
 </div>

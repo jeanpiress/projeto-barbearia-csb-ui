@@ -11,10 +11,10 @@ import { NotificationService } from '../../core/notification.service';
   styleUrl: './novo-profissional.component.css'
 })
 export class NovoProfissionalComponent {
-  @Input() profissional = new Profissional();
-  @Input() endereco = new Endereco();
   @Input() display: boolean = false;
   @Output() displayChange = new EventEmitter<boolean>();
+
+  profissional: any = new Profissional();
 
   constructor(
     private profissionalService: ProfissionalService,
@@ -27,8 +27,6 @@ export class NovoProfissionalComponent {
   }
 
   salvar(){
-    this.profissional.dataNascimento = this.profissional.dataNascimento.substring(0, 10) + 'T13:00:00-03:00';
-    this.profissional.endereco = this.endereco;
     const profissionalInput = new ProfissionalInput(this.profissional);
     console.log(ProfissionalInput)
     this.profissionalService.novoProfissional(profissionalInput).subscribe({
