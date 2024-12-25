@@ -48,7 +48,7 @@
         </p-table>
       </div>
     </form>
-    <app-inserir-agendamento-modal (pedidoSalvo)="pesquisarPedidos()" [(display)]="displayNovoAgendamento"></app-inserir-agendamento-modal>
+    <app-inserir-agendamento-modal (pedidoSalvo)="pesquisarPedidos()" [(display)]="displayNovoAgendamento" (atualizarPedidos)="pesquisarPedidos()"></app-inserir-agendamento-modal>
     <app-editar-agendamento-modal (pedidoSalvo)="pesquisarPedidos()" [(display)]="displayEditarAgendamento" [agendamento]="selectedAgendamento"></app-editar-agendamento-modal>
   </div>
 </div>
