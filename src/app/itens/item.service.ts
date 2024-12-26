@@ -42,7 +42,6 @@ export class ItemService {
 
     if(categoriaId != null){
       params = params.set('categoriaId', categoriaId);}
-      console.log(params);
 
     return this.http.get(`${this.produtoUrl}`, { params });
   }

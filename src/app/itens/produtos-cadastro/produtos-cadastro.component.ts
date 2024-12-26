@@ -11,7 +11,6 @@ import { NotificationService } from '../../core/notification.service';
   styleUrl: './produtos-cadastro.component.css'
 })
 export class ProdutosCadastroComponent implements OnInit{
-  produto = new ProdutoInput();
   @Input() display: boolean = false;
   @Output() displayChange = new EventEmitter<boolean>();
 
@@ -20,6 +19,7 @@ export class ProdutosCadastroComponent implements OnInit{
               private errorHandler: ErrorHandlerService
   ){}
 
+  produto = new ProdutoInput();
   categoriaSelecionada: any;
   categorias: any[] = [];
 

@@ -8,9 +8,6 @@ import { ErrorHandlerService } from '../../core/error-handler.service';
   styleUrl: './clientes-retorno.component.css'
 })
 export class ClientesRetornoComponent implements OnInit{
-encodeURIComponent(arg0: string) {
-throw new Error('Method not implemented.');
-}
 
   clientes: any[] = [];
   diasBusca: any = null;
@@ -24,7 +21,7 @@ throw new Error('Method not implemented.');
   }
 
   buscarClientesRetorno(){
-    this.relatorioService.pesquisarClientesRetorno(this.diasBusca ?? 300).subscribe({
+    this.relatorioService.pesquisarClientesRetorno(this.diasBusca ?? 30).subscribe({
       next: (resposta) => {
       this.clientes = resposta;
     },

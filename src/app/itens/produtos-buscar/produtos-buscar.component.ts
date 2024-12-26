@@ -48,11 +48,10 @@ export class ProdutosBuscarComponent implements OnInit{
     this.itemService.buscarProdutos(this.nomeBusca, isAtivo, categoriaId).subscribe(produtos => this.produtos = produtos);
   }
 
-  novoProduto(produto: any){
+  novoProduto(){
     this.displayNovoProduto = false;
     this.notificationService.hideNavBar(true);
     setTimeout(() => {
-      this.selectedProduto = produto;
       this.displayNovoProduto  = true;
     }, 0);
   }

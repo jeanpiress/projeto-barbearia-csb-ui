@@ -12,7 +12,7 @@
         <p-dropdown [options]="categorias" [(ngModel)]="categoriaSelecionada" optionLabel="label"
             placeholder="Selecione uma categoria" [ngModelOptions]="{standalone: true}">
         </p-dropdown>
-        <p-button label="Buscar" (click)="pesquisar(true)"/>
+        <p-button label="Buscar" (click)="pesquisar(true)" [disabled]="!(nomeBusca && nomeBusca.trim().length > 0) && !categoriaSelecionada"/>
       </div>
 
       <div class="p-grid">
@@ -48,9 +48,9 @@
     </form>
 
     <div class="p-col-12 mb-3">
-      <p-button label="Novo Produto" (click)="novoProduto(produtos)"/>
+      <p-button label="Novo Produto" (click)="novoProduto()"/>
     </div>
-    <app-produtos-cadastro *ngIf="selectedProduto" [(display)]="displayNovoProduto"></app-produtos-cadastro>
+    <app-produtos-cadastro [(display)]="displayNovoProduto"></app-produtos-cadastro>
     <app-produtos-detalhes-modal *ngIf="selectedProduto" [produto]="selectedProduto" [(display)]="displayDetalhes"></app-produtos-detalhes-modal>
     <app-produtos-editar-modal *ngIf="selectedProduto" [produto]="selectedProduto" [(display)]="displayEditar" (produtoSalvo)="pesquisar(true)"></app-produtos-editar-modal>
 
