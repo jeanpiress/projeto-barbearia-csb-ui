@@ -18,6 +18,14 @@ export class RelatorioService {
     return this.http.post(`${this.relatorioUrl}/comissoes/data`, body);
   }
 
+  pesquisarComissoesProfissional(dataInicio: any, dataFim: any, profissionalId: number): Observable<any>{
+    let params = new HttpParams()
+    .set('dataInicio', dataInicio)
+    .set('dataFim', dataFim);
+
+    return this.http.get(`${this.relatorioUrl}/comissoes/${profissionalId}`, {params});
+  }
+
   pesquisarClientesRetorno(diasBusca : any): Observable<any>{
     return this.http.get(`${this.relatorioUrl}/cliente/volta/${diasBusca}`);
   }

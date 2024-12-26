@@ -15,13 +15,17 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ComissoesGeraisComponent } from './comissoes-gerais/comissoes-gerais.component';
 import { RouterModule } from '@angular/router';
 import { ClientesRetornoComponent } from './clientes-retorno/clientes-retorno.component';
+import { ComissaoDetalhadaComponent } from './comissao-detalhada/comissao-detalhada.component';
+import { DropdownModule } from 'primeng/dropdown';
+import { CardModule } from 'primeng/card';
 
 
 
 @NgModule({
   declarations: [
     ComissoesGeraisComponent,
-    ClientesRetornoComponent
+    ClientesRetornoComponent,
+    ComissaoDetalhadaComponent
   ],
   imports: [
     CommonModule,
@@ -35,10 +39,14 @@ import { ClientesRetornoComponent } from './clientes-retorno/clientes-retorno.co
     FormsModule,
     ChartModule,
     ConfirmDialogModule,
-    RouterModule
+    RouterModule,
+    DropdownModule,
+    CardModule
   ],
   exports: [
-    ComissoesGeraisComponent
+    ComissoesGeraisComponent,
+    ClientesRetornoComponent,
+    ComissaoDetalhadaComponent
   ],
   providers: [
     provideHttpClient(withInterceptorsFromDi())

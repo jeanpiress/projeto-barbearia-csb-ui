@@ -35,6 +35,7 @@ import { ItensModule } from './itens/itens.module';
 import { ClientesRetornoComponent } from './relatorios/clientes-retorno/clientes-retorno.component';
 import { ProdutosBuscarComponent } from './itens/produtos-buscar/produtos-buscar.component';
 import { AgendamentoNovoComponent } from './pedidos/agendamento-novo/agendamento-novo.component';
+import { ComissaoDetalhadaComponent } from './relatorios/comissao-detalhada/comissao-detalhada.component';
 
 const routes: Routes =[
   {path: 'clientes/buscar', component: BuscaClientesComponent},
@@ -43,6 +44,7 @@ const routes: Routes =[
   {path: 'atendimento', component: AtendimentoComponent},
   {path: 'agendamento', component: AgendamentoNovoComponent},
   {path: 'relatorios/comissoes/gerais', component: ComissoesGeraisComponent},
+  {path: 'relatorios/comissoes/detalhada', component: ComissaoDetalhadaComponent},
   {path: 'profissionais/buscar', component: BuscaProfissionaisComponent},
   {path: 'produtos/buscar', component: ProdutosBuscarComponent},
   {path: 'login', component: LoginFormComponent}

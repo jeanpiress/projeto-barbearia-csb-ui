@@ -36,7 +36,10 @@
       </a>
       <ul [hidden]="!exibindoRelatorios" class="submenu no-bullets">
         <li class="navbar-item" routerLinkActive="ativo">
-          <a routerLink="relatorios/comissoes/gerais" (click)="exibindoMenu = exibindoRelatorios = false"><i class="pi pi-wallet"></i> Comissões</a>
+          <a routerLink="relatorios/comissoes/gerais" (click)="exibindoMenu = exibindoRelatorios = false"><i class="pi pi-wallet"></i> Comissões Gerais</a>
+        </li>
+        <li class="navbar-item" routerLinkActive="ativo">
+          <a routerLink="relatorios/comissoes/detalhada" (click)="exibindoMenu = exibindoRelatorios = false"><i class="pi pi-receipt"></i> Comissões Detalhadas</a>
         </li>
         <li class="navbar-item" routerLinkActive="ativo">
           <a routerLink="relatorios/clientes-retorno" (click)="exibindoMenu = exibindoRelatorios = false"><i class="pi pi-users"></i> Clientes para Retornar</a>

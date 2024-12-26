@@ -193,6 +193,26 @@ export class Pedido {
 
 }
 
+export class RelatorioComissaoDetalhada {
+  profissional: ProfissionalId = new ProfissionalId();
+  totalVendas: number = 0;
+  totalComissao: number = 0;
+  totalPontos: number = 0;
+  tkm: number = 0;
+  clienteAtendidos: number = 0;
+  pedidos: PedidoSimplificado[] = [];
+}
+
+export class PedidoSimplificado {
+  horario: string = '';
+  cliente: ClienteId = new ClienteId();
+  comissaoGerada: number = 0;
+  pontuacaoProfissionalGerada: number = 0;
+  pontuacaoClienteGerada: number = 0;
+  valorTotal: number = 0;
+  dataPagamento: string = '';
+}
+
 export enum FormaPagamento {
   DINHEIRO = 'DINHEIRO',
   PIX = 'PIX',
