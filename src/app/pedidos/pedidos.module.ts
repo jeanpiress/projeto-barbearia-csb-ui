@@ -27,6 +27,8 @@ import { AgendamentoNovoComponent } from './agendamento-novo/agendamento-novo.co
 import { InserirAgendamentoModalComponent } from './inserir-agendamento-modal/inserir-agendamento-modal.component';
 import { CalendarModule } from 'primeng/calendar';
 import { EditarAgendamentoModalComponent } from './editar-agendamento-modal/editar-agendamento-modal.component';
+import { DetalhesPedidoModalComponent } from './detalhes-pedido-modal/detalhes-pedido-modal.component';
+import { SharedModule } from '../shared/shared/shared.module';
 
 
 
@@ -43,6 +45,7 @@ import { EditarAgendamentoModalComponent } from './editar-agendamento-modal/edit
     AgendamentoNovoComponent,
     InserirAgendamentoModalComponent,
     EditarAgendamentoModalComponent,
+    DetalhesPedidoModalComponent,
   ],
   imports: [
     CommonModule,
@@ -62,7 +65,8 @@ import { EditarAgendamentoModalComponent } from './editar-agendamento-modal/edit
     CoreModule,
     DataViewModule,
     TagModule,
-    CalendarModule
+    CalendarModule,
+    SharedModule
   ],
   providers: [
     provideHttpClient(withInterceptorsFromDi())
@@ -75,6 +79,7 @@ import { EditarAgendamentoModalComponent } from './editar-agendamento-modal/edit
     AgendamentoNovoComponent,
     InserirAgendamentoModalComponent,
     EditarAgendamentoModalComponent,
+    DetalhesPedidoModalComponent
   ]
 })
 export class PedidosModule { }

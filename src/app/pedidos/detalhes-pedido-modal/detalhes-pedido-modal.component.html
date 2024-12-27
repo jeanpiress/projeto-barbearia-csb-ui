@@ -1,0 +1,21 @@
+<p-dialog #dialog header="Detalhes do Agendamento" [(visible)]="display" [modal]="true" [closable]="true"
+  [style]="{ 'width': '25vw', 'max-width': '1280px', 'height': '60vh' }">
+  <div *ngIf="agendamento">
+    <p><strong>Cliente:</strong> {{ agendamento.cliente.nome }}</p>
+    <p><strong>Celular:</strong> {{ agendamento.cliente.celular | telefone}}</p>
+    <p><strong>Descricao:</strong> {{ agendamento.descricao }}</p>
+    <hr class="linha">
+    <p><strong>Profissional:</strong> {{ agendamento.profissional.nome }}</p>
+    <hr class="linha">
+    <p><strong>Horaio:</strong> {{ agendamento.horario | date: 'dd/MM/yyyy HH:mm'}}</p>
+    <hr class="linha">
+    <p><strong>Marcado Por:</strong> {{ agendamento.criadoPor.nome }}</p>
+    <p><strong>Marcado As:</strong> {{ agendamento.criadoAs | date: 'dd/MM/yyyy HH:mm'}}</p>
+    <hr *ngIf="agendamento.alteradoPor" class="linha">
+    <p *ngIf="agendamento.alteradoPor"><strong>Alterado Por:</strong> {{ agendamento.alteradoPor.nome }}</p>
+    <p *ngIf="agendamento.modificadoAs"><strong>Alterado As:</strong> {{ agendamento.modificadoAs | date: 'dd/MM/yyyy HH:mm'}}</p>
+    <hr *ngIf="agendamento.canceladoPor" class="linha">
+    <p *ngIf="agendamento.canceladoPor"><strong>Alterado Por:</strong> {{ agendamento.canceladoPor }}</p>
+    <p *ngIf="agendamento.canceladoAs"><strong>Alterado As:</strong> {{ agendamento.canceladoAs | date: 'dd/MM/yyyy HH:mm'}}</p>
+  </div>
+</p-dialog>

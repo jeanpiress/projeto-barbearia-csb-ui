@@ -1,14 +1,14 @@
 .button-spacing {
-  margin-left: 10px;
+  margin-right: 0px !important;
 }
 
 .centralizado {
   display: flex;
-  justify-content: center; /* Centraliza horizontalmente */
+  justify-content: center;
 }
 
 .button-column {
-  width: 200px;
+  width: 220px;
   flex-direction: row;
   text-align: center !important;
   padding: 0 !important;
@@ -30,18 +30,18 @@
 
 .button-container {
   display: flex;
-  justify-content: space-between; /* Garante que as divs fiquem nos extremos */
-  width: 100%; /* Garante que o container ocupe toda a largura disponível */
-  align-items: center; /* Alinha os itens verticalmente no centro */
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
 }
 
 .button-group {
-  display: flex; /* Flexbox para organizar os botões em linha */
-  justify-content: center; /* Centraliza os botões dentro do seu espaço */
-  gap: 10px; /* Espaçamento entre os botões */
-  position: absolute; /* Remove o comportamento do flexbox e usa posicionamento absoluto */
-  left: 50%; /* Posiciona a div no meio da tela */
-  transform: translateX(-50%); /* Move a div para a esquerda, centralizando no 50% da tela */
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .max-col-3 {

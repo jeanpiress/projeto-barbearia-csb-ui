@@ -32,6 +32,7 @@ export class AgendamentoNovoComponent implements OnInit{
   dataSelecionada: string = this.dataISO;
   displayNovoAgendamento: boolean = false;
   displayEditarAgendamento: boolean = false;
+  displayDetalhes: boolean = false;
   selectedAgendamento: any = null;
 
   pesquisarPedidos() {
@@ -72,6 +73,27 @@ export class AgendamentoNovoComponent implements OnInit{
     return `${diaDaSemana.charAt(0).toUpperCase() + diaDaSemana.slice(1)} (${data})`;
   }
 
+  confirmarPedidoParaAtendimento(pedido: Pedido) {
+    this.confirmation.confirm({
+      message: 'Tem certeza que deseja enviar esse cliente para Em Atendimento?',
+      accept: () => {
+        this.alterarPedidoParaEmAtendimento(pedido);
+      }
+    });
+  }
+
+  alterarPedidoParaEmAtendimento(pedido: Pedido): void {
+    this.pedidoService.alterarPedidoParaEmAtendimento(pedido.id).subscribe({
+      next: () => {
+        this.notificationService.showSuccess('Sucesso', 'Pedido alterado para Em Atendimento!');
+        this.pesquisarPedidos();
+      },
+      error: erro => {
+        this.errorHandler.handle(erro);
+      }
+    });
+  }
+
   atualizarData() {
     this.dataISO = this.dataSelecionada;
     this.pesquisarPedidos();
@@ -110,6 +132,16 @@ export class AgendamentoNovoComponent implements OnInit{
     setTimeout(() => {
       this.displayEditarAgendamento = true;
       this.selectedAgendamento = agendamento;
+    }, 0);
+  }
+
+  datalhesAgendamento(agendamento: any) {
+    this.displayDetalhes = false;
+    this.notificationService.hideNavBar(true);
+    setTimeout(() => {
+      this.displayDetalhes = true;
+      this.selectedAgendamento = agendamento;
+      console.log(this.selectedAgendamento);
     }, 0);
   }
 
