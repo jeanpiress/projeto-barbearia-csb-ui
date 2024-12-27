@@ -40,10 +40,10 @@
     <div class="p-col-12 mb-3">
       <p-button class="button-spacing" label="Novo Profissional" (click)="modalNovoProfissional()"/>
       <p-button class="button-spacing" label="{{ isAtivo ? 'Inativos' : 'Ativos' }}"
-        tooltipPosition="top" (click)="toggleAtivo()" (click)="pesquisar()"/>
+        tooltipPosition="top" (click)="toggleAtivo()" (click)="pesquisarProfissionais()"/>
     </div>
 
-    <app-novo-profissional [(display)]="displayNovoProfissional"></app-novo-profissional>
+    <app-novo-profissional [(display)]="displayNovoProfissional" (atualizarProfissionais)="pesquisarProfissionais()"></app-novo-profissional>
     <app-editar-profissional-modal *ngIf="selectedProfissional" [profissional]="selectedProfissional" [(display)]="displayEditarProfissional"></app-editar-profissional-modal>
   </div>
 </div>

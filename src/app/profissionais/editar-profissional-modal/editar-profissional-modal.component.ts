@@ -2,7 +2,6 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Profissional, Endereco, ProfissionalInput } from '../../core/model';
 import { ErrorHandlerService } from '../../core/error-handler.service';
 import { NotificationService } from '../../core/notification.service';
-import { BuscaProfissionaisComponent } from '../busca-profissionais/busca-profissionais.component';
 import { ProfissionalService } from '../profissional.service';
 
 @Component({
@@ -14,13 +13,13 @@ export class EditarProfissionalModalComponent implements OnInit{
   @Input() profissional: Profissional = new Profissional();
   @Input() display: boolean = false;
   @Output() displayChange = new EventEmitter<boolean>();
+  @Output() atualizarProfissionais = new EventEmitter<void>();
 
 
    constructor(
       private profissionalService: ProfissionalService,
       private notificationService: NotificationService,
       private errorHandler: ErrorHandlerService,
-      private buscaProfissionais: BuscaProfissionaisComponent
     ){}
 
     ngOnInit( ) {
@@ -43,7 +42,7 @@ export class EditarProfissionalModalComponent implements OnInit{
       close() {
         this.display = false;
         this.displayChange.emit(this.display);
-        this.buscaProfissionais.pesquisar();
+        this.atualizarProfissionais.emit();
       }
 
       resetForm() {

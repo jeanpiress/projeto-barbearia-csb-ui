@@ -215,7 +215,6 @@ export class CarrinhoModalComponent implements OnInit{
     }
 
     this.atualizarCarrinho();
-    console.log('Quantidade diminuída para o produto:', produto);
   }
 
 

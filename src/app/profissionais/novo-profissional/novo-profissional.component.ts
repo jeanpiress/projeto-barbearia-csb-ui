@@ -44,7 +44,7 @@ export class NovoProfissionalComponent {
   close() {
     this.display = false;
     this.displayChange.emit(this.display);
-    this.buscaProfissionais.pesquisar();
+    this.buscaProfissionais.pesquisarProfissionais();
   }
 
   resetForm() {

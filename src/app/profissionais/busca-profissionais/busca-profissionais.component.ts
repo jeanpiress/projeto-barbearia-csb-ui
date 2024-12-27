@@ -26,10 +26,10 @@ export class BuscaProfissionaisComponent implements OnInit{
 
 
   ngOnInit() {
-    this.pesquisar();
+    this.pesquisarProfissionais();
   }
 
-  pesquisar() {
+  pesquisarProfissionais() {
     this.profissionalService.pesquisarProfissionais(this.ativoInativo).subscribe(profissionais => this.profissionais = profissionais);
   }
 
@@ -48,7 +48,7 @@ export class BuscaProfissionaisComponent implements OnInit{
     this.profissionalService.ativarInativar(this.ativoInativo, profissionalId).subscribe({
       next: () => {
         this.notificationService.showSuccess('Sucesso', `Profissional ${ativadoDesativado} com sucesso!`);
-        this.pesquisar();
+        this.pesquisarProfissionais();
       },
       error: erro => {
         this.errorHandler.handle(erro);
@@ -77,6 +77,6 @@ export class BuscaProfissionaisComponent implements OnInit{
     this.isAtivo = !this.isAtivo;
     this.ativoInativo = this.isAtivo ? 'ativos' : 'inativos';
 
-    this.pesquisar();
+    this.pesquisarProfissionais();
   }
 }
