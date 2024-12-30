@@ -103,7 +103,7 @@ export class AtendimentoComponent implements OnInit {
   }
 
   alterarPedidoParaEmAtendimento(pedido: Pedido): void {
-    this.pedidoService.alterarPedidoParaEmAtendimento(pedido.id).subscribe({
+    this.pedidoService.alterarStatusPedido(pedido.id, StatusPedido.EMATENDIMENTO).subscribe({
       next: () => {
         this.notificationService.showSuccess('Sucesso', 'Pedido alterado para Em Atendimento!');
         this.atualizarTodosPedidos();

@@ -5,6 +5,80 @@
       <h1>Caixa</h1>
     </div>
 
+    <div class="p-grid custom-grid mb-3">
+      <div class="p-col-12 p-md-3">
+        <p-card [style]="{ height: '7vh', width: '9rem'}">
+          <ng-template pTemplate="header">
+            <h3>Clientes</h3>
+            <p>{{resultados.clientesAtendidos }}</p>
+          </ng-template>
+        </p-card>
+      </div>
+
+      <div class="p-col-12 p-md-3">
+        <p-card [style]="{ height: '7vh', width: '9rem'}">
+          <ng-template pTemplate="header">
+            <h3>Dinheiro</h3>
+            <p>{{ resultados.dinheiro | currency:'BRL' }}</p>
+          </ng-template>
+        </p-card>
+      </div>
+
+      <div class="p-col-12 p-md-3">
+        <p-card [style]="{ height: '7vh', width: '9rem'}">
+          <ng-template pTemplate="header">
+            <h3>Pix</h3>
+            <p>{{resultados.pix | currency:'BRL' }}</p>
+          </ng-template>
+        </p-card>
+      </div>
+
+      <div class="p-col-12 p-md-3">
+        <p-card [style]="{ height: '7vh', width: '9rem'}">
+          <ng-template pTemplate="header">
+            <h3>Crédito</h3>
+            <p>{{resultados.credito | currency:'BRL' }}</p>
+          </ng-template>
+        </p-card>
+      </div>
+
+      <div class="p-col-12 p-md-3">
+        <p-card [style]="{ height: '7vh', width: '9rem'}">
+          <ng-template pTemplate="header">
+            <h3>Débito</h3>
+            <p>{{resultados.debito | currency:'BRL' }}</p>
+          </ng-template>
+        </p-card>
+      </div>
+
+      <div class="p-col-12 p-md-3">
+        <p-card [style]="{ height: '7vh', width: '9rem'}">
+          <ng-template pTemplate="header">
+            <h3>Voucher</h3>
+            <p>{{resultados.voucher | currency:'BRL' }}</p>
+          </ng-template>
+        </p-card>
+      </div>
+
+      <div class="p-col-12 p-md-3">
+        <p-card [style]="{ height: '7vh', width: '9rem'}">
+          <ng-template pTemplate="header">
+            <h3>Pontos</h3>
+            <p>{{resultados.pontos | currency:'BRL' }}</p>
+          </ng-template>
+        </p-card>
+      </div>
+
+      <div class="p-col-12 p-md-3">
+        <p-card [style]="{ height: '7vh', width: '9rem'}">
+          <ng-template pTemplate="header">
+            <h3>Total</h3>
+            <p>{{resultados.total | currency:'BRL' }}</p>
+          </ng-template>
+        </p-card>
+      </div>
+    </div>
+
     <div class="p-grid">
       <div class="p-col-12 mb-3">
         <p-table [value]="pedidos" styleClass="p-datatable-striped" [tableStyle]="{ 'min-width': '50rem' }" responsiveLayout="stack"
@@ -34,35 +108,6 @@
             </tr>
           </ng-template>
         </p-table>
-      </div>
-    </div>
-
-    <div class="item mb-3">
-      <div class="p-col-6">
-        <div class="p-fiel mb-3">
-          <h2>Cliente Atendidos: {{resultados.clientesAtendidos }}</h2>
-        </div>
-        <div class="p-fiel mb-3">
-          <h2>Total Dinheiro: {{ resultados.dinheiro | currency:'BRL' }}</h2>
-        </div>
-        <div class="p-fiel mb-3">
-          <h2>Total Pix: {{resultados.pix | currency:'BRL' }}</h2>
-        </div>
-        <div class="p-fiel mb-3">
-          <h2>Total Crédito: {{resultados.credito | currency:'BRL'}}</h2>
-        </div>
-        <div class="p-fiel mb-3">
-          <h2>Total Débito: {{resultados.debito | currency:'BRL'}}</h2>
-        </div>
-        <div class="p-fiel mb-3">
-          <h2>Total Voucher: {{resultados.voucher | currency:'BRL'}}</h2>
-        </div>
-        <div class="p-fiel mb-3">
-          <h2>Total Pontos: {{resultados.pontos | currency:'BRL'}}</h2>
-        </div>
-        <div class="p-fiel mb-3">
-          <h2>Total: {{resultados.total | currency:'BRL'}}</h2>
-        </div>
       </div>
     </div>
 

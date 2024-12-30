@@ -1,4 +1,4 @@
-import { StatusPagamento } from './../core/model';
+import { StatusPagamento, StatusPedido } from './../core/model';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -23,7 +23,8 @@ export class PedidoService {
   pesquisarPedidoPorDataExcetoStatus(horario: string, statusPedido: string): Observable<any> {
     let params = new HttpParams()
     .set('horario', horario)
-    .set('statusPedido', statusPedido);
+    .set('statusPedido', statusPedido)
+    .set('isAgendamento', true);
 
     return this.http.get(`${this.pedidoUrl}/horario`, {params});
   }
@@ -65,8 +66,10 @@ export class PedidoService {
     return this.http.delete<void>(`${this.pedidoUrl}/cancelar/${codigo}`)
   }
 
-  alterarPedidoParaEmAtendimento(codigo: number): Observable<void>{
-    return this.http.put<void>(`${this.pedidoUrl}/${codigo}/iniciar`, {})
+  alterarStatusPedido(codigo: number, status: StatusPedido): Observable<void>{
+    let params = new HttpParams().set('statusPedido', status);
+
+    return this.http.put<void>(`${this.pedidoUrl}/${codigo}/statusPedido`, {}, {params})
   }
 
   novoPedido(pedido: any, status: string): Observable<void>{

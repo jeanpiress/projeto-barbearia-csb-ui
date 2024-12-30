@@ -117,7 +117,8 @@ export class InserirAgendamentoModalComponent {
       cliente: { id: this.clienteSelecionado },
       profissional: { id: this.profissionalSelecionado.value },
       descricao: this.descricao,
-      duracao: this.tempoSelecionado
+      duracao: this.tempoSelecionado,
+      isAgendamento: true
     };
     this.adicionarTempo(dataCompleta, this.tempoSelecionado);
     this.pedidoService.novoPedido(novoPedido, StatusPedido.AGENDADO).subscribe({
@@ -158,7 +159,6 @@ export class InserirAgendamentoModalComponent {
   isHorarioValido(horario: Date): boolean {
     const agora = new Date();
     console.log('horario ' + horario + ' agora ' + agora );
-    console.log(horario > agora);
     return horario > agora;
   }
 

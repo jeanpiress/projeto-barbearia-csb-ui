@@ -12,6 +12,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { TableModule } from 'primeng/table';
 import { TooltipModule } from 'primeng/tooltip';
 import { RouterModule } from '@angular/router';
+import { CardModule } from 'primeng/card';
 
 
 
@@ -32,7 +33,8 @@ import { RouterModule } from '@angular/router';
     InputTextareaModule,
     FormsModule,
     ConfirmDialogModule,
-    RouterModule
+    RouterModule,
+    CardModule
   ],
   providers: [
     provideHttpClient(withInterceptorsFromDi())

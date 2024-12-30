@@ -39,7 +39,7 @@
               <td class="profissional-column">{{ agendamento.profissional?.nome ?? ' Sem Preferencia' }}</td>
               <td class="descricao-column">{{ agendamento.descricao }}</td>
               <td class="button-column">
-                <p-button icon="pi pi-check" class="button-spacing" pTooltip="Atender" tooltipPosition="top" (click)="confirmarPedidoParaAtendimento(agendamento)"></p-button>
+                <p-button icon="pi pi-check" class="button-spacing" pTooltip="Enviar para espera" tooltipPosition="top" (click)="confirmarPedidoParaAtendimento(agendamento)"></p-button>
                 <p-button icon="pi pi-user-edit" class="button-spacing" pTooltip="Editar" tooltipPosition="top" (click)="editarAgendamento(agendamento)"></p-button>
                 <p-button icon="pi pi-info-circle" class="button-spacing" pTooltip="Detalhar" tooltipPosition="top" (click)="datalhesAgendamento(agendamento)" datalhesAgendamento></p-button>
                 <p-button icon="pi pi-trash" class="button-spacing" pTooltip="Deletar" tooltipPosition="top" (click)="confirmarCancelamentoAgendamento(agendamento.id)"></p-button>

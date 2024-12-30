@@ -77,13 +77,13 @@ export class AgendamentoNovoComponent implements OnInit{
     this.confirmation.confirm({
       message: 'Tem certeza que deseja enviar esse cliente para Em Atendimento?',
       accept: () => {
-        this.alterarPedidoParaEmAtendimento(pedido);
+        this.alterarPedidoParaAguardando(pedido);
       }
     });
   }
 
-  alterarPedidoParaEmAtendimento(pedido: Pedido): void {
-    this.pedidoService.alterarPedidoParaEmAtendimento(pedido.id).subscribe({
+  alterarPedidoParaAguardando(pedido: Pedido): void {
+    this.pedidoService.alterarStatusPedido(pedido.id, StatusPedido.AGUARDANDO).subscribe({
       next: () => {
         this.notificationService.showSuccess('Sucesso', 'Pedido alterado para Em Atendimento!');
         this.pesquisarPedidos();
@@ -141,7 +141,6 @@ export class AgendamentoNovoComponent implements OnInit{
     setTimeout(() => {
       this.displayDetalhes = true;
       this.selectedAgendamento = agendamento;
-      console.log(this.selectedAgendamento);
     }, 0);
   }
 
