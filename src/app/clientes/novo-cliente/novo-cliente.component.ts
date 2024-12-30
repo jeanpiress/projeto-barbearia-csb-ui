@@ -2,7 +2,9 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ErrorHandlerService } from '../../core/error-handler.service';
 import { NotificationService } from '../../core/notification.service';
 import { ClienteService } from '../cliente.service';
-import { Cliente, ClienteInput, Endereco } from '../../core/model';
+import { Cliente, ClienteInput, Endereco, StatusPedido } from '../../core/model';
+import { PedidoService } from '../../pedidos/pedido.service';
+import { switchMap } from 'rxjs';
 
 
 @Component({
@@ -16,11 +18,13 @@ export class NovoClienteComponent implements OnInit{
   @Output() displayChange = new EventEmitter<boolean>();
 
   cliente = new Cliente();
+  clienteId: number = 0;
 
   constructor(
     private clienteService: ClienteService,
     private notificationService: NotificationService,
-    private errorHandler: ErrorHandlerService
+    private errorHandler: ErrorHandlerService,
+    private pedidoService: PedidoService
   ){}
 
   ngOnInit() {
@@ -40,6 +44,35 @@ export class NovoClienteComponent implements OnInit{
       }
     });
   }
+
+  salvarClienteEAdicionarNaFila() {
+    const clienteInput = new ClienteInput(this.cliente);
+    clienteInput.endereco = this.endereco;
+
+    this.clienteService.novoCliente(clienteInput).pipe(
+      switchMap((response) => {
+        this.clienteId = response.id;
+        console.log('Cliente criado com Sucesso')
+        const novoPedido = {
+          cliente: { id: this.clienteId },
+          profissional: { id: null }
+        };
+
+        return this.pedidoService.novoPedido(novoPedido, StatusPedido.AGUARDANDO);
+      })
+    ).subscribe({
+      next: () => {
+        this.notificationService.showSuccess('Sucesso', 'Pedido enviado para a fila com sucesso!');
+        this.resetForm();
+        this.close();
+      },
+      error: (erro) => {
+        this.errorHandler.handle(erro);
+      }
+    });
+  }
+
+
   close() {
     this.display = false;
     this.displayChange.emit(this.display);

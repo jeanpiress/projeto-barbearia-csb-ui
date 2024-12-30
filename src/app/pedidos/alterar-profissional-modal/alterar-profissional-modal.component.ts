@@ -43,6 +43,7 @@ export class AlterarProfissionalModalComponent {
       )
       .subscribe(profissionaisFormatados => {
         this.profissionais = profissionaisFormatados;
+        this.profissionais.unshift({ label: 'Sem Preferencia', value: 0 });
       });
 
   }

@@ -36,7 +36,7 @@
               <td>{{ agendamento.horario | date: 'HH:mm' }}</td>
               <td>{{ agendamento.cliente?.nome ?? ' - '}}</td>
               <td class="status-column">{{ agendamento.statusPedido}}</td>
-              <td class="profissional-column">{{ agendamento.profissional?.nome ?? ' - ' }}</td>
+              <td class="profissional-column">{{ agendamento.profissional?.nome ?? ' Sem Preferencia' }}</td>
               <td class="descricao-column">{{ agendamento.descricao }}</td>
               <td class="button-column">
                 <p-button icon="pi pi-check" class="button-spacing" pTooltip="Atender" tooltipPosition="top" (click)="confirmarPedidoParaAtendimento(agendamento)"></p-button>

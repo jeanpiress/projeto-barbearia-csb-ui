@@ -1,5 +1,5 @@
 <p-dialog [(visible)]="display" header="Escolha outro Profissional" [modal]="true" [closable]="true"
-  [style]="{ 'width': '95vw', 'max-width': '450px', 'height': '25vh' }">
+  [style]="{ 'width': '80vw', 'max-width': '350px', 'height': '80vh', 'max-height': '450px' }">
   <form #alterarProfissionalForm="ngForm" (ngSubmit)="alterarProfissional()">
     <div class="p-grid">
       <div class="p-fluid max-col-12 mb-3">
@@ -10,7 +10,7 @@
         </p-dropdown>
       </div>
       <div class="p-col-3">
-        <p-button icon="pi pi-user-edit" pTooltip="Alterar" tooltipPosition="top" type="submit"/>
+        <p-button label="Alterar" type="submit"/>
       </div>
     </div>
   </form>

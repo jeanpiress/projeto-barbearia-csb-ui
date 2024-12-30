@@ -78,6 +78,7 @@ export class EditarAgendamentoModalComponent {
       )
       .subscribe(profissionaisFormatados => {
         this.profissionais = profissionaisFormatados;
+        this.profissionais.unshift({ label: 'Sem Preferencia', value: null });
       });
   }
 

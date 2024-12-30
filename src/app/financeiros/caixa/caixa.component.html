@@ -7,7 +7,7 @@
 
     <div class="p-grid">
       <div class="p-col-12 mb-3">
-        <p-table [value]="atendidos" styleClass="p-datatable-striped" [tableStyle]="{ 'min-width': '50rem' }" responsiveLayout="stack"
+        <p-table [value]="pedidos" styleClass="p-datatable-striped" [tableStyle]="{ 'min-width': '50rem' }" responsiveLayout="stack"
         [breakpoint]="'960px'">
           <ng-template pTemplate="header">
             <tr>
@@ -19,16 +19,16 @@
               <th style="width: 50px;"></th>
             </tr>
           </ng-template>
-          <ng-template pTemplate="body" let-atendidos>
+          <ng-template pTemplate="body" let-pedido>
             <tr>
-              <td>{{ atendidos.cliente.nome }}</td>
-              <td>{{ atendidos.dataPagamento | date: 'dd/MM/yy HH:mm' }}</td>
-              <td style="text-align: center;">{{ atendidos.profissional.nome }}</td>
-              <td style="text-align: center;">{{ atendidos.formaPagamento }}</td>
-              <td style="text-align: center;">{{ atendidos.valorTotal | currency:'BRL'}}</td>
+              <td>{{ pedido.cliente.nome }}</td>
+              <td>{{ pedido.dataPagamento | date: 'dd/MM/yy HH:mm' }}</td>
+              <td style="text-align: center;">{{ pedido.profissional.nome }}</td>
+              <td style="text-align: center;">{{ pedido.formaPagamento }}</td>
+              <td style="text-align: center;">{{ pedido.valorTotal | currency:'BRL'}}</td>
               <td class="button-column">
                 <p-button icon="pi pi-trash" class="button-spacing" pTooltip="Deletar" tooltipPosition="top"
-                (click)="confirmarExclusaoPedido(atendidos)"></p-button>
+                (click)="confirmarExclusaoPedido(pedido)"></p-button>
               </td>
 
             </tr>
@@ -40,33 +40,28 @@
     <div class="item mb-3">
       <div class="p-col-6">
         <div class="p-fiel mb-3">
-          <h2>Cliente Atendidos: {{resultados.clienteAtendidos }}</h2>
+          <h2>Cliente Atendidos: {{resultados.clientesAtendidos }}</h2>
         </div>
         <div class="p-fiel mb-3">
-          <h2>Total Dinheiro: {{ resultados.totalDinheiro | currency:'BRL' }}</h2>
+          <h2>Total Dinheiro: {{ resultados.dinheiro | currency:'BRL' }}</h2>
         </div>
         <div class="p-fiel mb-3">
-          <h2>Total Pix: {{resultados.totalPix | currency:'BRL' }}</h2>
+          <h2>Total Pix: {{resultados.pix | currency:'BRL' }}</h2>
         </div>
         <div class="p-fiel mb-3">
-          <h2>Total Crédito: {{resultados.totalCredito | currency:'BRL'}}</h2>
+          <h2>Total Crédito: {{resultados.credito | currency:'BRL'}}</h2>
         </div>
         <div class="p-fiel mb-3">
-          <h2>Total Débito: {{resultados.totalDebito | currency:'BRL'}}</h2>
+          <h2>Total Débito: {{resultados.debito | currency:'BRL'}}</h2>
         </div>
         <div class="p-fiel mb-3">
-          <h2>Total Voucher: {{resultados.totalVoucher | currency:'BRL'}}</h2>
+          <h2>Total Voucher: {{resultados.voucher | currency:'BRL'}}</h2>
         </div>
         <div class="p-fiel mb-3">
-          <h2>Total Pontos: {{resultados.totalPontos | currency:'BRL'}}</h2>
+          <h2>Total Pontos: {{resultados.pontos | currency:'BRL'}}</h2>
         </div>
         <div class="p-fiel mb-3">
           <h2>Total: {{resultados.total | currency:'BRL'}}</h2>
-        </div>
-      </div>
-      <div class="p-col-6">
-        <div style="width: 400px; margin: 0 250px;">
-          <p-chart type="doughnut" [data]="pieChartData" [options]="options"></p-chart>
         </div>
       </div>
     </div>

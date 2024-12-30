@@ -78,8 +78,9 @@ export class PedidoService {
     return this.http.put<void>(`${this.pedidoUrl}/${id}`, pedido)
   }
 
-  alterarProfissional(pedidoId: string, profissionalId: string): Observable<void>{
-    return this.http.put<void>(`${this.pedidoUrl}/${pedidoId}/profissional/${profissionalId}`, {})
+  alterarProfissional(pedidoId: string, profissionalId: number): Observable<void>{
+    let params = new HttpParams().set('profissionalId', profissionalId);
+    return this.http.put<void>(`${this.pedidoUrl}/${pedidoId}/profissional`, null, {params})
   }
 
   buscarPedidoporId(pedidoId: string): Observable<any>{

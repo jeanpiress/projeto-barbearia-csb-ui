@@ -13,11 +13,9 @@ import { PedidoService } from '../../pedidos/pedido.service';
 })
 export class CaixaComponent {
 
-  atendidos = []
-
+  pedidos = [];
   resultados: any;
-  pieChartData: any;
-  options: any;
+
 
   constructor(
     private financeiroService: FinanceiroService,
@@ -30,37 +28,16 @@ export class CaixaComponent {
   ngOnInit() {
     this.pesquisarCaixaAberto();
     this.pesquisarPedidosPagosCaixAberto();
-    this.configurarGrafico();
-    this.options = {
-      responsive: true,
-      plugins: {
-        legend: {
-          position: 'top',
-        }
-      }
-    };
-
   }
 
   pesquisarCaixaAberto() {
     this.financeiroService.pesquisarValoresCaixaAberto().subscribe((resposta: any) => {
-      this.resultados = {
-        clienteAtendidos: resposta.clientesAtendidos,
-        totalDinheiro: resposta.dinheiro,
-        totalPix: resposta.pix,
-        totalCredito: resposta.credito,
-        totalDebito: resposta.debito,
-        totalVoucher: resposta.voucher,
-        totalPontos: resposta.pontos,
-        total: resposta.total
-      };
-
-      this.configurarGrafico();
+      this.resultados = resposta;
     });
   }
 
   pesquisarPedidosPagosCaixAberto(){
-    this.pedidoService.pesquisarPedidosPorStatusPagamentoEIsAberto(true, StatusPagamento.PAGO).subscribe(atendidos => this.atendidos = atendidos);
+    this.pedidoService.pesquisarPedidosPorStatusPagamentoEIsAberto(true, StatusPagamento.PAGO).subscribe(atendidos => this.pedidos = atendidos);
   }
 
   confirmarFechamentoDeCaixa(){
@@ -105,22 +82,5 @@ export class CaixaComponent {
         this.errorHandler.handle(erro)
       }
     });;
-  }
-
-  configurarGrafico() {
-    this.pieChartData = {
-      labels: ['Dinheiro', 'Pix', 'Crédito', 'Débito'],
-      datasets: [
-        {
-          data: [
-            this.resultados.totalDinheiro,
-            this.resultados.totalPix,
-            this.resultados.totalCredito,
-            this.resultados.totalDebito
-          ],
-          backgroundColor: ['#42A5F5', '#66BB6A', '#FFA726', '#26C6DA']
-        }
-      ]
-    };
   }
 }
