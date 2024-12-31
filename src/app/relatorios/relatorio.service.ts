@@ -26,6 +26,14 @@ export class RelatorioService {
     return this.http.get(`${this.relatorioUrl}/comissoes/${profissionalId}`, {params});
   }
 
+  pesquisarFaturamento(dataInicio: any, dataFim: any): Observable<any>{
+    let params = new HttpParams()
+    .set('dataInicio', dataInicio)
+    .set('dataFim', dataFim);
+
+    return this.http.get(`${this.relatorioUrl}/faturamento`, {params});
+  }
+
   pesquisarClientesRetorno(diasBusca : any): Observable<any>{
     return this.http.get(`${this.relatorioUrl}/cliente/volta/${diasBusca}`);
   }

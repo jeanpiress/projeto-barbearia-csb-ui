@@ -18,6 +18,7 @@ import { ClientesRetornoComponent } from './clientes-retorno/clientes-retorno.co
 import { ComissaoDetalhadaComponent } from './comissao-detalhada/comissao-detalhada.component';
 import { DropdownModule } from 'primeng/dropdown';
 import { CardModule } from 'primeng/card';
+import { FaturamentoPeriodoComponent } from './faturamento-periodo/faturamento-periodo.component';
 
 
 
@@ -25,7 +26,8 @@ import { CardModule } from 'primeng/card';
   declarations: [
     ComissoesGeraisComponent,
     ClientesRetornoComponent,
-    ComissaoDetalhadaComponent
+    ComissaoDetalhadaComponent,
+    FaturamentoPeriodoComponent
   ],
   imports: [
     CommonModule,
@@ -46,7 +48,8 @@ import { CardModule } from 'primeng/card';
   exports: [
     ComissoesGeraisComponent,
     ClientesRetornoComponent,
-    ComissaoDetalhadaComponent
+    ComissaoDetalhadaComponent,
+    FaturamentoPeriodoComponent
   ],
   providers: [
     provideHttpClient(withInterceptorsFromDi())

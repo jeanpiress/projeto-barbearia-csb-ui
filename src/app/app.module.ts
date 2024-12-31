@@ -36,13 +36,15 @@ import { ClientesRetornoComponent } from './relatorios/clientes-retorno/clientes
 import { ProdutosBuscarComponent } from './itens/produtos-buscar/produtos-buscar.component';
 import { AgendamentoNovoComponent } from './pedidos/agendamento-novo/agendamento-novo.component';
 import { ComissaoDetalhadaComponent } from './relatorios/comissao-detalhada/comissao-detalhada.component';
+import { FaturamentoPeriodoComponent } from './relatorios/faturamento-periodo/faturamento-periodo.component';
 
 const routes: Routes =[
   {path: 'clientes/buscar', component: BuscaClientesComponent},
-  {path: 'relatorios/clientes-retorno', component: ClientesRetornoComponent},
   {path: 'caixa', component: CaixaComponent},
   {path: 'atendimento', component: AtendimentoComponent},
   {path: 'agendamento', component: AgendamentoNovoComponent},
+  {path: 'relatorios/clientes-retorno', component: ClientesRetornoComponent},
+  {path: 'relatorios/faturamento-periodo', component: FaturamentoPeriodoComponent},
   {path: 'relatorios/comissoes/gerais', component: ComissoesGeraisComponent},
   {path: 'relatorios/comissoes/detalhada', component: ComissaoDetalhadaComponent},
   {path: 'profissionais/buscar', component: BuscaProfissionaisComponent},

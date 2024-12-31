@@ -15,6 +15,7 @@ export class CarrinhoModalComponent implements OnInit{
   @Input() display: boolean = false;
   @Input() pedido: any = new Pedido();
   @Output() displayChange = new EventEmitter<boolean>();
+  @Output() pedidoAtualizado = new EventEmitter<void>();
 
   categorias: any[] = [];
   produtos: Produto[] = [];
@@ -175,6 +176,7 @@ export class CarrinhoModalComponent implements OnInit{
         .subscribe({
             next: () => {
                 console.log(`Itens criados e adicionados ao pedido ${this.pedido.id}`);
+                this.pedidoAtualizado.emit();
             },
             error: (erro) => {
                 console.error('Erro ao criar itens pedido:', erro);

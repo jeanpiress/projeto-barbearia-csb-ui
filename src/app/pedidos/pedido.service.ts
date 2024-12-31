@@ -98,7 +98,8 @@ export class PedidoService {
     return this.http.delete<void>(`${this.pedidoUrl}/${pedidoId}/remove-todos-itens`)
   }
 
-  pagarPedido(codigo: any, formaPagamento: any): Observable<void>{
-    return this.http.put<void>(`${this.pedidoUrl}/${codigo}/pagar`, formaPagamento)
+  pagarPedido(codigo: any, formaPagamento: string): Observable<void>{
+    let params = new HttpParams().set('formaPagamento', formaPagamento);
+    return this.http.put<void>(`${this.pedidoUrl}/${codigo}/pagar`, {}, {params});
   }
 }

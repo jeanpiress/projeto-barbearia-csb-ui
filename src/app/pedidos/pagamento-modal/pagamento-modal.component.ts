@@ -13,7 +13,7 @@ import { finalize } from 'rxjs';
 })
 export class PagamentoModalComponent implements OnInit{
   @Input() display: boolean = false;
-  @Input() pedido: any = new Pedido();
+  @Input() pedido: Pedido = new Pedido();
   @Output() displayChange = new EventEmitter<boolean>();
   @Output() pedidoPago = new EventEmitter<void>();
 
@@ -36,10 +36,7 @@ export class PagamentoModalComponent implements OnInit{
 
   realizarPagamento(): void {
     this.isLoading = true;
-      const formaPagamentoBody = {
-        "formaPagamento": this.formaPagamentoSelecionada
-      };
-    this.pedidoService.pagarPedido(this.pedido.id, formaPagamentoBody)
+    this.pedidoService.pagarPedido(this.pedido.id, this.formaPagamentoSelecionada)
     .pipe(
       finalize(() => {
         this.isLoading = false;
