@@ -76,7 +76,7 @@
             <ng-template pTemplate="header">
               <tr>
                 <th style="width: 350px;">Cliente</th>
-                <th style="text-align: center;">Data</th>
+                <th style="text-align: center;">Data Pagamento</th>
                 <th style="text-align: center;">Valor da venda</th>
                 <th style="text-align: center;">Comissão</th>
               </tr>
@@ -84,7 +84,7 @@
             <ng-template pTemplate="body" let-pedido>
               <tr>
                 <td>{{ pedido.cliente.nome }}</td>
-                <td style="text-align: center;">{{ pedido.horario | date: 'dd/MM/yyyy HH:mm'}}</td>
+                <td style="text-align: center;">{{ pedido.dataPagamento | date: 'dd/MM/yyyy HH:mm'}}</td>
                 <td style="text-align: center;">{{ pedido.valorTotal | currency: 'BRL'}}</td>
                 <td style="text-align: center;">{{ pedido.comissaoGerada | currency: 'BRL'}}</td>
               </tr>

@@ -11,11 +11,10 @@ export class RelatorioService {
   constructor(private http: HttpClient) { }
 
   pesquisarComissoesData(dataInicio: any, dataFim: any): Observable<any>{
-    const body = {
-      inicio: dataInicio,
-      fim: dataFim
-    };
-    return this.http.post(`${this.relatorioUrl}/comissoes/data`, body);
+    let params = new HttpParams()
+    .set('dataInicio', dataInicio)
+    .set('dataFim', dataFim);
+    return this.http.get(`${this.relatorioUrl}/comissoes/data`, {params});
   }
 
   pesquisarComissoesProfissional(dataInicio: any, dataFim: any, profissionalId: number): Observable<any>{

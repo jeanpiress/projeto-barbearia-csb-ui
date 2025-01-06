@@ -33,7 +33,7 @@
                 <td>{{ relatorio.cliente.nome }}</td>
                 <td style="text-align: center;">{{ relatorio.cliente.diasRetorno }}</td>
                 <td style="text-align: center;">{{ relatorio.diasPassadosRetorno }}</td>
-                <td style="text-align: center;">{{ relatorio.cliente.celular}}</td>
+                <td style="text-align: center;">{{ relatorio.cliente.celular | telefone}}</td>
                 <td style="text-align: center;">
                   <a [href]="'https://wa.me/+55' + relatorio.cliente.celular" target="_blank">
                       <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" width="20" height="20">

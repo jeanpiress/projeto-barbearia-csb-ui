@@ -31,9 +31,10 @@ export class NovoClienteComponent implements OnInit{
   }
 
   salvar(){
-    const clienteImput = new ClienteInput(this.cliente);
-    clienteImput.endereco = this.endereco;
-    this.clienteService.novoCliente(clienteImput).subscribe({
+    const clienteInput = new ClienteInput(this.cliente);
+    clienteInput.endereco = this.endereco;
+    clienteInput.celular = this.limparMascara(this.cliente.celular);
+    this.clienteService.novoCliente(clienteInput).subscribe({
       next: () => {
         this.notificationService.showSuccess('Sucesso', 'Cliente criado com sucesso!');
         this.resetForm();
@@ -48,6 +49,7 @@ export class NovoClienteComponent implements OnInit{
   salvarClienteEAdicionarNaFila() {
     const clienteInput = new ClienteInput(this.cliente);
     clienteInput.endereco = this.endereco;
+    clienteInput.celular = this.limparMascara(this.cliente.celular);
 
     this.clienteService.novoCliente(clienteInput).pipe(
       switchMap((response) => {
@@ -83,5 +85,10 @@ export class NovoClienteComponent implements OnInit{
     this.cliente = new Cliente();
     this.endereco = new Endereco();
   }
+
+  limparMascara(celular: string): string {
+    return celular.replace(/[\s()-]/g, '');
+  }
+
 
 }

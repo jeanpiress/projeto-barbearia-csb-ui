@@ -1,6 +1,6 @@
 import { AtendimentoComponent } from './../atendimento/atendimento.component';
 import { PedidoService } from './../pedido.service';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
 import { Cliente, Pedido, Profissional, StatusPedido } from '../../core/model';
 import { ErrorHandlerService } from '../../core/error-handler.service';
 import { NotificationService } from '../../core/notification.service';
@@ -34,7 +34,6 @@ export class EmEsperaModalComponent {
     private atendimentoComponent: AtendimentoComponent
   ){}
   ngOnInit() {
-    this.carregarProfissionais();
    }
 
   onInput(event: any) {
@@ -43,6 +42,12 @@ export class EmEsperaModalComponent {
       this.carregarClientes();
     } else {
       this.clientes = [];
+    }
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['isEmEspera']) {
+      this.carregarProfissionais();
     }
   }
 
@@ -73,7 +78,9 @@ export class EmEsperaModalComponent {
       )
       .subscribe(profissionaisFormatados => {
         this.profissionais = profissionaisFormatados;
-        this.profissionais.unshift({ label: 'Sem Preferencia', value: null });
+        if(this.isEmEspera){
+          this.profissionais.unshift({ label: 'Sem Preferencia', value: null });
+        }
       });
 
   }

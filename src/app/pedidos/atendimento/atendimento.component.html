@@ -22,7 +22,7 @@
           <ng-template pTemplate="body" let-pedidoEmEspera>
             <tr>
               <td>{{ pedidoEmEspera.cliente.nome }}</td>
-              <td>{{ pedidoEmEspera.chegada | date: 'dd/MM/yy HH:mm' }}</td>
+              <td>{{ pedidoEmEspera.inicioEspera | date: 'dd/MM/yy HH:mm' }}</td>
               <td>{{ pedidoEmEspera.horario | date: 'dd/MM/yy HH:mm' }}</td>
               <td class="profissional-column" >{{ pedidoEmEspera.profissional?.nome ? pedidoEmEspera.profissional.nome : 'Sem Prefencia'}}</td>
               <td class="button-column">
@@ -41,7 +41,7 @@
     </div>
 
     <div class="p-col-12 mb-3">
-      <p-button icon="pi pi-user-plus" pTooltip="Adicionar em Espera" tooltipPosition="top" (click)="adicionarEmEspera(true)"/>
+      <p-button label="Adicionar Em Espera" (click)="adicionarEmEspera(true)"/>
     </div>
 
 
@@ -59,18 +59,18 @@
               <th class="button-column"></th>
             </tr>
           </ng-template>
-          <ng-template pTemplate="body" let-clientesEmAtendimento let-statusEmAtendimento>
+          <ng-template pTemplate="body" let-emAtendimento>
             <tr>
-              <td>{{ clientesEmAtendimento.cliente.nome }}</td>
-              <td>{{ clientesEmAtendimento.inicioAtendimento | date: 'dd/MM/yy HH:mm' }}</td>
-              <td>{{ clientesEmAtendimento.profissional?.nome }}</td>
+              <td>{{ emAtendimento.cliente.nome }}</td>
+              <td>{{ emAtendimento.inicioAtendimento | date: 'dd/MM/yy HH:mm' }}</td>
+              <td>{{ emAtendimento.profissional?.nome }}</td>
               <td class="button-column">
                 <p-button icon="pi pi-shopping-cart" class="button-spacing" pTooltip="Carrinho" tooltipPosition="top"
-                (click)="abrirCarrinho(clientesEmAtendimento)"></p-button>
+                (click)="abrirCarrinho(emAtendimento)"></p-button>
                 <p-button icon="pi pi-money-bill" class="button-spacing" pTooltip="Receber" tooltipPosition="top"
-                (click)="pagamentoModal(clientesEmAtendimento)"></p-button>
+                (click)="pagamentoModal(emAtendimento)"></p-button>
                 <p-button icon="pi pi-trash" class="button-spacing" pTooltip="Cancelar" tooltipPosition="top"
-                (click)="confirmarCancelamentoPedido(clientesEmAtendimento)"></p-button>
+                (click)="confirmarCancelamentoPedido(emAtendimento)"></p-button>
               </td>
 
             </tr>
@@ -80,12 +80,12 @@
     </div>
 
     <div class="p-col-12 mb-3">
-      <p-button icon="pi pi-user-plus" pTooltip="Atendimento Direto" tooltipPosition="top" (click)="adicionarEmEspera(false)" />
+      <p-button label="Adicionar Em Atendimento" (click)="adicionarEmEspera(false)" />
     </div>
 
     <app-em-espera-modal [isEmEspera]="isEmEspera" [(display)]="displayEmEspera"></app-em-espera-modal>
     <app-alterar-profissional-modal *ngIf="selectedPedido" [pedido]="selectedPedido" [(display)]="displayAlterarProfissional"
-    (displayChange)="displayAlterarProfissional = $event"></app-alterar-profissional-modal>
+    (displayChange)="displayAlterarProfissional = $event" (profissionalAlterado)="atualizarTodosPedidos()"></app-alterar-profissional-modal>
     <app-carrinho-modal *ngIf="selectedPedido" [pedido]="selectedPedido" [(display)]="displayCarrinho" (pedidoAtualizado)="atualizarTodosPedidos()"></app-carrinho-modal>
     <app-pagamento-modal *ngIf="selectedPedido" [pedido]="selectedPedido" [(display)]="displayPagamentoModal" (pedidoPago)="pesquisarPedidosStatusPedido(statusEmAtendimento)"></app-pagamento-modal>
   </div>

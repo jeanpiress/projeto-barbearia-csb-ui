@@ -19,7 +19,6 @@ import { RouterModule } from '@angular/router';
 import { DialogModule } from 'primeng/dialog';
 import { ClientesDetalhesComponent } from './clientes-detalhes/clientes-detalhes.component';
 import { FieldsetModule } from 'primeng/fieldset';
-import { GalleriaModule } from 'primeng/galleria';
 import { ClientesEditarModalComponent } from './clientes-editar-modal/clientes-editar-modal.component';
 import { EnviarFilaModalComponent } from './enviar-fila-modal/enviar-fila-modal.component';
 import { DropdownModule } from 'primeng/dropdown';
@@ -49,7 +48,6 @@ import { SharedModule } from '../shared/shared/shared.module';
     RouterModule,
     DialogModule,
     FieldsetModule,
-    GalleriaModule,
     DropdownModule,
     SharedModule
   ],

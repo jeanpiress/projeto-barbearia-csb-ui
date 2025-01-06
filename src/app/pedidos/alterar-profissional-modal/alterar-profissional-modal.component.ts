@@ -4,7 +4,6 @@ import { ErrorHandlerService } from '../../core/error-handler.service';
 import { Pedido, Profissional } from '../../core/model';
 import { NotificationService } from '../../core/notification.service';
 import { ProfissionalService } from '../../profissionais/profissional.service';
-import { AtendimentoComponent } from '../atendimento/atendimento.component';
 import { PedidoService } from '../pedido.service';
 
 @Component({
@@ -16,6 +15,8 @@ export class AlterarProfissionalModalComponent {
   @Input() pedido: any = new Pedido();
   @Input() display: boolean = false;
   @Output() displayChange = new EventEmitter<boolean>();
+  @Output() profissionalAlterado = new EventEmitter<void>();
+
   nomeClienteBusca: string = '';
   clientes: any[] = [];
   clienteSelecionado: any;
@@ -27,8 +28,7 @@ export class AlterarProfissionalModalComponent {
     private pedidoService: PedidoService,
     private profissionalService: ProfissionalService,
     private notificationService: NotificationService,
-    private errorHandler: ErrorHandlerService,
-    private atendimentoComponent: AtendimentoComponent
+    private errorHandler: ErrorHandlerService
   ){}
   ngOnInit() {
     this.carregarProfissionais();
@@ -58,7 +58,6 @@ export class AlterarProfissionalModalComponent {
     this.pedidoService.alterarProfissional(this.pedido.id, this.profissionalSelecionado.value).subscribe({
       next: () => {
         this.notificationService.showSuccess('Sucesso', 'Profissional alterado com sucesso!');
-        this.atendimentoComponent.atualizarTodosPedidos();
         this.close();
       },
       error: erro => {
@@ -70,5 +69,6 @@ export class AlterarProfissionalModalComponent {
   close() {
     this.display = false;
     this.displayChange.emit(this.display);
+    this.profissionalAlterado.emit();
   }
 }

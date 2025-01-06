@@ -85,8 +85,8 @@
         [breakpoint]="'960px'">
           <ng-template pTemplate="header">
             <tr>
-              <th style="width: 450px;">Nome</th>
-              <th style="width: 150px; text-align: center;" >Atendimento</th>
+              <th style="width: 400px;">Nome</th>
+              <th style="width: 200px; text-align: center;" >Data Pagamento</th>
               <th style="text-align: center;">Profissional</th>
               <th style="width: 200px; text-align: center;">Forma de Pagamento</th>
               <th style="text-align: center; width: 100px;">Valor</th>
@@ -96,7 +96,7 @@
           <ng-template pTemplate="body" let-pedido>
             <tr>
               <td>{{ pedido.cliente.nome }}</td>
-              <td>{{ pedido.dataPagamento | date: 'dd/MM/yy HH:mm' }}</td>
+              <td  style="text-align: center;">{{ pedido.dataPagamento | date: 'dd/MM/yy HH:mm' }}</td>
               <td style="text-align: center;">{{ pedido.profissional.nome }}</td>
               <td style="text-align: center;">{{ pedido.formaPagamento }}</td>
               <td style="text-align: center;">{{ pedido.valorTotal | currency:'BRL'}}</td>

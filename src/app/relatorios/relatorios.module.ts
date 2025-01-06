@@ -19,6 +19,7 @@ import { ComissaoDetalhadaComponent } from './comissao-detalhada/comissao-detalh
 import { DropdownModule } from 'primeng/dropdown';
 import { CardModule } from 'primeng/card';
 import { FaturamentoPeriodoComponent } from './faturamento-periodo/faturamento-periodo.component';
+import { SharedModule } from '../shared/shared/shared.module';
 
 
 
@@ -43,7 +44,8 @@ import { FaturamentoPeriodoComponent } from './faturamento-periodo/faturamento-p
     ConfirmDialogModule,
     RouterModule,
     DropdownModule,
-    CardModule
+    CardModule,
+    SharedModule
   ],
   exports: [
     ComissoesGeraisComponent,

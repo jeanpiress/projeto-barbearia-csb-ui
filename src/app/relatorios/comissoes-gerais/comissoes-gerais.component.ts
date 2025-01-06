@@ -12,32 +12,22 @@ import { ErrorHandlerService } from '../../core/error-handler.service';
 export class ComissoesGeraisComponent implements OnInit{
 
   comissoes: any[] = [];
-  dataInicio: string = '';
-  dataFim: string = '';
+  dataInicio: any = null;
+  dataFim: any = null;
 
   constructor(
     private relatorioService: RelatorioService,
     private errorHandler: ErrorHandlerService
-  ) {}
+  ) {const today = new Date(); this.dataInicio = this.formatDate(today); this.dataFim = this.formatDate(today);}
+
 
   ngOnInit() {
+    console.log('incio: ' + this.dataInicio + ' Fim: ' + this.dataFim)
     this.buscarComissoes();
   }
 
   buscarComissoes() {
-    if (this.dataInicio && this.dataFim) {
-        this.relatorioService.pesquisarComissoesData(this.dataInicio + 'T00:00:00-03:00', this.dataFim + 'T23:59:59-03:00').subscribe({
-          next: (resposta) => {
-          this.comissoes = resposta;
-        },
-        error: (erro) => {
-          this.errorHandler.handle(erro)
-
-        }
-      });
-    } else {
-      this.relatorioService.pesquisarComissoesData(new Date().toISOString().substring(0, 10) +
-      'T00:00:00-03:00', new Date().toISOString().substring(0, 10) + 'T23:59:59-03:00').subscribe({
+      this.relatorioService.pesquisarComissoesData(this.dataInicio, this.dataFim).subscribe({
         next: (resposta) => {
         this.comissoes = resposta;
       },
@@ -46,8 +36,13 @@ export class ComissoesGeraisComponent implements OnInit{
 
       }
     });
-    }
   }
+
+  formatDate(date: Date): string {
+    const year = date.getFullYear();
+    const month = ('0' + (date.getMonth() + 1)).slice(-2);
+    const day = ('0' + date.getDate()).slice(-2);
+    return `${year}-${month}-${day}`; }
 
 
 }

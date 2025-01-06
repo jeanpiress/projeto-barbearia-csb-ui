@@ -27,9 +27,10 @@ export class ClientesEditarModalComponent {
    }
 
   salvar(){
-    const clienteImput = new ClienteInput(this.cliente);
-    clienteImput.endereco = this.endereco;
-    this.clienteService.editarCliente(this.cliente.id, clienteImput).subscribe({
+    const clienteInput = new ClienteInput(this.cliente);
+    clienteInput.endereco = this.endereco;
+    clienteInput.celular = this.limparMascara(this.cliente.celular);
+    this.clienteService.editarCliente(this.cliente.id, clienteInput).subscribe({
       next: () => {
         this.notificationService.showSuccess('Sucesso', 'Cliente editado com sucesso!');
         this.close();
@@ -38,6 +39,10 @@ export class ClientesEditarModalComponent {
         this.errorHandler.handle(erro)
       }
     });
+  }
+
+  limparMascara(celular: string): string {
+    return celular.replace(/[\s()-]/g, '');
   }
 
   close() {

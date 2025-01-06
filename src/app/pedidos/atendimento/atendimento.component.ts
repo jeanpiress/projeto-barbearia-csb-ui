@@ -19,7 +19,7 @@ export class AtendimentoComponent implements OnInit {
   statusEmAtendimento = StatusPedido.EMATENDIMENTO;
   selectedPedido: Pedido | null = null;
   displayEmEspera: boolean = false;
-  isEmEspera: boolean = true;
+  isEmEspera: boolean = false;
   displayAlterarProfissional: boolean = false;
   displayCarrinho: boolean = false;
   displayPagamentoModal: boolean = false;
@@ -117,8 +117,8 @@ export class AtendimentoComponent implements OnInit {
   adicionarEmEspera(isEmEspera: boolean) {
     this.displayEmEspera = false;
     this.notificationService.hideNavBar(true);
+    this.isEmEspera = isEmEspera;
     setTimeout(() => {
-      this.isEmEspera = isEmEspera;
       this.displayEmEspera = true;
     }, 0);
   }
