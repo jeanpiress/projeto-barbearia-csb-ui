@@ -77,6 +77,10 @@ export class AuthService {
     return this.jwtPayload && this.jwtPayload.authorities.includes(permissao);
   }
 
+  usuarioId(){
+    return this.jwtPayload.usuario_id;
+  }
+
   isAccessTokenInvalido(){
     const token = localStorage.getItem('token')
 

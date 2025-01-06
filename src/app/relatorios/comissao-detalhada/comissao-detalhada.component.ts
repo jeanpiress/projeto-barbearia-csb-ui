@@ -5,6 +5,7 @@ import { PedidoSimplificado, Profissional, RelatorioComissaoDetalhada } from '..
 import { RelatorioService } from '../relatorio.service';
 import { PedidoService } from '../../pedidos/pedido.service';
 import { ProfissionalService } from '../../profissionais/profissional.service';
+import { AuthService } from '../../seguranca/auth.service';
 
 @Component({
   selector: 'app-comissao-detalhada',
@@ -24,11 +25,17 @@ export class ComissaoDetalhadaComponent implements OnInit {
       private relatorioService: RelatorioService,
       private errorHandler: ErrorHandlerService,
       private profissionalService: ProfissionalService,
+      public auth: AuthService
     ) {const today = new Date(); this.dataInicio = this.formatDate(today); this.dataFim = this.formatDate(today);}
 
 
   ngOnInit(): void {
-    this.carregarProfissionais();
+    if(this.auth.temPermissao('GERENTE')){
+      this.carregarProfissionais();
+    }else{
+      this.carregarProfissionalPorId();
+    }
+
   }
 
   carregarProfissionais() {
@@ -43,6 +50,22 @@ export class ComissaoDetalhadaComponent implements OnInit {
         });
 
     }
+
+    carregarProfissionalPorId() {
+      const profissionalId = this.auth.usuarioId();
+      this.profissionalService.pesquisarProfissionalPorId(profissionalId)
+        .pipe(
+          map((profissional: Profissional) => ({
+            label: profissional.nome,
+            value: profissional.id
+          }))
+        )
+        .subscribe(profissionalFormatado => {
+          this.profissionais = [profissionalFormatado];
+          this.profissionalSelecionado = profissionalFormatado;
+        });
+    }
+
 
     buscarComissoesDetalhadas() {
         this.relatorioService.pesquisarComissoesProfissional(this.dataInicio, this.dataFim, this.profissionalSelecionado.value).subscribe({

@@ -26,8 +26,8 @@ export class NavBarComponent implements OnInit{
   }
 
   logout() {
-    this.auth.logout();  // Chama o método logout do AuthService para remover o token
-    this.router.navigate(['/login']);  // Redireciona o usuário para a página de login
+    this.auth.logout();
+    this.router.navigate(['/login']);
   }
 
 }

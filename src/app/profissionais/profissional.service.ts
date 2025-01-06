@@ -16,6 +16,10 @@ export class ProfissionalService {
     return this.http.get(`${this.profissionalUrl}/${isAtivo}`)
   }
 
+  pesquisarProfissionalPorId(profissionalId: number): Observable<any>{
+    return this.http.get(`${this.profissionalUrl}/${profissionalId}`)
+  }
+
   ativarInativar(isAtivo: string, profissionalId: any): Observable<any>{
     isAtivo = isAtivo === 'ativos' ? 'inativar' : 'ativar';
     return this.http.put(`${this.profissionalUrl}/${profissionalId}/${isAtivo}`, {})
