@@ -9,8 +9,8 @@
     <p><strong>Multiplicador de pontos (Cliente): </strong> {{ produto.pesoPontuacaoCliente }}x</p>
     <p><strong>Multiplicador de pontos (Profissional): </strong> {{ produto.pesoPontuacaoProfissional }}x</p>
     <p><strong>Comissão Base: </strong> {{ produto.comissaoBase }}%</p>
-    <p><strong>Imagem do Produto: </strong></p>
-    <img [src]="produto.imagemUrl || 'https://static.flaresenha.com/wp/camisa-flamengo.jpg'" alt="Imagem do Produto" width="400">
+    <p *ngIf="fotoProdutoUrl"><strong>Imagem do Produto: </strong></p>
+    <img *ngIf="fotoProdutoUrl" [src]="fotoProdutoUrl" alt="Imagem do Produto" width="400">
 
 
   </div>

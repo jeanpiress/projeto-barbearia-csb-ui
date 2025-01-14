@@ -1,4 +1,4 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ItemPedido, ItemPedidoImput, Produto, ProdutoInput } from '../core/model';
@@ -53,4 +53,27 @@ export class ItemService {
   editarProduto(produtoId: any, produto: ProdutoInput): Observable<any>{
     return this.http.put(`${this.produtoUrl}/${produtoId}`, produto);
   }
+
+  uploadFotoProduto(produtoId: number, file: File): Observable<any>{
+    const formData = new FormData();
+    formData.append('arquivo', file);
+    formData.append('descricao', `Foto do produto de id ${produtoId}`);
+
+    return this.http.put(`${this.produtoUrl}/${produtoId}/foto`, formData);
+  }
+
+  getFotoProduto(produtoId: number): Observable<ArrayBuffer> {
+    const headers = new HttpHeaders({
+      'Accept': 'image/*'
+    });
+
+    return this.http.get(`${this.produtoUrl}/${produtoId}/foto`, {
+      headers: headers,
+      responseType: 'arraybuffer' as const,
+      observe: 'body'
+    });
+  }
+
+
+
 }

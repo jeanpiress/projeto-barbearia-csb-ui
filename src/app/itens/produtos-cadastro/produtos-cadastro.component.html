@@ -63,8 +63,10 @@
         [(ngModel)]="produto.comissaoBase">
       </div>
     </div>
-    <div class="p-col-3 ">
+    <div class="agrupar p-col-3 ">
       <p-button class="button-spacing" label="Salvar" [disabled]="!produtoForm.valid" type="submit"/>
+      <p-fileUpload name="foto" mode="basic" chooseLabel="Selecionar Foto" accept="image/*" maxFileSize="1000000"
+      customUpload="true" (onSelect)="onFileSelected($event)"></p-fileUpload>
     </div>
   </form>
 </p-dialog>

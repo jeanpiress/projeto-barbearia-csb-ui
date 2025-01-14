@@ -18,6 +18,7 @@ export class ProdutosEditarModalComponent implements OnInit{
 
   categorias: any[] = []
   categoriaSelecionada: any = null;
+  selectedFile: File | null = null;
 
   constructor(
     private itemService: ItemService,
@@ -64,12 +65,34 @@ export class ProdutosEditarModalComponent implements OnInit{
     this.itemService.editarProduto(this.produto.id, produtoImput).subscribe({
       next: () => {
         this.notificationService.showSuccess('Sucesso', 'Produto editado com sucesso!');
+
+        if (this.selectedFile) {
+          this.onUpload(this.selectedFile, this.produto.id);
+        }
+
         this.produtoSalvo.emit();
         this.close();
       },
       error: erro => {
         this.errorHandler.handle(erro)
       }
+    });
+  }
+
+  onFileSelected(event: any): void {
+    const files = event.files;
+    if (files && files.length > 0) {
+      this.selectedFile = files[0];
+      console.log('Arquivo selecionado:', this.selectedFile);
+    } else {
+      console.error('Nenhum arquivo foi selecionado.');
+    }
+  }
+
+  onUpload(file: File, produtoId: number): void {
+    this.itemService.uploadFotoProduto(produtoId, file).subscribe({
+      next: () => console.log('Foto enviada com sucesso!'),
+      error: (err) => console.error('Erro ao enviar a foto', err)
     });
   }
 

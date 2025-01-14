@@ -15,6 +15,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { DropdownModule } from 'primeng/dropdown';
 import { ProdutosDetalhesModalComponent } from './produtos-detalhes-modal/produtos-detalhes-modal.component';
 import { ProdutosEditarModalComponent } from './produtos-editar-modal/produtos-editar-modal.component';
+import { FileUploadModule } from 'primeng/fileupload';
 
 
 
@@ -37,7 +38,8 @@ import { ProdutosEditarModalComponent } from './produtos-editar-modal/produtos-e
     DialogModule,
     TableModule,
     InputNumberModule,
-    DropdownModule
+    DropdownModule,
+    FileUploadModule
   ]
 })
 export class ItensModule {}
