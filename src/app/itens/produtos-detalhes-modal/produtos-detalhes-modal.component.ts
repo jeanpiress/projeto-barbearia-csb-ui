@@ -1,6 +1,4 @@
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
-import { ErrorHandlerService } from '../../core/error-handler.service';
-import { NotificationService } from '../../core/notification.service';
 import { ItemService } from '../item.service';
 
 @Component({
@@ -15,9 +13,7 @@ export class ProdutosDetalhesModalComponent implements OnChanges{
 
   fotoProdutoUrl: any;
 
-  constructor(private itemService: ItemService,
-                private notificationService: NotificationService,
-                private errorHandler: ErrorHandlerService
+  constructor(private itemService: ItemService
     ){}
 
     ngOnChanges(changes: SimpleChanges): void {

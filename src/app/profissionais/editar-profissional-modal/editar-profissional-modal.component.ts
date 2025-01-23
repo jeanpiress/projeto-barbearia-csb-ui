@@ -30,57 +30,57 @@ export class EditarProfissionalModalComponent implements OnInit{
     ngOnInit( ) {
     }
 
-      editar(){
-        const profissionalInput = new ProfissionalInput(this.profissional);
-        this.profissionalService.editarProfissional(profissionalInput, this.profissional.id).subscribe({
-          next: () => {
-            this.notificationService.showSuccess('Sucesso', 'Profissional Editado com sucesso!');
-            if (this.selectedFile) {
-              this.uploadPorProfissional();
-            }
-            this.resetForm();
-            this.close();
-          },
-          error: erro => {
-            this.errorHandler.handle(erro)
+    editar(){
+      const profissionalInput = new ProfissionalInput(this.profissional);
+      this.profissionalService.editarProfissional(profissionalInput, this.profissional.id).subscribe({
+        next: () => {
+          this.notificationService.showSuccess('Sucesso', 'Profissional Editado com sucesso!');
+          if (this.selectedFile) {
+            this.uploadPorProfissional();
           }
-        });
-      }
-
-      uploadPorProfissional(){
-        this.usuarioService.buscarUsuario(this.profissional.id, ocupacao.PROFISSIONAL).subscribe({
-          next:(usuario) => {
-            this.usuario = usuario;
-            this.onUpload(this.selectedFile!, this.usuario.id);
-          },
-          error: erro => console.error('Erro ao buscar usuario', erro)
-        });
-      }
-
-      onFileSelected(event: any): void {
-        const files = event.files;
-        if (files && files.length > 0) {
-          this.selectedFile = files[0];
-          console.log('Arquivo selecionado:', this.selectedFile);
-        } else {
-          console.error('Nenhum arquivo foi selecionado.');
+          this.resetForm();
+          this.close();
+        },
+        error: erro => {
+          this.errorHandler.handle(erro)
         }
-      }
+      });
+    }
 
-      onUpload(file: File, usuarioId: number): void {
-        this.usuarioService.uploadFotoUsuario(usuarioId, file).subscribe({
-          next: () => console.log('Foto enviada com sucesso!'),
-          error: (err) => console.error('Erro ao enviar a foto', err)
-        });
-      }
+    uploadPorProfissional(){
+      this.usuarioService.buscarUsuario(this.profissional.id, ocupacao.PROFISSIONAL).subscribe({
+        next:(usuario) => {
+          this.usuario = usuario;
+          this.onUpload(this.selectedFile!, this.usuario.id);
+        },
+        error: erro => console.error('Erro ao buscar usuario', erro)
+      });
+    }
 
-      close() {
-        this.display = false;
-        this.displayChange.emit(this.display);
-        this.atualizarProfissionais.emit();
+    onFileSelected(event: any): void {
+      const files = event.files;
+      if (files && files.length > 0) {
+        this.selectedFile = files[0];
+        console.log('Arquivo selecionado:', this.selectedFile);
+      } else {
+        console.error('Nenhum arquivo foi selecionado.');
       }
+    }
 
-      resetForm() {
-        this.profissional = new Profissional();
-      }
+    onUpload(file: File, usuarioId: number): void {
+      this.usuarioService.uploadFotoUsuario(usuarioId, file).subscribe({
+        next: () => console.log('Foto enviada com sucesso!'),
+        error: (err) => console.error('Erro ao enviar a foto', err)
+      });
+    }
+
+    close() {
+      this.display = false;
+      this.displayChange.emit(this.display);
+      this.atualizarProfissionais.emit();
+    }
+
+    resetForm() {
+      this.profissional = new Profissional();
+    }
 }

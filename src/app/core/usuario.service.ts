@@ -1,4 +1,4 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -25,4 +25,16 @@ export class UsuarioService {
 
     return this.http.get(`${this.usuarioUrl}/ocupacao/${id}`, {params});
   }
+
+  getFotoUsuario(usuarioId: number): Observable<ArrayBuffer> {
+      const headers = new HttpHeaders({
+        'Accept': 'image/*'
+      });
+
+      return this.http.get(`${this.usuarioUrl}/${usuarioId}/foto`, {
+        headers: headers,
+        responseType: 'arraybuffer' as const,
+        observe: 'body'
+      });
+    }
 }

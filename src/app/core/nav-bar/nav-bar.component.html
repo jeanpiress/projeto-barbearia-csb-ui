@@ -10,7 +10,7 @@
   <ul class="navbar-menu" [hidden]="!exibindoMenu">
     <li class="navbar-usuario">
       {{auth.jwtPayload?.nome_exibicao}}
-      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjQWAIONPy3WaGsqk4X7c8DCWMJEXae2kAxtyq7SguQ8-ynAbTjCgnpIAJVsiVPStlC8CZttA5m5JxmrumhBTt3KLUK9FwdwlyXSN7yz0KB_n6lePLEPsNuIhm-juGncMTQEcMnnXcVj0U/s1600/unnamed-795336.jpg" alt="Perfil" class="profile-picture">
+      <img [src]="fotoUsuarioUrl || semFotoUsuarioUrl" alt="Perfil" class="profile-picture">
     </li>
     <li class="navbar-item" routerLinkActive="ativo" *ngIf="auth.temPermissao('RECEPCAO')">
       <a routerLink="/caixa" (click)="exibindoMenu = false"><i class="pi pi-credit-card"></i> Caixa</a>
