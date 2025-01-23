@@ -86,8 +86,11 @@
           </div>
         </div>
 
-        <div class="p-col-3">
-          <p-button class="button-spacing" label="editar" [disabled]="!profissionalForm.valid" (click)="editar()"/>
+        <div class="agrupar p-col-3">
+          <p-button class="button-spacing" label="Editar"
+          [disabled]="!profissionalForm.valid" (click)="editar()"/>
+          <p-fileUpload name="foto" mode="basic" chooseLabel="Selecionar Foto" accept="image/*" maxFileSize="1000000"
+          customUpload="true" (onSelect)="onFileSelected($event)"></p-fileUpload>
         </div>
 
       </div>

@@ -11,8 +11,8 @@ export class Endereco {
 
 export class Profissional {
   id: number = 1;
-  nome: string = ' ';
-  nomeExibicao: string = ' ';
+  nome: string = '';
+  nomeExibicao: string = '';
   celular: string = ' ';
   cpf: string = ' ';
   dataNascimento: string = ' ';
@@ -41,13 +41,13 @@ export class ProfissionalInput {
   constructor(profissional: Profissional) {
     this.nome = profissional.nome;
     this.nomeExibicao = profissional.nomeExibicao;
-    this.celular = profissional.celular.replace(/[^0-9]/g, ''); // Remove máscara do celular
-    this.cpf = profissional.cpf ? profissional.cpf.replace(/[^0-9]/g, '') : null; // Remove máscara do CPF
+    this.celular = profissional.celular.replace(/[^0-9]/g, '');
+    this.cpf = profissional.cpf ? profissional.cpf.replace(/[^0-9]/g, '') : null;
     this.dataNascimento = profissional.dataNascimento || null;
     this.salarioFixo = profissional.salarioFixo || null;
     this.diaPagamento = profissional.diaPagamento || null;
     this.endereco = profissional.endereco ? {
-      cep: profissional.endereco.cep ? profissional.endereco.cep.replace(/[^0-9]/g, '') : null, // Remove máscara do CEP ou null
+      cep: profissional.endereco.cep ? profissional.endereco.cep.replace(/[^0-9]/g, '') : null,
       logradouro: profissional.endereco.logradouro || null,
       numero: profissional.endereco.numero || null,
       complemento: profissional.endereco.complemento || null,
@@ -94,6 +94,20 @@ export class ClienteInput {
   }
 
 
+}
+
+export class UsuarioInput {
+  nome: string = '';
+  email: string = '';
+  senha: string = '';
+  confirmacao: string = ''
+  maiorPermissao: string = 'PROFISSIONAL'
+
+  constructor(usuario: any) {
+    this.email = usuario?.email ?? '';
+    this.senha = usuario?.senha ?? '';
+    this.confirmacao = usuario?.confirmacao ?? '';
+    };
 }
 
 export class Categoria {
@@ -213,6 +227,11 @@ export class PedidoSimplificado {
   dataPagamento: string = '';
 }
 
+export class ProfissionalUsuarioInput {
+  profissional: ProfissionalInput = new ProfissionalInput(new Profissional);
+  usuario: UsuarioInput = new UsuarioInput({});
+}
+
 export enum FormaPagamento {
   DINHEIRO = 'DINHEIRO',
   PIX = 'PIX',
@@ -238,3 +257,9 @@ AGUARDANDO_PAGAMENTO = 'AGUARDANDO_PAGAMENTO',
 PAGO = 'PAGO',
 CANCELADO ='CANCELADO'
 }
+
+export enum ocupacao {
+  PROFISSIONAL = 'PROFISSIONAL',
+  CLIENTE = 'CLIENTE'
+  }
+

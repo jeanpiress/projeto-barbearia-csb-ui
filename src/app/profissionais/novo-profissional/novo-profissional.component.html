@@ -16,16 +16,31 @@
         </div>
 
         <div class="agrupar p-fluid mb-3">
-          <div class="flex-grow-3">
+          <div class="flex-grow-3 max-col-6">
             <label>Nome de Exibição</label>
             <input type="text" pInputText name="nomeExibicao" [(ngModel)]="profissional.nomeExibicao" maxlength="15">
           </div>
-          <div>
+          <div class="flex-grow-3 max-col-6">
+            <label for="senha">Senha</label>
+            <p-password id="senha" name="Senha" [(ngModel)]="usuarioInput.senha" maxlength="15" [feedback]="false" [toggleMask]="true"></p-password>
+          </div>
+          <div class="flex-grow-3 max-col-6">
+            <label for="confirmacao">Confirmar Senha</label>
+            <p-password id="confirmacao" name="confirmacao" [(ngModel)]="usuarioInput.confirmacao" maxlength="15" [feedback]="false" [toggleMask]="true"></p-password>
+          </div>
+        </div>
+
+        <div class="agrupar p-fluid mb-3">
+          <div class="flex-grow-3 max-col-6">
+            <label>Email</label>
+            <input type="text" pInputText name="Email" [(ngModel)]="usuarioInput.email" maxlength="60">
+          </div>
+          <div class="flex-grow-3 max-col-3">
             <label>Salario Fixo</label>
             <p-inputNumber [(ngModel)]="profissional.salarioFixo" inputId="currency-br" mode="currency" currency="BRL"
             locale="pt-BR" [minFractionDigits]="2" [maxFractionDigits]="2" name="salarioFixo"/>
           </div>
-          <div>
+          <div class="flex-grow-3 max-col-3">
             <label>Dia de Pagamento</label>
             <p-inputMask mask="99" name="diaPagamento" [(ngModel)]="profissional.diaPagamento" ></p-inputMask>
           </div>
@@ -38,11 +53,11 @@
             [(ngModel)]="profissional.celular" required></p-inputMask>
           </div>
           <div>
-            <label>Data Nascimento</label>
+            <label class="flex-grow-3">Data Nascimento</label>
             <input type="date" pInputText name="dataNascimento"
             [(ngModel)]="profissional.dataNascimento" required>
           </div>
-          <div>
+          <div class="flex-grow-3">
             <label>CPF</label>
             <p-inputMask mask="999.999.999-99" name="CPF"
             [(ngModel)]="profissional.cpf"></p-inputMask>
@@ -86,9 +101,11 @@
           </div>
         </div>
 
-        <div class="p-col-3">
+        <div class="agrupar p-col-3">
           <p-button class="button-spacing" label="Salvar"
           [disabled]="!profissionalForm.valid" (click)="salvar()"/>
+          <p-fileUpload name="foto" mode="basic" chooseLabel="Selecionar Foto" accept="image/*" maxFileSize="1000000"
+          customUpload="true" (onSelect)="onFileSelected($event)"></p-fileUpload>
         </div>
 
       </div>

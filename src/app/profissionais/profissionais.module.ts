@@ -20,6 +20,8 @@ import { NovoProfissionalComponent } from './novo-profissional/novo-profissional
 import { InputNumberModule } from 'primeng/inputnumber';
 import { SharedModule } from '../shared/shared/shared.module';
 import { EditarProfissionalModalComponent } from './editar-profissional-modal/editar-profissional-modal.component';
+import { FileUploadModule } from 'primeng/fileupload';
+import { PasswordModule } from 'primeng/password';
 
 
 
@@ -48,7 +50,9 @@ import { EditarProfissionalModalComponent } from './editar-profissional-modal/ed
     FieldsetModule,
     GalleriaModule,
     InputNumberModule,
-    SharedModule
+    SharedModule,
+    FileUploadModule,
+    PasswordModule
   ],
   providers: [
     provideHttpClient(withInterceptorsFromDi())
