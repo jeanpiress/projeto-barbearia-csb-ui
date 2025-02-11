@@ -1,9 +1,6 @@
-import { ClienteInput } from './../core/model';
-import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-
-
 
 @Injectable({
   providedIn: 'root'
@@ -14,10 +11,9 @@ export class ClienteService {
 
   constructor(private http: HttpClient) { }
 
-  pesquisarClientes(nome: string, ativo: boolean): Observable<any>{
+  pesquisarClientes(nome: string): Observable<any>{
     let params = new HttpParams()
-                .set('nome', nome)
-                .set('ativo', ativo);
+                .set('nome', nome);
 
     return this.http.get(`${this.clienteUrl}`, { params })
   }
@@ -26,14 +22,14 @@ export class ClienteService {
     return this.http.get(`${this.clienteUrl}/${id}`);
   }
 
-  desativar(codigo: number): Observable<void>{
-    return this.http.delete<void>(`${this.clienteUrl}/${codigo}/desativar`)}
+  excluir(id: number): Observable<void>{
+    return this.http.delete<void>(`${this.clienteUrl}/${id}`)}
 
-  novoCliente(cliente: ClienteInput): Observable<any>{
+  novoCliente(cliente: any): Observable<any>{
     return this.http.post(`${this.clienteUrl}`, cliente);
   }
 
-  editarCliente(clienteId: any, cliente: ClienteInput): Observable<any>{
+  editarCliente(clienteId: any, cliente: any): Observable<any>{
     return this.http.put(`${this.clienteUrl}/${clienteId}`, cliente);
   }
 }

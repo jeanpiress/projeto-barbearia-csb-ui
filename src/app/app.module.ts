@@ -14,41 +14,22 @@ import { InputMaskModule } from 'primeng/inputmask';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ChartModule } from 'primeng/chart';
 
-import { ClientesModule } from './clientes/clientes.module';
 
 
 
-import { CoreModule } from './core/core.module';
-import { RelatoriosModule } from './relatorios/relatorios.module';
-import { FinanceirosModule } from './financeiros/financeiros.module';
+
 import { RouterModule, Routes } from '@angular/router';
-import { BuscaClientesComponent } from './clientes/busca-clientes/busca-clientes.component';
-import { CaixaComponent } from './financeiros/caixa/caixa.component';
-import { ComissoesGeraisComponent } from './relatorios/comissoes-gerais/comissoes-gerais.component';
-import { AtendimentoComponent } from './pedidos/atendimento/atendimento.component';
-import { PedidosModule } from './pedidos/pedidos.module';
-import { ProfissionaisModule } from './profissionais/profissionais.module';
-import { BuscaProfissionaisComponent } from './profissionais/busca-profissionais/busca-profissionais.component';
+
+
 import { SegurancaModule } from './seguranca/seguranca.module';
 import { LoginFormComponent } from './seguranca/login-form/login-form.component';
-import { ItensModule } from './itens/itens.module';
-import { ClientesRetornoComponent } from './relatorios/clientes-retorno/clientes-retorno.component';
-import { ProdutosBuscarComponent } from './itens/produtos-buscar/produtos-buscar.component';
-import { AgendamentoNovoComponent } from './pedidos/agendamento-novo/agendamento-novo.component';
-import { ComissaoDetalhadaComponent } from './relatorios/comissao-detalhada/comissao-detalhada.component';
-import { FaturamentoPeriodoComponent } from './relatorios/faturamento-periodo/faturamento-periodo.component';
+import { CoreModule } from './core/core.module';
+import { ClientesModule } from './clientes/clientes.module';
+import { BuscarComponent } from './clientes/buscar/buscar.component';
+
 
 const routes: Routes =[
-  {path: 'clientes/buscar', component: BuscaClientesComponent},
-  {path: 'caixa', component: CaixaComponent},
-  {path: 'atendimento', component: AtendimentoComponent},
-  {path: 'agendamento', component: AgendamentoNovoComponent},
-  {path: 'relatorios/clientes-retorno', component: ClientesRetornoComponent},
-  {path: 'relatorios/faturamento-periodo', component: FaturamentoPeriodoComponent},
-  {path: 'relatorios/comissoes/gerais', component: ComissoesGeraisComponent},
-  {path: 'relatorios/comissoes/detalhada', component: ComissaoDetalhadaComponent},
-  {path: 'profissionais/buscar', component: BuscaProfissionaisComponent},
-  {path: 'produtos/buscar', component: ProdutosBuscarComponent},
+  {path: 'clientes/buscar', component: BuscarComponent},
   {path: 'login', component: LoginFormComponent}
 
 
@@ -58,7 +39,7 @@ const routes: Routes =[
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -72,15 +53,10 @@ const routes: Routes =[
     InputTextareaModule,
     FormsModule,
     ChartModule,
-    ClientesModule,
     CoreModule,
-    RelatoriosModule,
-    FinanceirosModule,
-    PedidosModule,
-    ProfissionaisModule,
     RouterModule.forRoot(routes),
     SegurancaModule,
-    ItensModule
+    ClientesModule
 
   ],
   providers: [],

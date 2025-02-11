@@ -1,8 +1,8 @@
-<p-dialog header="Novo Cliente" [(visible)]="display" [modal]="true" [closable]="true"
-  [style]="{ 'width': '85vw', 'max-width': '500px', 'max-height': '600px', 'height': '95vh' }" >
-  <form autocomplete="off" #clienteForm="ngForm">
-    <div class="p-grid">
+<p-dialog header="Editar Cliente" [(visible)]="display" [modal]="true" [closable]="true"
+  [style]="{ 'width': '85vw', 'max-width': '500px', 'max-height': '600px', 'height': '95vh' }">
 
+  <form #clienteForm="ngForm">
+    <div class="p-grid">
       <div class="p-grid">
         <div class="p-fluid max-col-12 mb-3">
           <label>Nome</label>
@@ -14,12 +14,12 @@
           <input type="text" pInputText name="cpf"
           [(ngModel)]="cliente.cpf" maxlength="11">
         </div>
-
-        <div class="p-col-3">
-          <p-button class="button-spacing" label="Salvar" [disabled]="!clienteForm.valid" (click)="salvar()"/>
-        </div>
-
+      </div>
+      <div class="p-col-3">
+        <p-button class="button-spacing" label="Salvar"
+          [disabled]="!clienteForm.valid" (click)="salvar()" />
       </div>
     </div>
   </form>
+
 </p-dialog>

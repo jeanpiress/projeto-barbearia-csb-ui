@@ -2,56 +2,20 @@
   <div class="container">
     <div class="p-grid">
       <div class="p-col-12">
-        <a href="javascript:;" class="navbar-toggle" (click)="exibindoMenu = !exibindoMenu">CSB</a>
+        <a href="javascript:;" class="navbar-toggle" (click)="exibindoMenu = !exibindoMenu">Objetivo Metaway</a>
       </div>
     </div>
   </div>
 
   <ul class="navbar-menu" [hidden]="!exibindoMenu">
     <li class="navbar-usuario">
-      {{auth.jwtPayload?.nome_exibicao}}
-      <img [src]="fotoUsuarioUrl || semFotoUsuarioUrl" alt="Perfil" class="profile-picture">
+      {{auth.jwtPayload?.nome}}
     </li>
-    <li class="navbar-item" routerLinkActive="ativo" *ngIf="auth.temPermissao('RECEPCAO')">
-      <a routerLink="/caixa" (click)="exibindoMenu = false"><i class="pi pi-credit-card"></i> Caixa</a>
+    <li class="navbar-item" routerLinkActive="ativo" *ngIf="auth.temPermissao('ADMIN')">
+      <a routerLink="/caixa" (click)="exibindoMenu = false"><i class="pi pi-heart"></i> Pets</a>
     </li>
-    <li class="navbar-item" routerLinkActive="ativo" *ngIf="auth.temPermissao('RECEPCAO')">
-      <a routerLink="/atendimento" (click)="exibindoMenu = false"><i class="pi pi-users"></i> Fila de atendimento</a>
-    </li>
-    <li class="navbar-item" routerLinkActive="ativo" *ngIf="auth.temPermissao('PROFISSIONAL')">
-      <a routerLink="/agendamento" (click)="exibindoMenu = false"><i class="pi pi-calendar-clock"></i> Agendamentos</a>
-    </li>
-    <li class="navbar-item" routerLinkActive="ativo" *ngIf="auth.temPermissao('RECEPCAO')">
-      <a routerLink="/clientes/buscar" (click)="exibindoMenu = false"><i class="pi pi-user"></i> Clientes</a>
-    </li>
-    <li class="navbar-item" routerLinkActive="ativo" *ngIf="auth.temPermissao('GERENTE')">
-      <a routerLink="/profissionais/buscar" (click)="exibindoMenu = false"><i class="pi pi-briefcase"></i> Profissionais</a>
-    </li>
-
-    <!-- Relatórios com ícone de expansão/contração -->
-    <li class="navbar-item">
-      <a href="javascript:;" (click)="exibindoRelatorios = !exibindoRelatorios">
-        <i class="pi pi-chart-line"></i> Relatórios
-        <i class="pi" [ngClass]="exibindoRelatorios ? 'pi-chevron-up' : 'pi-chevron-down'"></i>
-      </a>
-      <ul [hidden]="!exibindoRelatorios" class="submenu no-bullets">
-        <li class="navbar-item" routerLinkActive="ativo" *ngIf="auth.temPermissao('GERENTE')">
-          <a routerLink="relatorios/faturamento-periodo" (click)="exibindoMenu = exibindoRelatorios = false"><i class="pi pi-money-bill"></i> Faturamento por Periodo</a>
-        </li>
-        <li class="navbar-item" routerLinkActive="ativo" *ngIf="auth.temPermissao('GERENTE')">
-          <a routerLink="relatorios/comissoes/gerais" (click)="exibindoMenu = exibindoRelatorios = false"><i class="pi pi-wallet"></i> Comissões Gerais</a>
-        </li>
-        <li class="navbar-item" routerLinkActive="ativo" *ngIf="auth.temPermissao('PROFISSIONAL')">
-          <a routerLink="relatorios/comissoes/detalhada" (click)="exibindoMenu = exibindoRelatorios = false"><i class="pi pi-receipt"></i> Comissões Detalhadas</a>
-        </li>
-        <li class="navbar-item" routerLinkActive="ativo" *ngIf="auth.temPermissao('RECEPCAO')">
-          <a routerLink="relatorios/clientes-retorno" (click)="exibindoMenu = exibindoRelatorios = false"><i class="pi pi-users"></i> Clientes para Retornar</a>
-        </li>
-      </ul>
-    </li>
-
-    <li class="navbar-item" routerLinkActive="ativo" *ngIf="auth.temPermissao('RECEPCAO')">
-      <a routerLink="produtos/buscar" (click)="exibindoMenu = false"><i class="pi pi-shopping-bag"></i> Produtos</a>
+    <li class="navbar-item" routerLinkActive="ativo" *ngIf="auth.temPermissao('ADMIN')">
+      <a routerLink="/clientes/buscar" (click)="exibindoMenu = false"><i class="pi pi-users"></i> Clientes</a>
     </li>
     <li class="navbar-item" routerLinkActive="ativo">
       <a href="javascript:;" (click)="logout(); exibindoMenu = false"><i class="pi pi-sign-out"></i> Logout</a>

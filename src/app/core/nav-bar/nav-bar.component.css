@@ -31,12 +31,12 @@
   color: #000;
   font-weight: bold;
   padding-left: 15px;
-  padding-top: 15px;
-  padding-bottom: 15px;
+  padding-top: 31px;
+  padding-bottom: 31px;
   border-bottom: 1px solid #525151;
   margin-bottom: 15px;
-  position: relative; /* Necessário para que o posicionamento absoluto da imagem funcione corretamente */
-  display: flex; /* Para alinhar o texto e a imagem lado a lado */
+  position: relative;
+  display: flex;
   align-items: center;
 }
 
@@ -55,15 +55,6 @@
   font-weight:bold;
 }
 
-.profile-picture {
-  width: 50px; /* Ajuste o tamanho conforme necessário */
-  height: 50px;
-  border-radius: 50%; /* Torna a imagem redonda */
-  margin-left: 60px; /* Espaço entre o nome e a imagem */
-  object-fit: cover; /* Garante que a imagem preencha o espaço da maneira correta */
-  vertical-align: middle; /* Alinha a imagem ao meio do texto */
-}
-
 .navbar-item.ativo{
   background-color: rgb(197, 225, 233);
 }
@@ -71,15 +62,15 @@
 .navbar-menu .submenu {
   list-style-type: none;
   padding-left: 0;
-  margin-top: 10px; /* Espaçamento entre "Relatórios" e os itens do submenu */
+  margin-top: 10px;
 }
 
 .navbar-menu .submenu .navbar-item {
-  padding: 8px 0; /* Espaçamento vertical entre os itens "Comissões" e "Clientes para Retornar" */
+  padding: 8px 0;
 }
 
 .navbar-item a {
   display: flex;
   align-items: center;
-  gap: 8px; /* Espaço entre o ícone e o texto do item */
+  gap: 8px;
 }

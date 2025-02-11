@@ -21,7 +21,7 @@ export class AuthService {
   }
 
   login(usuario: string, senha: string): Observable<void> {
-    let headers = new HttpHeaders().set('Authorization', 'Basic Y3NiLXdlYjp3ZWIxMjM=');
+    let headers = new HttpHeaders().set('Authorization', 'Basic bWV0YXdheS13ZWI6d2ViMTIz');
     headers = headers.set('Content-Type', 'application/x-www-form-urlencoded');
 
     const body = `username=${usuario}&password=${senha}&grant_type=password`;
@@ -77,8 +77,12 @@ export class AuthService {
     return this.jwtPayload && this.jwtPayload.authorities.includes(permissao);
   }
 
+  mesmoUsuario(clienteId: any){
+    return this.jwtPayload.id == clienteId;
+  }
+
   usuarioId(){
-    return this.jwtPayload.usuario_id;
+    return this.jwtPayload.id;
   }
 
   isAccessTokenInvalido(){

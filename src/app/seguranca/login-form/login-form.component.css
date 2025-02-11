@@ -1,20 +1,11 @@
 .login-form {
   width: 100%;
-  max-width: 400px; /* Define a largura máxima do formulário */
-  padding: 20px; /* Espaçamento interno */
+  max-width: 400px;
+  padding: 20px;
 }
 
 .login-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.login-link {
-  color: #BBDEFB; /* Azul mais claro */
-  text-decoration: none; /* Remove o sublinhado, se desejar */
-}
-
-.login-link:hover {
-  color: #59abfd; /* Azul mais escuro ao passar o mouse */
 }

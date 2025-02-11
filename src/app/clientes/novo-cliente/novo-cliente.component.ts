@@ -1,39 +1,32 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ErrorHandlerService } from '../../core/error-handler.service';
 import { NotificationService } from '../../core/notification.service';
 import { ClienteService } from '../cliente.service';
-import { Cliente, ClienteInput, Endereco, StatusPedido } from '../../core/model';
-import { PedidoService } from '../../pedidos/pedido.service';
-import { switchMap } from 'rxjs';
-
+import { ClienteInput } from '../../core/model';
 
 @Component({
   selector: 'app-novo-cliente',
   templateUrl: './novo-cliente.component.html',
   styleUrl: './novo-cliente.component.css'
 })
-export class NovoClienteComponent implements OnInit{
-  @Input() endereco = new Endereco();
+export class NovoClienteComponent {
   @Input() display: boolean = false;
   @Output() displayChange = new EventEmitter<boolean>();
 
-  cliente = new Cliente();
+  cliente = new ClienteInput();
   clienteId: number = 0;
 
   constructor(
-    private clienteService: ClienteService,
     private notificationService: NotificationService,
     private errorHandler: ErrorHandlerService,
-    private pedidoService: PedidoService
+    private clienteService: ClienteService,
   ){}
 
-  ngOnInit() {
-  }
-
   salvar(){
-    const clienteInput = new ClienteInput(this.cliente);
-    clienteInput.endereco = this.endereco;
-    clienteInput.celular = this.limparMascara(this.cliente.celular);
+    const clienteInput = {
+      nome: this.cliente.nome,
+      cpf: this.cliente.cpf
+    };
     this.clienteService.novoCliente(clienteInput).subscribe({
       next: () => {
         this.notificationService.showSuccess('Sucesso', 'Cliente criado com sucesso!');
@@ -46,49 +39,13 @@ export class NovoClienteComponent implements OnInit{
     });
   }
 
-  salvarClienteEAdicionarNaFila() {
-    const clienteInput = new ClienteInput(this.cliente);
-    clienteInput.endereco = this.endereco;
-    clienteInput.celular = this.limparMascara(this.cliente.celular);
-
-    this.clienteService.novoCliente(clienteInput).pipe(
-      switchMap((response) => {
-        this.clienteId = response.id;
-        console.log('Cliente criado com Sucesso')
-        const novoPedido = {
-          cliente: { id: this.clienteId },
-          profissional: { id: null }
-        };
-
-        return this.pedidoService.novoPedido(novoPedido, StatusPedido.AGUARDANDO);
-      })
-    ).subscribe({
-      next: () => {
-        this.notificationService.showSuccess('Sucesso', 'Pedido enviado para a fila com sucesso!');
-        this.resetForm();
-        this.close();
-      },
-      error: (erro) => {
-        this.errorHandler.handle(erro);
-      }
-    });
-  }
-
-
   close() {
     this.display = false;
     this.displayChange.emit(this.display);
-    this.clienteService.pesquisarClientes(this.cliente.nome, true);
+    this.clienteService.pesquisarClientes(this.cliente.nome);
   }
 
   resetForm() {
-    this.cliente = new Cliente();
-    this.endereco = new Endereco();
+    this.cliente = new ClienteInput();
   }
-
-  limparMascara(celular: string): string {
-    return celular.replace(/[\s()-]/g, '');
-  }
-
-
 }
